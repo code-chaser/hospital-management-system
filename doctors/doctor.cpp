@@ -24,17 +24,18 @@ private:
 public:
     doctor()
     {
+        id = -1;
     }
-    void printDetails(doctor *D)
+    void printDetails()
     {
-        if (D == NULL)
+        if (id == -1)
             return;
         cout << "\nDeatils:\n";
-        cout << "ID:        " << D->id << "\n";
-        cout << "Full Name: " << D->firstName << " " << D->lastName << "\n";
-        cout << "Gender:    " << D->gender << "\n";
-        cout << "Age:       " << D->age << "\n";
-        cout << "Type:      " << D->type << "\n";
+        cout << "ID:        " << id << "\n";
+        cout << "Full Name: " << firstName << " " << lastName << "\n";
+        cout << "Gender:    " << gender << "\n";
+        cout << "Age:       " << age << "\n";
+        cout << "Type:      " << type << "\n";
         return;
     }
     void addADoctor()
@@ -77,7 +78,7 @@ public:
 
         return;
     }
-    doctor *getADoctor(doctor &d)
+    void getADoctor()
     {
         int opt = 0;
         cout << "OPTIONS:\n1: Filter by ID\n2: Filter by name\n3: Filter by type\n";
@@ -99,15 +100,15 @@ public:
                 getline(s, s1, ',');
                 if (reqId == strToNum(s1))
                 {
-                    getline(s, d.firstName, ',');
-                    getline(s, d.lastName, ',');
+                    getline(s, firstName, ',');
+                    getline(s, lastName, ',');
                     getline(s, s4, ',');
                     getline(s, s5, ',');
-                    getline(s, d.type, ',');
-                    d.id = reqId;
-                    d.gender = s4[0];
-                    d.age = strToNum(s5);
-                    return &d;
+                    getline(s, type, ',');
+                    id = reqId;
+                    gender = s4[0];
+                    age = strToNum(s5);
+                    return;
                 }
             }
             cout << "\nNo record found!\n";
@@ -145,7 +146,7 @@ public:
             cout << "\n"
                  << availableDoctors.size() << " record(s) found!\n";
             for (auto i : availableDoctors)
-                printDetails(&i);
+                i.printDetails();
             char tt = 'N';
             if (availableDoctors.size() > 1)
             {
@@ -155,11 +156,16 @@ public:
                     cout << "\nEnter the ID of the required doctor: ";
                     cin >> reqId;
                     for (auto i : availableDoctors)
-                    {
-                        d = i;
-                        return &d;
-                    }
-                    return &d;
+                        if (reqId == i.id)
+                        {
+                            id = i.id;
+                            firstName = i.firstName;
+                            lastName = i.lastName;
+                            gender = i.gender;
+                            age = i.age;
+                            type = i.type;
+                            return;
+                        }
                     cout << "Invalid ID!\nTry again? (Y = Yes || N = No)\n";
                     cin >> tt;
                 } while (tt == 'Y');
@@ -196,7 +202,7 @@ public:
             cout << "\n"
                  << availableDoctors.size() << " record(s) found!\n";
             for (auto i : availableDoctors)
-                printDetails(&i);
+                i.printDetails();
             char tt = 'N';
             if (availableDoctors.size() > 1)
                 do
@@ -205,16 +211,21 @@ public:
                     cout << "\nEnter the ID of the required doctor: ";
                     cin >> reqId;
                     for (auto i : availableDoctors)
-                        if (i.id == reqId)
+                        if (reqId == i.id)
                         {
-                            d = i;
-                            return &d;
+                            id = i.id;
+                            firstName = i.firstName;
+                            lastName = i.lastName;
+                            gender = i.gender;
+                            age = i.age;
+                            type = i.type;
+                            return;
                         }
                     cout << "Invalid ID!\nTry again? (Y = Yes || N = No)\n";
                     cin >> tt;
                 } while (tt == 'Y');
         }
-        return NULL;
+        return;
     }
 };
 #endif // !DOCTOR

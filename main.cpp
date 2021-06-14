@@ -56,7 +56,8 @@ int main()
         else if (purpose == 8)
         {
             doctor d;
-            d.printDetails(d.getADoctor(d));
+            d.getADoctor();
+            d.printDetails();
         }
         else if (purpose == 9)
         {

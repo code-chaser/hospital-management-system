@@ -1,0 +1,3 @@
+patientId,firstName,lastName,gender,age,height,weight,phoneNumber,hospitalized
+1,John,Doe,M,24,172,63,+919554772940,N
+2,Marko,Stephen,M,35,179,68,+919849394999,Y

@@ -5,181 +5,214 @@ using namespace std;
 #include <string>
 #include <iostream>
 #include <sstream>
-int strToNum(string s){
-    int n=s.size(),res=0;
-    while(n--) res+=(s[s.size()-1-n]-'0')*pow(10,n);
+int strToNum(string s)
+{
+    int n = s.size(), res = 0;
+    while (n--)
+        res += (s[s.size() - 1 - n] - '0') * pow(10, n);
     return res;
 }
 class doctor
 {
 private:
-    int id=0;
-    string firstName,lastName;
+    int id = 0;
+    string firstName, lastName;
     char gender;
-    int16_t age=0;
+    int16_t age = 0;
     string type;
 
 public:
-    doctor(){
-
+    doctor()
+    {
     }
-    void printDetails(doctor* D){
-        if(D==NULL) return;
-        cout<<"\nDeatils:\n";
-        cout<<"ID:        "<<D->id<<"\n";
-        cout<<"Full Name: "<<D->firstName<<" "<<D->lastName<<"\n";
-        cout<<"Gender:    "<<D->gender<<"\n";
-        cout<<"Age:       "<<D->age<<"\n";
-        cout<<"Type:      "<<D->type<<"\n";
+    void printDetails(doctor *D)
+    {
+        if (D == NULL)
+            return;
+        cout << "\nDeatils:\n";
+        cout << "ID:        " << D->id << "\n";
+        cout << "Full Name: " << D->firstName << " " << D->lastName << "\n";
+        cout << "Gender:    " << D->gender << "\n";
+        cout << "Age:       " << D->age << "\n";
+        cout << "Type:      " << D->type << "\n";
         return;
     }
-    void addADoctor(){
+    void addADoctor()
+    {
         //creating a fstream object to read/write from files;
         fstream f;
         //opening the file to read it;
-        f.open("./doctors/doctors.csv",ios::in);
+        f.open("./doctors/doctors.csv", ios::in);
         //reading the whole file just to know the total number of lines present and hence the doctor ID;
-        while(getline(f>>ws,firstName)) id++;
+        while (getline(f >> ws, firstName))
+            id++;
         f.close();
         //getting the basic details of doctor from the user side;
-        cout<<"\nEnter the name of the doctor: \nFirst Name:\n";
-        getline(cin>>ws,firstName);
-        cout<<"\nLast name:\n";
-        getline(cin>>ws,lastName);
+        cout << "\nEnter the name of the doctor: \nFirst Name:\n";
+        getline(cin >> ws, firstName);
+        cout << "\nLast name:\n";
+        getline(cin >> ws, lastName);
 
-        cout<<"\nEnter the age of the doctor: \n";
-        cin>>age;
-        while(age<=0) cout<<"Was that supposed to make any kind of sense?\nEnter again!\n",cin>>age;
-        
-        cout<<"\nEnter the gender of the doctor (M = Male || F = Female): \n";
-        cin>>gender;
-        while(gender!='M'&&gender!='F') cout<<"M or F?\n",cin>>gender;
-        
-        cout<<"\nEnter the type of the doctor: \n";
-        getline(cin>>ws,type);
-        
+        cout << "\nEnter the age of the doctor: \n";
+        cin >> age;
+        while (age <= 0)
+            cout << "Was that supposed to make any kind of sense?\nEnter again!\n", cin >> age;
+
+        cout << "\nEnter the gender of the doctor (M = Male || F = Female): \n";
+        cin >> gender;
+        while (gender != 'M' && gender != 'F')
+            cout << "M or F?\n", cin >> gender;
+
+        cout << "\nEnter the type of the doctor: \n";
+        getline(cin >> ws, type);
+
         //opening the file to append the details of the new doctor;
-        f.open("./doctors/doctors.csv",ios::app);
-        f<<id<<","<<firstName<<","<<lastName<<","<<gender<<","<<age<<","<<type<<endl;
+        f.open("./doctors/doctors.csv", ios::app);
+        f << id << "," << firstName << "," << lastName << "," << gender << "," << age << "," << type << endl;
         f.close();
 
-        cout<<"\n"<<firstName<<" "<<lastName<<" added successfully!\n";
-        cout<<"Their ID is: "<<id<<"\n";
+        cout << "\n"
+             << firstName << " " << lastName << " added successfully!\n";
+        cout << "Their ID is: " << id << "\n";
 
         return;
     }
-    doctor* getADoctor(doctor &d){
-        int opt=0;
-        cout<<"OPTIONS:\n1: Filter by ID\n2: Filter by name\n3: Filter by type\n";
-        cin>>opt;
-        while(opt!=1&&opt!=2&&opt!=3) cout<<"option 1, 2 or 3?\n",cin>>opt;
-        if(opt==1){
+    doctor *getADoctor(doctor &d)
+    {
+        int opt = 0;
+        cout << "OPTIONS:\n1: Filter by ID\n2: Filter by name\n3: Filter by type\n";
+        cin >> opt;
+        while (opt != 1 && opt != 2 && opt != 3)
+            cout << "option 1, 2 or 3?\n", cin >> opt;
+        if (opt == 1)
+        {
             int reqId;
-            cout<<"\nEnter ID:\n";
-            cin>>reqId;
+            cout << "\nEnter ID:\n";
+            cin >> reqId;
             fstream f;
-            f.open("./doctors/doctors.csv",ios::in);
+            f.open("./doctors/doctors.csv", ios::in);
             string temp;
-            while(getline(f>>ws,temp)){
+            while (getline(f >> ws, temp))
+            {
                 stringstream s(temp);
-                string s1,s4,s5;
-                getline(s,s1,',');
-                if(reqId==strToNum(s1)){
-                    getline(s,d.firstName,',');
-                    getline(s,d.lastName,',');
-                    getline(s,s4,',');
-                    getline(s,s5,',');
-                    getline(s,d.type,',');
-                    d.id=reqId;
-                    d.gender=s4[0];
-                    d.age=strToNum(s5);
+                string s1, s4, s5;
+                getline(s, s1, ',');
+                if (reqId == strToNum(s1))
+                {
+                    getline(s, d.firstName, ',');
+                    getline(s, d.lastName, ',');
+                    getline(s, s4, ',');
+                    getline(s, s5, ',');
+                    getline(s, d.type, ',');
+                    d.id = reqId;
+                    d.gender = s4[0];
+                    d.age = strToNum(s5);
                     return &d;
                 }
             }
-            cout<<"\nNo record found!\n";
+            cout << "\nNo record found!\n";
         }
-        else if(opt==2){
-            string reqFName,reqLName;
-            cout<<"First Name:\n";
-            getline(cin>>ws,reqFName);
-            cout<<"\nLast Name:\n";
-            getline(cin>>ws,reqLName);
+        else if (opt == 2)
+        {
+            string reqFName, reqLName;
+            cout << "First Name:\n";
+            getline(cin >> ws, reqFName);
+            cout << "\nLast Name:\n";
+            getline(cin >> ws, reqLName);
             vector<doctor> availableDoctors;
             fstream f;
-            f.open("./doctors/doctors.csv",ios::in);
+            f.open("./doctors/doctors.csv", ios::in);
             string temp;
-            while(getline(f>>ws,temp)){
+            while (getline(f >> ws, temp))
+            {
                 doctor d;
                 stringstream s(temp);
-                string s1,s4,s5;
-                getline(s,s1,',');
-                getline(s,d.firstName,',');
-                getline(s,d.lastName,',');
-                if(d.firstName==reqFName&&d.lastName==reqLName){
-                    getline(s,s4,',');
-                    getline(s,s5,',');
-                    getline(s,d.type,',');
-                    d.id=strToNum(s1);
-                    d.gender=s4[0];
-                    d.age=strToNum(s5);
+                string s1, s4, s5;
+                getline(s, s1, ',');
+                getline(s, d.firstName, ',');
+                getline(s, d.lastName, ',');
+                if (d.firstName == reqFName && d.lastName == reqLName)
+                {
+                    getline(s, s4, ',');
+                    getline(s, s5, ',');
+                    getline(s, d.type, ',');
+                    d.id = strToNum(s1);
+                    d.gender = s4[0];
+                    d.age = strToNum(s5);
                     availableDoctors.push_back(d);
                 }
             }
-            cout<<"\n"<<availableDoctors.size()<<" record(s) found!\n";
-            for(auto i:availableDoctors) printDetails(&i);
-            char tt='N';
-            if(availableDoctors.size()>1) {do{
-                int reqId;
-                cout<<"\nEnter the ID of the required doctor: ";
-                cin>>reqId;
-                for(auto i:availableDoctors){
-                    d=i;
+            cout << "\n"
+                 << availableDoctors.size() << " record(s) found!\n";
+            for (auto i : availableDoctors)
+                printDetails(&i);
+            char tt = 'N';
+            if (availableDoctors.size() > 1)
+            {
+                do
+                {
+                    int reqId;
+                    cout << "\nEnter the ID of the required doctor: ";
+                    cin >> reqId;
+                    for (auto i : availableDoctors)
+                    {
+                        d = i;
+                        return &d;
+                    }
                     return &d;
-                }
-                return &d;
-                cout<<"Invalid ID!\nTry again? (Y = Yes || N = No)\n";
-                cin>>tt;
-            }while(tt=='Y');}
+                    cout << "Invalid ID!\nTry again? (Y = Yes || N = No)\n";
+                    cin >> tt;
+                } while (tt == 'Y');
+            }
         }
-        else if(opt==3){
+        else if (opt == 3)
+        {
             string reqType;
-            cout<<"Enter the type of doctor required:\n";
-            getline(cin>>ws,reqType);
+            cout << "Enter the type of doctor required:\n";
+            getline(cin >> ws, reqType);
             vector<doctor> availableDoctors;
             fstream f;
-            f.open("./doctors/doctors.csv",ios::in);
+            f.open("./doctors/doctors.csv", ios::in);
             string temp;
-            while(getline(f>>ws,temp)){
+            while (getline(f >> ws, temp))
+            {
                 doctor d;
                 stringstream s(temp);
-                string s1,s4,s5;
-                getline(s,s1,',');
-                getline(s,d.firstName,',');
-                getline(s,d.lastName,',');
-                getline(s,s4,',');
-                getline(s,s5,',');
-                getline(s,d.type,',');
-                if(d.type==reqType){
-                    d.id=strToNum(s1);
-                    d.gender=s4[0];
-                    d.age=strToNum(s5);
+                string s1, s4, s5;
+                getline(s, s1, ',');
+                getline(s, d.firstName, ',');
+                getline(s, d.lastName, ',');
+                getline(s, s4, ',');
+                getline(s, s5, ',');
+                getline(s, d.type, ',');
+                if (d.type == reqType)
+                {
+                    d.id = strToNum(s1);
+                    d.gender = s4[0];
+                    d.age = strToNum(s5);
                     availableDoctors.push_back(d);
                 }
             }
-            cout<<"\n"<<availableDoctors.size()<<" record(s) found!\n";
-            for(auto i:availableDoctors) printDetails(&i);
-            char tt='N';
-            if(availableDoctors.size()>1) do{
-                int reqId;
-                cout<<"\nEnter the ID of the required doctor: ";
-                cin>>reqId;
-                for(auto i:availableDoctors) if(i.id==reqId){
-                    d=i;
-                    return &d;
-                }
-                cout<<"Invalid ID!\nTry again? (Y = Yes || N = No)\n";
-                cin>>tt;
-            }while(tt=='Y');
+            cout << "\n"
+                 << availableDoctors.size() << " record(s) found!\n";
+            for (auto i : availableDoctors)
+                printDetails(&i);
+            char tt = 'N';
+            if (availableDoctors.size() > 1)
+                do
+                {
+                    int reqId;
+                    cout << "\nEnter the ID of the required doctor: ";
+                    cin >> reqId;
+                    for (auto i : availableDoctors)
+                        if (i.id == reqId)
+                        {
+                            d = i;
+                            return &d;
+                        }
+                    cout << "Invalid ID!\nTry again? (Y = Yes || N = No)\n";
+                    cin >> tt;
+                } while (tt == 'Y');
         }
         return NULL;
     }

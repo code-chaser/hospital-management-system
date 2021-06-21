@@ -1,21 +1,23 @@
 #ifndef PATIENT
 #define PATIENT
 using namespace std;
-class patient
+#include <vector>
+#include <string>
+#include <iostream>
+#include <sstream>
+#include "./../person.cpp"
+class patient : private person
 {
 private:
     int patientId;
-    string firstname, lastname;
-    int8_t age;
-    char gender;
 
 public:
     void addAPatient()
     {
         cout << "\nEnter the name of the patient: \nFirst Name:\n";
-        getline(cin >> ws, firstname);
+        getline(cin >> ws, firstName);
         cout << "\nLast name:\n";
-        getline(cin >> ws, lastname);
+        getline(cin >> ws, lastName);
         cout << "\nEnter the age of the patient: \n";
         cin >> age;
         while (age <= 0)
@@ -26,9 +28,9 @@ public:
             cout << "M or F?\n", cin >> gender;
         fstream f;
         f.open("./doctors/doctors.csv", ios::app);
-        f << firstname << "," << lastname << "," << age << "," << gender << endl;
+        f << firstName << "," << lastName << "," << age << "," << gender << endl;
         f.close();
         return;
     }
 };
-#endif // !CLASS_PATIENT
+#endif // !PATIENT

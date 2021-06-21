@@ -1,8 +1,9 @@
 #include <iostream>
 #include <fstream>
 #include <cmath>
-#include "./doctors/doctor.cpp"
-#include "./patients/patient.cpp"
+//#include "./persons/person.cpp"
+#include "./persons/doctors/doctor.cpp"
+#include "./persons/patients/patient.cpp"
 using namespace std;
 
 int main()
@@ -17,11 +18,11 @@ int main()
         cout << "4  : Add a patient\n";
         cout << "5  : Hospitalize a patient\n";
         cout << "6  : Remove a patient\n";
-        cout << "7  : Add a doctor\n";
-        cout << "8  : Get doctor details\n";
-        cout << "9  : \n";
-        cout << "10 : \n";
-        cout << "11 : \n";
+        cout << "7  : Add a doctor\n";                //DONE
+        cout << "8  : Get doctor details\n";          //DONE
+        cout << "9  : Send an ambulance\n";
+        cout << "10 : Add an ambulance\n";
+        cout << "11 : Get ambulance details\n";
         cout << "12 : \n";
         cout << "-1 : Exit\n";
         cin >> purpose;

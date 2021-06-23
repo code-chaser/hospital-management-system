@@ -1,9 +1,8 @@
 #include <iostream>
 #include <fstream>
 #include <cmath>
-//#include "./persons/person.cpp"
-#include "./persons/doctors/doctor.cpp"
-#include "./persons/patients/patient.cpp"
+#include "./headers/doctor.hpp"
+#include "./headers/patient.hpp"
 using namespace std;
 
 int main()

@@ -5,7 +5,8 @@ using namespace std;
 #include <string>
 #include <iostream>
 #include <sstream>
-#include "./../person.cpp"
+#include <fstream>
+#include "./person.hpp"
 int strToNum(string s)
 {
     int n = s.size(), res = 0;
@@ -39,30 +40,15 @@ public:
     void addADoctor()
     {
         //getting the basic details of doctor from the user side;
-        cout << "\nEnter the name of the doctor: \nFirst Name:\n";
-        getline(cin >> ws, firstName);
-        cout << "\nLast name:\n";
-        getline(cin >> ws, lastName);
-
-        cout << "\nEnter the age of the doctor: \n";
-        cin >> age;
-        while (age <= 0)
-            cout << "Was that supposed to make any kind of sense?\nEnter again!\n", cin >> age;
-        if (age < 18)
-            return void (cout << "Sorry, person should be at least 18 years old to be registered as a doctor.\n");
-        else if (age > 65)
-            return void (cout << "Sorry, we can't register a person older than 65 years as a doctor.\n");
-        cout << "\nEnter the gender of the doctor (M = Male || F = Female): \n";
-        cin >> gender;
-        while (gender != 'M' && gender != 'F')
-            cout << "M or F?\n", cin >> gender;
-
+        setDetails();
+        if ((age < 18) || (age > 65))
+            return;
         cout << "\nEnter the type of the doctor: \n";
         getline(cin >> ws, type);
         //creating a fstream object to read/write from files;
         fstream f;
         //opening the file to read it;
-        f.open("./persons/doctors/doctors.csv", ios::in);
+        f.open("./data/doctors.csv", ios::in);
         //reading the whole file just to know the total number of lines present and hence the doctor ID;
         string temp;
         while (getline(f >> ws, temp))
@@ -72,7 +58,7 @@ public:
         f.close();
         //opening the file to append the details of the new doctor;
         f.open("./persons/doctors/doctors.csv", ios::app);
-        f << id << "," << firstName << "," << lastName << "," << gender << "," << age << "," << type << endl;
+        f << id << "," << firstName << "," << lastName << "," << gender << "," << age << "," << type << "," << mobNumber << "," << address << endl;
         f.close();
 
         cout << "\n"

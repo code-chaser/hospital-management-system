@@ -1,29 +1,38 @@
 #include <iostream>
 #include <fstream>
 #include <cmath>
+#include <string>
+using namespace std;
+int strToNum(string s)
+{
+    int n = s.size(), res = 0;
+    while (n--)
+        res += (s[s.size() - 1 - n] - '0') * pow(10, n);
+    return res;
+}
 #include "./headers/doctor.hpp"
 #include "./headers/patient.hpp"
-using namespace std;
 
 int main()
 {
     while (1)
     {
         int purpose = 0;
-        cout << "\nPurpose?\n";
-        cout << "1  : Book an appointment\n";
-        cout << "2  : Check appointment status\n";
-        cout << "3  : Cancel an appointment\n";
-        cout << "4  : Add a patient\n";
-        cout << "5  : Hospitalize a patient\n";
-        cout << "6  : Remove a patient\n";
-        cout << "7  : Add a doctor\n";                //DONE
-        cout << "8  : Get doctor details\n";          //DONE
-        cout << "9  : Send an ambulance\n";
-        cout << "10 : Add an ambulance\n";
-        cout << "11 : Get ambulance details\n";
-        cout << "12 : \n";
-        cout << "-1 : Exit\n";
+        cout << "\nSelect an option:\n\n";
+        cout << "[01] : Book an appointment\n";
+        cout << "[02] : Check appointment status\n";
+        cout << "[03] : Cancel an appointment\n";
+        cout << "[04] : Add a patient\n";
+        cout << "[05] : Hospitalize a patient\n";
+        cout << "[06] : Remove a patient\n";
+        cout << "[07] : Add a doctor\n";
+        cout << "[08] : Get doctor details\n";
+        cout << "[09] : Fetch doctor details from history\n";
+        cout << "[10] : Send an ambulance\n";
+        cout << "[11] : Add an ambulance\n";
+        cout << "[12] : Get ambulance details\n";
+        cout << "[13] : \n";
+        cout << "[-1] : Exit\n";
         cin >> purpose;
         if (purpose == -1)
         {
@@ -70,6 +79,13 @@ int main()
         }
         else if (purpose == 12)
         {
+        }
+        else if (purpose == 13)
+        {
+        }
+        else
+        {
+            cout << "\nInvalid Choice!\n";
         }
     }
     return 0;

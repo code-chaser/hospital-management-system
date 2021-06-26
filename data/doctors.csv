@@ -19,7 +19,6 @@ doctorId,firstName,lastName,gender,age,type,mobileNumber,address
 18,Vishal,Mallick,M,44,Dentist,+1xxxxxxxxxx,ABC-Street` D-Block` E` F
 19,Vishal,Mallick,M,49,Dermatologist,+1xxxxxxxxxx,ABC-Street` D-Block` E` F
 20,Kiara,Jain,F,39,Dermatologist,+1xxxxxxxxxx,ABC-Street` D-Block` E` F
-21,Mark,Johnson,M,32,Dentist,+1xxxxxxxxxx,ABC-Street` D-Block` E` F
 22,Akshat,Kumar,M,29,Surgeon,+1xxxxxxxxxx,ABC-Street` D-Block` E` F
 23,Akshay,Agrawal,M,32,ENT,+1xxxxxxxxxx,ABC-Street` D-Block` E` F
 24,William,Chadwick,M,39,Surgeon,+1xxxxxxxxxx,ABC-Street` D-Block` E` F

@@ -7,6 +7,8 @@
 class person
 {
 protected:
+    int id=-2;
+    string type="";
     string firstName, lastName;
     int16_t age = 0;
     char gender;
@@ -32,15 +34,42 @@ public:
         else if (age > maxAge)
             return void(cout << "Sorry, we can't register a person older than " << maxAge << " years as a doctor.\n");
 
-        cout << "\nEnter the gender of the patient (M = Male || F = Female): \n";
+        cout << "\nGender (M = Male || F = Female): \n";
         cin >> gender;
         while (gender != 'M' && gender != 'F')
             cout << "M or F?\n", cin >> gender;
-        cout << "Enter mobile number (with country code): \n";
+        cout << "\nEnter mobile number (with country code): \n";
         getline(cin >> ws, mobNumber);
-        cout << "Enter residential address (enter in one line): \n";
+        cout << "\nEnter residential address (enter in one line): \n";
         getline(cin >> ws, address);
-        for(auto &i:address) if(i==',') i='`';
+        for (auto &i : address)
+            if (i == ',')
+                i = '`';
+        return;
+    }
+
+    void printDetails()
+    {
+        if (id == (-1))
+            return;
+        cout << "\nDeatils:\n";
+        if (id != (-2))
+            cout << "ID          :" << id << "\n";
+        cout << "Full Name   :" << firstName << " " << lastName << "\n";
+        if (type != "")
+            cout << "Type        :" << type << "\n";
+        cout << "Gender      :" << gender << "\n";
+        cout << "Age         :" << age << "\n";
+        cout << "Mobile      :" << mobNumber << "\n";
+        cout << "Address     :";
+        for (auto i : address)
+        {
+            if (i == '`')
+                cout << ',';
+            else
+                cout << i;
+        }
+        cout << "\n";
         return;
     }
 };

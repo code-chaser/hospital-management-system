@@ -10,7 +10,6 @@ using namespace std;
 class patient : private person
 {
 private:
-    int id;
 
 public:
     void addAPatient()

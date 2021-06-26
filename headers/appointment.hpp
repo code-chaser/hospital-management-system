@@ -1,0 +1,4 @@
+#ifndef APPOINTMENT
+#define APPOINTMENT
+
+#endif // !APPOINTMENT

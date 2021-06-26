@@ -10,8 +10,13 @@ int strToNum(string s)
         res += (s[s.size() - 1 - n] - '0') * pow(10, n);
     return res;
 }
-#include "./headers/doctor.hpp"
+#include "./headers/person.hpp"
+#include "./headers/appointment.hpp"
 #include "./headers/patient.hpp"
+#include "./headers/doctor.hpp"
+#include "./headers/nurse.hpp"
+#include "./headers/ambulance.hpp"
+#include "./headers/driver.hpp"
 
 int main()
 {
@@ -21,22 +26,39 @@ int main()
         cout << "\nSelect an option:\n\n";
         cout << "[01] : Book an appointment\n";
         cout << "[02] : Check appointment status\n";
-        cout << "[03] : Cancel an appointment\n";
-        cout << "[04] : Add a patient\n";
+        cout << "[03] : Cancel an appointment\n\n";
+
+        cout << "[04] : Get patient details\n";
         cout << "[05] : Hospitalize a patient\n";
         cout << "[06] : Remove a patient\n";
-        cout << "[07] : Add a doctor\n";
-        cout << "[08] : Get doctor details\n";
-        cout << "[09] : Fetch doctor details from history\n";
-        cout << "[10] : Send an ambulance\n";
-        cout << "[11] : Add an ambulance\n";
-        cout << "[12] : Get ambulance details\n";
-        cout << "[13] : \n";
+        cout << "[07] : Fetch patient details from history\n\n";
+
+        cout << "[08] : Register a new doctor\n";
+        cout << "[09] : Get doctor details\n";
+        cout << "[10] : Remove a doctor\n";
+        cout << "[11] : Fetch doctor details from history\n\n";
+
+        cout << "[12] : Register a new nurse\n";
+        cout << "[13] : Get nurse details\n";
+        cout << "[14] : Remove a nurse\n";
+        cout << "[15] : Fetch nurse details from history\n\n";
+
+        cout << "[16] : Add an ambulance\n";
+        cout << "[17] : Send an ambulance\n";
+        cout << "[18] : Check ambulance status\n";
+        cout << "[19] : Remove an ambulance\n\n";
+        cout << "[20] : Fetch ambulance details from history\n\n";
+        
+        cout << "[21] : Register a new ambulance driver\n";
+        cout << "[22] : Get driver details\n";
+        cout << "[23] : Remove a driver\n";
+        cout << "[24] : Fetch driver details from history\n";
+
         cout << "[-1] : Exit\n";
         cin >> purpose;
         if (purpose == -1)
         {
-            cout << "Shutting Down System...\n\n";
+            cout << "\n\nShutting Down System...\n\n";
             return 0;
         }
         if (purpose == 1)

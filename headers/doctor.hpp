@@ -133,8 +133,8 @@ public:
                     getline(s, s4, ',');
                     getline(s, s5, ',');
                     getline(s, d.type, ',');
-                    getline(s, mobNumber, ',');
-                    getline(s, address, ',');
+                    getline(s, d.mobNumber, ',');
+                    getline(s, d.address, ',');
                     d.id = strToNum(s1);
                     d.gender = s4[0];
                     d.age = strToNum(s5);

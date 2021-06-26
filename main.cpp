@@ -46,13 +46,13 @@ int main()
         cout << "[16] : Add an ambulance\n";
         cout << "[17] : Send an ambulance\n";
         cout << "[18] : Check ambulance status\n";
-        cout << "[19] : Remove an ambulance\n\n";
+        cout << "[19] : Remove an ambulance\n";
         cout << "[20] : Fetch ambulance details from history\n\n";
         
         cout << "[21] : Register a new ambulance driver\n";
         cout << "[22] : Get driver details\n";
         cout << "[23] : Remove a driver\n";
-        cout << "[24] : Fetch driver details from history\n";
+        cout << "[24] : Fetch driver details from history\n\n";
 
         cout << "[-1] : Exit\n";
         cin >> purpose;

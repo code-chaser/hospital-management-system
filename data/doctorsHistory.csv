@@ -1,10 +1,10 @@
-firstName,lastName,gender,age,mobNumber,address,type,left?,reasonForLeaving(ifLeft)
+firstName,lastName,gender,age,mobNumber,address,type,leftWork?,reasonForLeaving(ifLeft)
 John,Doe,M,43,+91xxxxxxxxxx,ABC-Street` D-Block` E` F,Cardiologist,N,NA
 Isabella,Cullen,F,28,+91xxxxxxxxxx,ABC-Street` D-Block` E` F,Physician,N,NA
 Rhea,Jain,F,29,+91xxxxxxxxxx,ABC-Street` D-Block` E` F,Cardiologist,N,NA
 Dhananjay,Dey,M,44,+91xxxxxxxxxx,ABC-Street` D-Block` E` F,Psychatrist,N,NA
 James,Carwin,M,38,+91xxxxxxxxxx,ABC-Street` D-Block` E` F,Neurologist,N,NA
-Konark,Sharma,M,29,+91xxxxxxxxxx,ABC-Street` D-Block` E` F,Physician,Y,Changing his hometown.
+Konark,Sharma,M,29,+91xxxxxxxxxx,ABC-Street` D-Block` E` F,Physician,N,NA
 Mark,Andrew,M,32,+91xxxxxxxxxx,ABC-Street` D-Block` E` F,Psychatrist,N,NA
 Melinda,Andrew,F,44,+91xxxxxxxxxx,ABC-Street` D-Block` E` F,Cardiologist,N,NA
 Isabella,Carwin,F,29,+91xxxxxxxxxx,ABC-Street` D-Block` E` F,Psychatrist,N,NA
@@ -25,5 +25,3 @@ William,Chadwick,M,39,+91xxxxxxxxxx,ABC-Street` D-Block` E` F,Surgeon,N,NA
 Rishabh,Jain,M,30,+91xxxxxxxxxx,ABC-Street` D-Block` E` F,Surgeon,N,NA
 Navya,Gupta,M,19,+91xxxxxxxxxx,ABC-Street` D-Block` E` F,Dentist,N,NA
 Alexander,Bing,M,35,+91xxxxxxxxxx,ABC-Street` D-Block` E` F,Cardiologist,N,NA
-Priyansh,Gupta,M,39,+91xxxxxxxxxx,ABC-Street` D-Block` E` F,Surgeon,Y,Shifting abroad.
-Alex,Murphy,M,56,+91xxxxxxxxxx,ABC-Street` D-Block` E` F,Dentist,No,NA

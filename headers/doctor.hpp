@@ -7,12 +7,10 @@ using namespace std;
 #include <sstream>
 #include <fstream>
 #include "./person.hpp"
-class appointment;
 class doctor : public person
 {
-protected:
+private:
     string type = "";
-    vector<appointment *> arrOfApp();
 
 public:
     doctor()
@@ -27,52 +25,6 @@ public:
             return;
         printPersonDetails();
         cout << "Type            : " << type << "\n";
-        return;
-    }
-    void printHistoryDetails(string extraDetails = "")
-    {
-        if (id == -1)
-            return;
-        printPersonHistoryDetails();
-        stringstream k(extraDetails);
-        string s1, s2;
-        getline(k, s1, ',');
-        getline(k, s2, ',');
-        if (extraDetails == "")
-        {
-            fstream f;
-            f.open("./data/doctorsHistory.csv", ios::in);
-            string temp;
-            //skipping the first row containing column headers;
-            getline(f >> ws, temp);
-            //analyzing each entry afterwards;
-            while (getline(f >> ws, temp))
-            {
-                doctor d;
-                //creating a string stream object to read from string 'temp';
-                stringstream s(temp);
-                string s4, s5, s9;
-                //reading from the string stream object 's';
-                getline(s, d.firstName, ',');
-                getline(s, d.lastName, ',');
-                getline(s, s4, ',');
-                getline(s, s5, ',');
-                getline(s, d.mobNumber, ',');
-
-                if (d.firstName == firstName && d.lastName == lastName && d.mobNumber == mobNumber)
-                {
-
-                    getline(s, d.address, ',');
-                    getline(s, d.type, ',');
-                    getline(s, s1, ',');
-                    getline(s, s2, ',');
-                }
-            }
-            f.close();
-        }
-        cout << "Type            : " << type << "\n";
-        cout << "Left Work?      : " << s1 << "\n";
-        cout << "Reason (if left): " << s2 << "\n";
         return;
     }
     void addADoctor()
@@ -110,7 +62,7 @@ public:
 
         //creating a record in doctorsHistory.csv;
         f.open("./data/doctorsHistory.csv", ios::app);
-        f << firstName << "," << lastName << "," << gender << "," << age << "," << mobNumber << "," << address << "," << type << ",N,NA" << endl;
+        f << firstName << "," << lastName << "," << gender << "," << age << "," << mobNumber << "," << address << "," << type << ",No,NA" << endl;
         f.close();
 
         cout << "\n"
@@ -122,7 +74,7 @@ public:
     void getADoctor()
     {
         int opt = 0;
-        cout << "\nOPTIONS:\n[1]: Filter by ID\n[2]: Filter by name\n[3]: Filter by type\n\n";
+        cout << "OPTIONS:\n[1]: Filter by ID\n[2]: Filter by name\n[3]: Filter by type\n";
         cin >> opt;
         while (opt != 1 && opt != 2 && opt != 3)
             cout << "option 1, 2 or 3?\n", cin >> opt;
@@ -308,154 +260,6 @@ public:
                         cout << "Y or N?\n", cin >> tt;
                 } while (tt == 'Y');
         }
-        return;
-    }
-    void getADoctorFromHistory()
-    {
-        int opt = 0;
-        cout << "\nOPTIONS:\n[1]: Filter by name\n[2]: Filter by type\n\n";
-        cin >> opt;
-        while (opt != 1 && opt != 2)
-            cout << "option 1 or 2?\n", cin >> opt;
-
-        //1: Filter by name;
-        if (opt == 1)
-        {
-            string reqFName, reqLName;
-            cout << "First Name:\n";
-            getline(cin >> ws, reqFName);
-            cout << "\nLast Name:\n";
-            getline(cin >> ws, reqLName);
-            vector<doctor> matchingRecords;
-            vector<string> extraDetails;
-            fstream f;
-            f.open("./data/doctorsHistory.csv", ios::in);
-            string temp;
-            //skipping the first row containing column headers;
-            getline(f >> ws, temp);
-            //analyzing each entry afterwards;
-            while (getline(f >> ws, temp))
-            {
-                doctor d;
-                //creating a string stream object to read from string 'temp';
-                stringstream s(temp);
-                string s4, s5, s9;
-                //reading from the string stream object 's';
-                getline(s, d.firstName, ',');
-                getline(s, d.lastName, ',');
-
-                if (d.firstName == reqFName && d.lastName == reqLName)
-                {
-                    getline(s, s4, ',');
-                    getline(s, s5, ',');
-                    getline(s, d.mobNumber, ',');
-                    getline(s, d.address, ',');
-                    getline(s, d.type, ',');
-                    getline(s, s9);
-                    d.id = 0;
-                    d.gender = s4[0];
-                    d.age = strToNum(s5);
-                    matchingRecords.push_back(d);
-                    extraDetails.push_back(s9);
-                }
-            }
-            f.close();
-            cout << "\n";
-            cout << matchingRecords.size() << " matching record(s) found!\n";
-            for (int i = 0; i < matchingRecords.size(); i++)
-                matchingRecords[i].printHistoryDetails(extraDetails[i]);
-        }
-        //2: Filter by type;
-        else if (opt == 2)
-        {
-            string reqType;
-            cout << "Enter the type of doctor required:\n";
-            getline(cin >> ws, reqType);
-            vector<doctor> matchingRecords;
-            vector<string> extraDetails;
-            fstream f;
-            f.open("./data/doctorsHistory.csv", ios::in);
-            string temp;
-            //skipping the first row containing column headers;
-            getline(f >> ws, temp);
-            //analyzing each entry afterwards;
-            while (getline(f >> ws, temp))
-            {
-                doctor d;
-                //creating a string stream object to read from string 'temp';
-                stringstream s(temp);
-                string s4, s5, s9;
-                //reading from the string stream object 's';
-                getline(s, d.firstName, ',');
-                getline(s, d.lastName, ',');
-                getline(s, s4, ',');
-                getline(s, s5, ',');
-                getline(s, d.mobNumber, ',');
-                getline(s, d.address, ',');
-                getline(s, d.type, ',');
-                if (d.type == reqType)
-                {
-                    getline(s, s9);
-                    d.id = 0;
-                    d.gender = s4[0];
-                    d.age = strToNum(s5);
-                    matchingRecords.push_back(d);
-                    extraDetails.push_back(s9);
-                }
-            }
-            f.close();
-            cout << "\n";
-            cout << matchingRecords.size() << " matching record(s) found!\n";
-            for (int i = 0; i < matchingRecords.size(); i++)
-                matchingRecords[i].printHistoryDetails(extraDetails[i]);
-        }
-        return;
-    }
-    void removeADoctor()
-    {
-        cout << "\nSearch for the doctor you want to remove.\n";
-        getADoctor();
-        string s, temp;
-        stringstream str(s);
-        str << id << "," << firstName << "," << lastName << "," << gender << "," << age
-            << "," << mobNumber << "," << address << "," << type << "\n";
-        getline(str, s);
-        fstream f, fout("./data/temp.csv", ios::out);
-        f.open("./data/doctors.csv", ios::in);
-        while (getline(f, temp))
-            if (temp != s)
-                fout << temp << "\n";
-        f.close();
-        fout.close();
-        s.erase();
-        temp.erase();
-        remove("./data/doctors.csv");
-        rename("./data/temp.csv", "./data/doctors.csv");
-        string reason;
-        cout << "\nReason?\n";
-        getline(cin >> ws, reason);
-        str << firstName << "," << lastName << "," << gender << "," << age
-            << "," << mobNumber << "," << address << "," << type << ",N,NA\n";
-        getline(str, s);
-        f.open("./data/doctorsHistory.csv", ios::in);
-        fout.open("./data/temp.csv", ios::out);
-        while (getline(f, temp))
-        {
-            if (temp == s)
-            {
-                fout << firstName << "," << lastName << "," << gender << "," << age
-                     << "," << mobNumber << "," << address << "," << type << ",Y," << reason << "\n";
-            }
-            else
-                fout << temp << "\n";
-        }
-        f.close();
-        fout.close();
-        s.erase();
-        temp.erase();
-        remove("./data/doctorsHistory.csv");
-        rename("./data/temp.csv", "./data/doctorsHistory.csv");
-        cout << firstName << " " << lastName << " removed successfully!\n";
         return;
     }
 };

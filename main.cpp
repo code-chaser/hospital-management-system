@@ -29,7 +29,6 @@ int main()
         cout << "[03] : Update appointment status\n";
         cout << "[04] : Cancel an appointment\n\n";
 
-        cout << "[05] : Register a new patient\n";
         cout << "[05] : Get patient details\n";
         cout << "[06] : Hospitalize a patient\n";
         cout << "[07] : Report a patient's death\n";
@@ -51,7 +50,7 @@ int main()
         cout << "[20] : Check ambulance status\n";
         cout << "[21] : Remove an ambulance\n";
         cout << "[22] : Fetch ambulance details from history\n\n";
-
+        
         cout << "[23] : Register a new ambulance driver\n";
         cout << "[24] : Get driver details\n";
         cout << "[25] : Remove a driver\n";
@@ -107,14 +106,9 @@ int main()
         }
         else if (purpose == 12)
         {
-            doctor d;
-            d.removeADoctor();
-            d.printHistoryDetails();
         }
         else if (purpose == 13)
         {
-            doctor d;
-            d.getADoctorFromHistory();
         }
         else
         {

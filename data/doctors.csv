@@ -4,6 +4,7 @@ doctorId,firstName,lastName,gender,age,mobNumber,address,type
 3,Rhea,Jain,F,29,+91xxxxxxxxxx,ABC-Street` D-Block` E` F,Cardiologist
 4,Dhananjay,Dey,M,44,+91xxxxxxxxxx,ABC-Street` D-Block` E` F,Psychatrist
 5,James,Carwin,M,38,+91xxxxxxxxxx,ABC-Street` D-Block` E` F,Neurologist
+6,Konark,Sharma,M,29,+91xxxxxxxxxx,ABC-Street` D-Block` E` F,Physician
 7,Mark,Andrew,M,32,+91xxxxxxxxxx,ABC-Street` D-Block` E` F,Psychatrist
 8,Melinda,Andrew,F,44,+91xxxxxxxxxx,ABC-Street` D-Block` E` F,Cardiologist
 9,Isabella,Carwin,F,29,+91xxxxxxxxxx,ABC-Street` D-Block` E` F,Psychatrist
@@ -24,4 +25,3 @@ doctorId,firstName,lastName,gender,age,mobNumber,address,type
 25,Rishabh,Jain,M,30,+91xxxxxxxxxx,ABC-Street` D-Block` E` F,Surgeon
 26,Navya,Gupta,M,19,+91xxxxxxxxxx,ABC-Street` D-Block` E` F,Dentist
 27,Alexander,Bing,M,35,+91xxxxxxxxxx,ABC-Street` D-Block` E` F,Cardiologist
-28,Alex,Murphy,M,56,+91xxxxxxxxxx,ABC-Street` D-Block` E` F,Dentist

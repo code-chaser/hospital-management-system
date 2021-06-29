@@ -26,33 +26,35 @@ int main()
         cout << "\nSelect an option:\n\n";
         cout << "[01] : Book an appointment\n";
         cout << "[02] : Check appointment status\n";
-        cout << "[03] : Cancel an appointment\n\n";
+        cout << "[03] : Update appointment status\n";
+        cout << "[04] : Cancel an appointment\n\n";
 
-        cout << "[04] : Get patient details\n";
-        cout << "[05] : Hospitalize a patient\n";
-        cout << "[06] : Remove a patient\n";
-        cout << "[07] : Fetch patient details from history\n\n";
+        cout << "[05] : Get patient details\n";
+        cout << "[06] : Hospitalize a patient\n";
+        cout << "[07] : Report a patient's death\n";
+        cout << "[08] : Discharge a patient (alive)\n";
+        cout << "[09] : Fetch patient details from history\n\n";
 
-        cout << "[08] : Register a new doctor\n";
-        cout << "[09] : Get doctor details\n";
-        cout << "[10] : Remove a doctor\n";
-        cout << "[11] : Fetch doctor details from history\n\n";
+        cout << "[10] : Register a new doctor\n";
+        cout << "[11] : Get doctor details\n";
+        cout << "[12] : Remove a doctor\n";
+        cout << "[13] : Fetch doctor details from history\n\n";
 
-        cout << "[12] : Register a new nurse\n";
-        cout << "[13] : Get nurse details\n";
-        cout << "[14] : Remove a nurse\n";
-        cout << "[15] : Fetch nurse details from history\n\n";
+        cout << "[14] : Register a new nurse\n";
+        cout << "[15] : Get nurse details\n";
+        cout << "[16] : Remove a nurse\n";
+        cout << "[17] : Fetch nurse details from history\n\n";
 
-        cout << "[16] : Add an ambulance\n";
-        cout << "[17] : Send an ambulance\n";
-        cout << "[18] : Check ambulance status\n";
-        cout << "[19] : Remove an ambulance\n";
-        cout << "[20] : Fetch ambulance details from history\n\n";
+        cout << "[18] : Add an ambulance\n";
+        cout << "[19] : Send an ambulance\n";
+        cout << "[20] : Check ambulance status\n";
+        cout << "[21] : Remove an ambulance\n";
+        cout << "[22] : Fetch ambulance details from history\n\n";
         
-        cout << "[21] : Register a new ambulance driver\n";
-        cout << "[22] : Get driver details\n";
-        cout << "[23] : Remove a driver\n";
-        cout << "[24] : Fetch driver details from history\n\n";
+        cout << "[23] : Register a new ambulance driver\n";
+        cout << "[24] : Get driver details\n";
+        cout << "[25] : Remove a driver\n";
+        cout << "[26] : Fetch driver details from history\n\n";
 
         cout << "[-1] : Exit\n";
         cin >> purpose;
@@ -63,6 +65,9 @@ int main()
         }
         if (purpose == 1)
         {
+            patient p;
+            p.addAPatient();
+            p.printDetails();
         }
         else if (purpose == 2)
         {
@@ -81,23 +86,23 @@ int main()
         }
         else if (purpose == 7)
         {
-            doctor d;
-            d.addADoctor();
         }
         else if (purpose == 8)
         {
-            doctor d;
-            d.getADoctor();
-            d.printDetails();
         }
         else if (purpose == 9)
         {
         }
         else if (purpose == 10)
         {
+            doctor d;
+            d.addADoctor();
         }
         else if (purpose == 11)
         {
+            doctor d;
+            d.getADoctor();
+            d.printDetails();
         }
         else if (purpose == 12)
         {

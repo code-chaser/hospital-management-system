@@ -9,42 +9,60 @@ using namespace std;
 #include "./person.hpp"
 class doctor : public person
 {
+private:
+    string type = "";
+
 public:
     doctor()
     {
         id = -1;
+        cat = "doctor";
+        category = 1;
+    }
+    void printDetails()
+    {
+        if (id == -1)
+            return;
+        printPersonDetails();
+        cout << "Type            : " << type << "\n";
+        return;
     }
     void addADoctor()
     {
-        //getting the basic details of doctor from the user side;
         //18 and 65 are the age limits for registration of a new doctor;
         setDetails(18, 65);
         if ((age < 18) || (age > 65))
             return;
         cout << "\nEnter the type of the doctor: \n";
         getline(cin >> ws, type);
-        //creating a fstream object to read/write from files;
+        //creating a fstream object to read/write from/to files;
         fstream f;
         //opening the file to read it;
         f.open("./data/doctors.csv", ios::in);
         //reading the file till the last line to get the id of the last line;
         string temp, idString = "";
+        bool entry = 0;
         while (getline(f >> ws, temp))
-            ;
+            entry = 1;
         f.close();
-        stringstream s(temp);
-        getline(s, idString, ',');
-        id = strToNum(idString) + 1;
+        if (entry)
+        {
+            stringstream s(temp);
+            getline(s, idString, ',');
+            id = strToNum(idString) + 1;
+        }
+        else
+            id = 1;
         temp.erase();
         idString.erase();
         //creating a record in doctors.csv;
         f.open("./data/doctors.csv", ios::app);
-        f << id << "," << firstName << "," << lastName << "," << gender << "," << age << "," << type << "," << mobNumber << "," << address << endl;
+        f << id << "," << firstName << "," << lastName << "," << gender << "," << age << "," << mobNumber << "," << address << "," << type << endl;
         f.close();
 
         //creating a record in doctorsHistory.csv;
         f.open("./data/doctorsHistory.csv", ios::app);
-        f << "," << firstName << "," << lastName << "," << gender << "," << age << "," << type << "," << mobNumber << "," << address << ",No,NA" << endl;
+        f << firstName << "," << lastName << "," << gender << "," << age << "," << mobNumber << "," << address << "," << type << ",No,NA" << endl;
         f.close();
 
         cout << "\n"
@@ -75,7 +93,7 @@ public:
             //analyzing each entry afterwards;
             while (getline(f >> ws, temp))
             {
-                //creating a string stream object to read from string 'temp'; 
+                //creating a string stream object to read from string 'temp';
                 stringstream s(temp);
                 string s1, s4, s5;
                 //reading from the string stream object 's';
@@ -87,9 +105,9 @@ public:
                     getline(s, lastName, ',');
                     getline(s, s4, ',');
                     getline(s, s5, ',');
-                    getline(s, type, ',');
                     getline(s, mobNumber, ',');
                     getline(s, address, ',');
+                    getline(s, type, ',');
                     id = reqId;
                     gender = s4[0];
                     age = strToNum(s5);
@@ -101,6 +119,7 @@ public:
             //and the control is returned;
             //else:
             cout << "\nNo matching record found!\n";
+            return;
         }
         //2: Filter by name;
         else if (opt == 2)
@@ -120,7 +139,7 @@ public:
             while (getline(f >> ws, temp))
             {
                 doctor d;
-                //creating a string stream object to read from string 'temp'; 
+                //creating a string stream object to read from string 'temp';
                 stringstream s(temp);
                 string s1, s4, s5;
                 //reading from the string stream object 's';
@@ -132,9 +151,9 @@ public:
                 {
                     getline(s, s4, ',');
                     getline(s, s5, ',');
-                    getline(s, d.type, ',');
                     getline(s, d.mobNumber, ',');
                     getline(s, d.address, ',');
+                    getline(s, d.type, ',');
                     d.id = strToNum(s1);
                     d.gender = s4[0];
                     d.age = strToNum(s5);
@@ -162,13 +181,15 @@ public:
                             lastName = i.lastName;
                             gender = i.gender;
                             age = i.age;
-                            type = i.type;
                             mobNumber = i.mobNumber;
                             address = i.address;
+                            type = i.type;
                             return;
                         }
                     cout << "\nInvalid ID!\nTry again? (Y = Yes || N = No)\n";
                     cin >> tt;
+                    while (tt != 'Y' || tt != 'N')
+                        cout << "Y or N?\n", cin >> tt;
                 } while (tt == 'Y');
             }
         }
@@ -188,7 +209,7 @@ public:
             while (getline(f >> ws, temp))
             {
                 doctor d;
-                //creating a string stream object to read from string 'temp'; 
+                //creating a string stream object to read from string 'temp';
                 stringstream s(temp);
                 string s1, s4, s5;
                 //reading from the string stream object 's';
@@ -197,11 +218,11 @@ public:
                 getline(s, d.lastName, ',');
                 getline(s, s4, ',');
                 getline(s, s5, ',');
+                getline(s, d.mobNumber, ',');
+                getline(s, d.address, ',');
                 getline(s, d.type, ',');
                 if (d.type == reqType)
                 {
-                    getline(s, d.mobNumber, ',');
-                    getline(s, d.address, ',');
                     d.id = strToNum(s1);
                     d.gender = s4[0];
                     d.age = strToNum(s5);
@@ -210,7 +231,7 @@ public:
             }
             f.close();
             cout << "\n";
-            cout << matchingRecords.size() << " record(s) found!\n";
+            cout << matchingRecords.size() << " matching record(s) found!\n";
             for (auto i : matchingRecords)
                 i.printDetails();
             char tt = 'N';
@@ -228,13 +249,15 @@ public:
                             lastName = i.lastName;
                             gender = i.gender;
                             age = i.age;
-                            type = i.type;
                             mobNumber = i.mobNumber;
                             address = i.address;
+                            type = i.type;
                             return;
                         }
                     cout << "Invalid ID!\nTry again? (Y = Yes || N = No)\n";
                     cin >> tt;
+                    while (tt != 'Y' || tt != 'N')
+                        cout << "Y or N?\n", cin >> tt;
                 } while (tt == 'Y');
         }
         return;

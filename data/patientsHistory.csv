@@ -1,0 +1,2 @@
+firstName,lastName,gender,age,mobileNumber,address,height,weight,wasHospitalized?,stillAlive(ifHospitalized)?,discharged(ifHospitalized)?
+John,Doe,M,35,+91xxxxxxxxxx,ABC Street` D Town` E` F` G,170,130,Y,Y,N

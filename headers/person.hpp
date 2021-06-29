@@ -74,5 +74,25 @@ public:
         cout << "\n";
         return;
     }
+    void printPersonHistoryDetails()
+    {
+        if (id == -1)
+            return;
+        cout << "\nHistory Deatils :\n";
+        cout << "Full Name       : " << firstName << " " << lastName << "\n";
+        cout << "Gender          : " << gender << "\n";
+        cout << "Age             : " << age << "\n";
+        cout << "Mobile          : " << mobNumber << "\n";
+        cout << "Address         : ";
+        for (auto i : address)
+        {
+            if (i == '`')
+                cout << ',';
+            else
+                cout << i;
+        }
+        cout << "\n";
+        return;
+    }
 };
 #endif // !PERSON

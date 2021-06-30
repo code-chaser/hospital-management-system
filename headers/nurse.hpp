@@ -174,7 +174,7 @@ public:
             cout << "First Name:\n";
             getline(cin >> ws, reqFName);
             cout << "\nLast Name:\n";
-            getline(cin >> ws, reqLName);
+            getline(cin, reqLName);
             vector<nurse> matchingRecords;
             fstream f;
             f.open("./data/nurses.csv", ios::in);
@@ -323,7 +323,7 @@ public:
             cout << "First Name:\n";
             getline(cin >> ws, reqFName);
             cout << "\nLast Name:\n";
-            getline(cin >> ws, reqLName);
+            getline(cin, reqLName);
             vector<nurse> matchingRecords;
             vector<string> extraDetails;
             fstream f;

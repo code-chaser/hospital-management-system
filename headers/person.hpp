@@ -26,7 +26,7 @@ public:
         cout << "\nEnter name: \nFirst Name:\n";
         getline(cin >> ws, firstName);
         cout << "\nLast name:\n";
-        getline(cin >> ws, lastName);
+        getline(cin, lastName);
 
         cout << "\nEnter age: \n";
         cin >> age;

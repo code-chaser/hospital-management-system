@@ -20,7 +20,7 @@ protected:
     //category: 1:doctor; 2:patient; 3:nurse; 4:driver;
 
 public:
-    void setDetails(int16_t minAge = 0, int16_t maxAge = 1000, int category = 0)
+    void setDetails(int16_t minAge = 0, int16_t maxAge = 1000)
     {
         //getting basic details of the person from the user side;
         cout << "\nEnter name: \nFirst Name:\n";
@@ -55,7 +55,7 @@ public:
     }
     void printPersonDetails()
     {
-        if (id == (-1))
+        if (id == -1)
             return;
         cout << "\nDeatils :\n";
         cout << "ID              : " << id << "\n";

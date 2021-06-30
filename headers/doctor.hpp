@@ -51,7 +51,7 @@ public:
                 doctor d;
                 //creating a string stream object to read from string 'temp';
                 stringstream s(temp);
-                string s4, s5, s9;
+                string s4, s5;
                 //reading from the string stream object 's';
                 getline(s, d.firstName, ',');
                 getline(s, d.lastName, ',');
@@ -119,7 +119,7 @@ public:
 
         return;
     }
-    void getADoctor()
+    void getDetails()
     {
         int opt = 0;
         cout << "\nOPTIONS:\n[1]: Filter by ID\n[2]: Filter by name\n[3]: Filter by type\n\n";
@@ -310,7 +310,7 @@ public:
         }
         return;
     }
-    void getADoctorFromHistory()
+    void getDetailsFromHistory()
     {
         int opt = 0;
         cout << "\nOPTIONS:\n[1]: Filter by name\n[2]: Filter by type\n\n";
@@ -414,7 +414,7 @@ public:
     void removeADoctor()
     {
         cout << "\nSearch for the doctor you want to remove.\n";
-        getADoctor();
+        getDetails();
         string s, temp;
         stringstream str(s);
         str << id << "," << firstName << "," << lastName << "," << gender << "," << age

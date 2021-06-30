@@ -1,2 +1,3 @@
-patientID,firstName,lastName,gender,age,mobileNumber,address,height,weight,wasHospitalized?,stillAlive(ifHospitalized)?,discharged(ifHospitalized)?
-1,John,Doe,M,35,+91xxxxxxxxxx,ABC Street` D Town` E` F` G,170,130,Y,Y,N
+patientID,firstName,lastName,gender,age,mobileNumber,address,height,weight,wasHospitalized?,stillAlive(ifHospitalized)?
+1,John,Doe,M,35,+91xxxxxxxxxx,ABC Street` D Town` E` F` G,170,130,Y,Y
+2,G.,Sherry,M,68,+91xxxxxxxxxx,ABC Street` D Town` E` F` G,165,130,N,Y

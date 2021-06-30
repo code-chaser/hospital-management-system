@@ -187,7 +187,6 @@ public:
                     gender = s4[0];
                     age = strToNum(s5);
                     height = strToNum(s8);
-                    cout<<"\nhhh: "<<s8<<"\n\n\n\n";
                     weight = strToNum(s9);
                     hospitalized = (s10 == "Y");
                     alive = (s11 == "Y");
@@ -406,48 +405,56 @@ public:
     {
         cout << "\nSearch for the patient.\n";
         getDetails();
-        hospitalized = 1;
-        string s, temp;
-        stringstream str(s);
+        string s, temp, corrected;
+        stringstream str;
         str << id << "," << firstName << "," << lastName
             << "," << gender << "," << age << "," << mobNumber << "," << address
             << "," << height << "," << weight << "," << ((hospitalized) ? "Y" : "N")
             << ","
             << ((alive) ? "Y" : "N") << "\n";
-        getline(str, s);
+        getline(str >> ws, s);
+        str << id << "," << firstName << "," << lastName
+            << "," << gender << "," << age << "," << mobNumber << "," << address
+            << "," << height << "," << weight << ","
+            << "Y"
+            << ","
+            << ((alive) ? "Y" : "N") << "\n";
+        getline(str >> ws, corrected);
         fstream f, fout("./data/temp.csv", ios::out);
         f.open("./data/patients.csv", ios::in);
         while (getline(f, temp))
+        {
             if (temp != s)
                 fout << temp << "\n";
+            else
+                fout << corrected << "\n";
+        }
         f.close();
         fout.close();
         s.erase();
         temp.erase();
         remove("./data/patients.csv");
         rename("./data/temp.csv", "./data/patients.csv");
-        str << id << "," << firstName << "," << lastName
+        str << firstName << "," << lastName
             << "," << gender << "," << age << "," << mobNumber << "," << address
             << "," << height << "," << weight << "," << ((hospitalized) ? "Y" : "N")
             << ","
             << ((alive) ? "Y" : "N")
             << ",N"
             << "\n";
-        getline(str, s);
+        getline(str >> ws, s);
+        str << firstName << "," << lastName
+            << "," << gender << "," << age << "," << mobNumber << "," << address
+            << "," << height << "," << weight << ","
+            << "Y,"
+            << ((alive) ? "Y,N\n" : "N,N\n");
+        getline(str >> ws, corrected);
         f.open("./data/patientsHistory.csv", ios::in);
         fout.open("./data/temp.csv", ios::out);
         while (getline(f, temp))
         {
             if (temp == s)
-            {
-                fout << firstName << "," << lastName
-                     << "," << gender << "," << age << "," << mobNumber << "," << address
-                     << "," << height << "," << weight << "," << ((hospitalized) ? "Y" : "N")
-                     << ","
-                     << ((alive) ? "Y" : "N")
-                     << ",N"
-                     << "\n";
-            }
+                fout << corrected << "\n";
             else
                 fout << temp << "\n";
         }
@@ -464,8 +471,7 @@ public:
     {
         cout << "\nSearch for the patient.\n";
         getDetails();
-        alive = 0;
-        string s, temp;
+        string s, temp, corrected;
         stringstream str(s);
         str << id << "," << firstName << "," << lastName
             << "," << gender << "," << age << "," << mobNumber << "," << address
@@ -473,18 +479,29 @@ public:
             << ","
             << ((alive) ? "Y" : "N") << "\n";
         getline(str, s);
+        str << id << "," << firstName << "," << lastName
+            << "," << gender << "," << age << "," << mobNumber << "," << address
+            << "," << height << "," << weight << "," << ((hospitalized) ? "Y" : "N")
+            << ","
+            << "N"
+            << "\n";
+        getline(str, corrected);
         fstream f, fout("./data/temp.csv", ios::out);
         f.open("./data/patients.csv", ios::in);
         while (getline(f, temp))
+        {
             if (temp != s)
                 fout << temp << "\n";
+            else
+                fout << corrected << "\n";
+        }
         f.close();
         fout.close();
         s.erase();
         temp.erase();
         remove("./data/patients.csv");
         rename("./data/temp.csv", "./data/patients.csv");
-        str << id << "," << firstName << "," << lastName
+        str << firstName << "," << lastName
             << "," << gender << "," << age << "," << mobNumber << "," << address
             << "," << height << "," << weight << "," << ((hospitalized) ? "Y" : "N")
             << ","
@@ -500,11 +517,7 @@ public:
             {
                 fout << firstName << "," << lastName
                      << "," << gender << "," << age << "," << mobNumber << "," << address
-                     << "," << height << "," << weight << "," << ((hospitalized) ? "Y" : "N")
-                     << ","
-                     << ((alive) ? "Y" : "N")
-                     << ",N"
-                     << "\n";
+                     << "," << height << "," << weight << "," << ((hospitalized) ? "Y,N,N\n" : "N,N,N\n");
             }
             else
                 fout << temp << "\n";
@@ -541,12 +554,12 @@ public:
         temp.erase();
         remove("./data/patients.csv");
         rename("./data/temp.csv", "./data/patients.csv");
-        str << id << "," << firstName << "," << lastName
+        str << firstName << "," << lastName
             << "," << gender << "," << age << "," << mobNumber << "," << address
             << "," << height << "," << weight << "," << ((hospitalized) ? "Y" : "N")
             << ","
             << ((alive) ? "Y" : "N")
-            << ",Y"
+            << ",N"
             << "\n";
         getline(str, s);
         f.open("./data/patientsHistory.csv", ios::in);

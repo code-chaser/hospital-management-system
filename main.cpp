@@ -34,7 +34,6 @@ int main()
 {
     while (1)
     {
-        cout << "160: " << strToNum("11111") << "\n\n\n";
         int purpose = 0;
         cout << "\n\nSelect an option:\n\n";
         cout << "[01] : Book an appointment\n";

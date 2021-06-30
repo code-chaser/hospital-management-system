@@ -1,4 +1,4 @@
 firstName,lastName,gender,age,mobileNumber,address,height,weight,wasHospitalized?,stillAlive(ifHospitalized)?,discharged(ifHospitalized)?
 John,Doe,M,35,+91xxxxxxxxxx,ABC Street` D Town` E` F` G,170,130,Y,Y,N
-G.,Sherry,M,68,+91xxxxxxxxxx,ABC Street` D Town` E` F` G,165,130,N,Y,N
+G.,Sherry,M,68,+91xxxxxxxxxx,ABC Street` D Town` E` F` G,165,130,Y,Y,N
 Indira,Sharma,F,35,+91xxxxxxxxxx,ABC Street` D Town` E` F` G,160,110,N,Y,N

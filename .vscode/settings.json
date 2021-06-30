@@ -4,6 +4,8 @@
         "ostream": "cpp",
         "iostream": "cpp",
         "xstring": "cpp",
-        "iosfwd": "cpp"
+        "iosfwd": "cpp",
+        "sstream": "cpp",
+        "fstream": "cpp"
     }
 }

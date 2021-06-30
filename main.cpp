@@ -3,11 +3,23 @@
 #include <cmath>
 #include <string>
 using namespace std;
+int power(int n, int exp)
+{
+    int res = 1;
+    while (exp)
+    {
+        if (exp & 1)
+            res *= n, exp--;
+        else
+            n *= n, exp >>= 1;
+    }
+    return res;
+}
 int strToNum(string s)
 {
-    int n = s.size(), res = 0;
-    while (n--)
-        res += (s[s.size() - 1 - n] - '0') * pow(10, n);
+    int res = 0;
+    for (int i = 0; i < s.size(); i++)
+        res += ((s[s.size() - 1 - i] - '0') * power(10, i));
     return res;
 }
 #include "./headers/person.hpp"
@@ -22,6 +34,7 @@ int main()
 {
     while (1)
     {
+        cout << "160: " << strToNum("11111") << "\n\n\n";
         int purpose = 0;
         cout << "\n\nSelect an option:\n\n";
         cout << "[01] : Book an appointment\n";

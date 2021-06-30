@@ -187,6 +187,7 @@ public:
                     gender = s4[0];
                     age = strToNum(s5);
                     height = strToNum(s8);
+                    cout<<"\nhhh: "<<s8<<"\n\n\n\n";
                     weight = strToNum(s9);
                     hospitalized = (s10 == "Y");
                     alive = (s11 == "Y");
@@ -194,7 +195,7 @@ public:
                 }
             }
             f.close();
-            //if a record is found, it's details will be stored in the doctor class object that called this function,
+            //if a record is found, it's details will be stored in the patient class object that called this function,
             //and the control is returned;
             //else:
             cout << "\nNo matching record found!\n";

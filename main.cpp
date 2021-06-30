@@ -143,15 +143,25 @@ int main()
         }
         else if (purpose == 15)
         {
+            nurse n;
+            n.addANurse();
         }
         else if (purpose == 16)
         {
+            nurse n;
+            n.getDetails();
+            n.printDetails();
         }
         else if (purpose == 17)
         {
+            nurse n;
+            n.removeANurse();
+            n.printHistoryDetails();
         }
         else if (purpose == 18)
         {
+            nurse n;
+            n.getDetailsFromHistory();
         }
         else if (purpose == 19)
         {

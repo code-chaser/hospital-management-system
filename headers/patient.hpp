@@ -456,7 +456,7 @@ public:
         temp.erase();
         remove("./data/patientsHistory.csv");
         rename("./data/temp.csv", "./data/patientsHistory.csv");
-        cout << firstName << " " << lastName << " reported dead, we hope their soul rests in peace, amen!\n";
+        cout << firstName << " " << lastName << " hospitalized successfully!\n";
         return;
     }
     void reportADeath()

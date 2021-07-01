@@ -25,15 +25,15 @@ public:
     {
         if (id == -1)
             return;
-        printPersonDetails();
+        person::printDetails();
         cout << "Type            : " << type << "\n";
         return;
     }
-    void printHistoryDetails(string extraDetails = "")
+    void printDetailsFromHistory(string extraDetails = "")
     {
         if (id == -1)
             return;
-        printPersonHistoryDetails();
+        person::printDetailsFromHistory();
         stringstream k(extraDetails);
         string s1, s2;
         getline(k, s1, ',');
@@ -51,7 +51,7 @@ public:
                 doctor d;
                 //creating a string stream object to read from string 'temp';
                 stringstream s(temp);
-                string s4, s5;
+                string s4, s5, s7;
                 //reading from the string stream object 's';
                 getline(s, d.firstName, ',');
                 getline(s, d.lastName, ',');
@@ -62,7 +62,7 @@ public:
                 if (d.firstName == firstName && d.lastName == lastName && d.mobNumber == mobNumber)
                 {
 
-                    getline(s, d.address, ',');
+                    getline(s, s7, ',');
                     getline(s, d.type, ',');
                     getline(s, s1, ',');
                     getline(s, s2, ',');
@@ -105,12 +105,12 @@ public:
         idString.erase();
         //creating a record in doctors.csv;
         f.open("./data/doctors.csv", ios::app);
-        f << id << "," << firstName << "," << lastName << "," << gender << "," << age << "," << mobNumber << "," << address << "," << type << endl;
+        f << id << "," << firstName << "," << lastName << "," << gender << "," << age << "," << mobNumber << "," << add.addToStr() << "," << type << endl;
         f.close();
 
         //creating a record in doctorsHistory.csv;
         f.open("./data/doctorsHistory.csv", ios::app);
-        f << firstName << "," << lastName << "," << gender << "," << age << "," << mobNumber << "," << address << "," << type << ",N,NA" << endl;
+        f << firstName << "," << lastName << "," << gender << "," << age << "," << mobNumber << "," << add.addToStr() << "," << type << ",N,NA" << endl;
         f.close();
 
         cout << "\n"
@@ -143,7 +143,7 @@ public:
             {
                 //creating a string stream object to read from string 'temp';
                 stringstream s(temp);
-                string s1, s4, s5;
+                string s1, s4, s5, s7;
                 //reading from the string stream object 's';
                 getline(s, s1, ',');
 
@@ -154,11 +154,12 @@ public:
                     getline(s, s4, ',');
                     getline(s, s5, ',');
                     getline(s, mobNumber, ',');
-                    getline(s, address, ',');
+                    getline(s, s7, ',');
                     getline(s, type, ',');
                     id = reqId;
                     gender = s4[0];
                     age = strToNum(s5);
+                    add.strToAdd(s7);
                     return;
                 }
             }
@@ -189,7 +190,7 @@ public:
                 doctor d;
                 //creating a string stream object to read from string 'temp';
                 stringstream s(temp);
-                string s1, s4, s5;
+                string s1, s4, s5, s7;
                 //reading from the string stream object 's';
                 getline(s, s1, ',');
                 getline(s, d.firstName, ',');
@@ -200,11 +201,12 @@ public:
                     getline(s, s4, ',');
                     getline(s, s5, ',');
                     getline(s, d.mobNumber, ',');
-                    getline(s, d.address, ',');
+                    getline(s, s7, ',');
                     getline(s, d.type, ',');
                     d.id = strToNum(s1);
                     d.gender = s4[0];
                     d.age = strToNum(s5);
+                    d.add.strToAdd(s7);
                     matchingRecords.push_back(d);
                 }
             }
@@ -230,7 +232,7 @@ public:
                             gender = i.gender;
                             age = i.age;
                             mobNumber = i.mobNumber;
-                            address = i.address;
+                            add = i.add;
                             type = i.type;
                             return;
                         }
@@ -259,7 +261,7 @@ public:
                 doctor d;
                 //creating a string stream object to read from string 'temp';
                 stringstream s(temp);
-                string s1, s4, s5;
+                string s1, s4, s5, s7;
                 //reading from the string stream object 's';
                 getline(s, s1, ',');
                 getline(s, d.firstName, ',');
@@ -267,13 +269,14 @@ public:
                 getline(s, s4, ',');
                 getline(s, s5, ',');
                 getline(s, d.mobNumber, ',');
-                getline(s, d.address, ',');
+                getline(s, s7, ',');
                 getline(s, d.type, ',');
                 if (d.type == reqType)
                 {
                     d.id = strToNum(s1);
                     d.gender = s4[0];
                     d.age = strToNum(s5);
+                    d.add.strToAdd(s7);
                     matchingRecords.push_back(d);
                 }
             }
@@ -298,7 +301,7 @@ public:
                             gender = i.gender;
                             age = i.age;
                             mobNumber = i.mobNumber;
-                            address = i.address;
+                            add = i.add;
                             type = i.type;
                             return;
                         }
@@ -339,7 +342,7 @@ public:
                 doctor d;
                 //creating a string stream object to read from string 'temp';
                 stringstream s(temp);
-                string s4, s5, s9;
+                string s4, s5, s7, s9;
                 //reading from the string stream object 's';
                 getline(s, d.firstName, ',');
                 getline(s, d.lastName, ',');
@@ -349,12 +352,13 @@ public:
                     getline(s, s4, ',');
                     getline(s, s5, ',');
                     getline(s, d.mobNumber, ',');
-                    getline(s, d.address, ',');
+                    getline(s, s7, ',');
                     getline(s, d.type, ',');
                     getline(s, s9);
                     d.id = 0;
                     d.gender = s4[0];
                     d.age = strToNum(s5);
+                    d.add.strToAdd(s7);
                     matchingRecords.push_back(d);
                     extraDetails.push_back(s9);
                 }
@@ -363,7 +367,7 @@ public:
             cout << "\n";
             cout << matchingRecords.size() << " matching record(s) found!\n";
             for (int i = 0; i < matchingRecords.size(); i++)
-                matchingRecords[i].printHistoryDetails(extraDetails[i]);
+                matchingRecords[i].printDetailsFromHistory(extraDetails[i]);
         }
         //2: Filter by type;
         else if (opt == 2)
@@ -384,14 +388,14 @@ public:
                 doctor d;
                 //creating a string stream object to read from string 'temp';
                 stringstream s(temp);
-                string s4, s5, s9;
+                string s4, s5, s7, s9;
                 //reading from the string stream object 's';
                 getline(s, d.firstName, ',');
                 getline(s, d.lastName, ',');
                 getline(s, s4, ',');
                 getline(s, s5, ',');
                 getline(s, d.mobNumber, ',');
-                getline(s, d.address, ',');
+                getline(s, s7, ',');
                 getline(s, d.type, ',');
                 if (d.type == reqType)
                 {
@@ -399,6 +403,7 @@ public:
                     d.id = 0;
                     d.gender = s4[0];
                     d.age = strToNum(s5);
+                    d.add.strToAdd(s7);
                     matchingRecords.push_back(d);
                     extraDetails.push_back(s9);
                 }
@@ -407,7 +412,7 @@ public:
             cout << "\n";
             cout << matchingRecords.size() << " matching record(s) found!\n";
             for (int i = 0; i < matchingRecords.size(); i++)
-                matchingRecords[i].printHistoryDetails(extraDetails[i]);
+                matchingRecords[i].printDetailsFromHistory(extraDetails[i]);
         }
         return;
     }
@@ -418,7 +423,7 @@ public:
         string s, temp;
         stringstream str(s);
         str << id << "," << firstName << "," << lastName << "," << gender << "," << age
-            << "," << mobNumber << "," << address << "," << type << "\n";
+            << "," << mobNumber << "," << add.addToStr() << "," << type << "\n";
         getline(str, s);
         fstream f, fout("./data/temp.csv", ios::out);
         f.open("./data/doctors.csv", ios::in);
@@ -435,7 +440,7 @@ public:
         cout << "\nReason?\n";
         getline(cin >> ws, reason);
         str << firstName << "," << lastName << "," << gender << "," << age
-            << "," << mobNumber << "," << address << "," << type << ",N,NA\n";
+            << "," << mobNumber << "," << add.addToStr() << "," << type << ",N,NA\n";
         getline(str, s);
         f.open("./data/doctorsHistory.csv", ios::in);
         fout.open("./data/temp.csv", ios::out);
@@ -444,7 +449,7 @@ public:
             if (temp == s)
             {
                 fout << firstName << "," << lastName << "," << gender << "," << age
-                     << "," << mobNumber << "," << address << "," << type << ",Y," << reason << "\n";
+                     << "," << mobNumber << "," << add.addToStr() << "," << type << ",Y," << reason << "\n";
             }
             else
                 fout << temp << "\n";

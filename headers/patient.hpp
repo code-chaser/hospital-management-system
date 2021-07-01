@@ -26,18 +26,18 @@ public:
     {
         if (id == -1)
             return;
-        printPersonDetails();
+        person::printDetails();
         cout << "Height (cms)    : " << height << "\n";
         cout << "Weight (pounds) : " << weight << "\n";
         cout << "Was Hospitalized? " << ((hospitalized) ? "Y" : "N") << "\n";
         cout << "Alive?          : " << ((alive) ? "Y" : "N") << "\n";
         return;
     }
-    void printHistoryDetails(string extraDetails = "")
+    void printDetailsFromHistory(string extraDetails = "")
     {
         if (id == -1)
             return;
-        printPersonHistoryDetails();
+        person::printDetailsFromHistory();
         stringstream k(extraDetails);
         string s1;
         getline(k, s1, ',');
@@ -54,7 +54,7 @@ public:
                 patient p;
                 //creating a string stream object to read from string 'temp';
                 stringstream s(temp);
-                string s4, s5, s8, s9, s10, s11, s12;
+                string s4, s5, s7, s8, s9, s10, s11;
                 //reading from the string stream object 's';
                 getline(s, p.firstName, ',');
                 getline(s, p.lastName, ',');
@@ -65,11 +65,11 @@ public:
                 if (p.firstName == firstName && p.lastName == lastName && p.mobNumber == mobNumber)
                 {
 
-                    getline(s, p.address, ',');
+                    getline(s, s7, ',');
+                    getline(s, s8, ',');
                     getline(s, s9, ',');
                     getline(s, s10, ',');
                     getline(s, s11, ',');
-                    getline(s, s12, ',');
                     getline(s, s1, ',');
                 }
             }
@@ -118,7 +118,7 @@ public:
         //creating a record in patients.csv;
         f.open("./data/patients.csv", ios::app);
         f << id << "," << firstName << "," << lastName
-          << "," << gender << "," << age << "," << mobNumber << "," << address
+          << "," << gender << "," << age << "," << mobNumber << "," << add.addToStr()
           << "," << height << "," << weight << "," << ((hospitalized) ? "Y" : "N")
           << ","
           << "Y"
@@ -128,7 +128,7 @@ public:
         //creating a record in patientsHistory.csv;
         f.open("./data/patientsHistory.csv", ios::app);
         f << firstName << "," << lastName << "," << gender << "," << age
-          << "," << mobNumber << "," << address << "," << height << ","
+          << "," << mobNumber << "," << add.addToStr() << "," << height << ","
           << weight << "," << ((hospitalized) ? "Y" : "N")
           << ","
           << "Y"
@@ -167,7 +167,7 @@ public:
             {
                 //creating a string stream object to read from string 'temp';
                 stringstream s(temp);
-                string s1, s4, s5, s8, s9, s10, s11;
+                string s1, s4, s5, s7, s8, s9, s10, s11;
                 //reading from the string stream object 's';
                 getline(s, s1, ',');
 
@@ -178,7 +178,7 @@ public:
                     getline(s, s4, ',');
                     getline(s, s5, ',');
                     getline(s, mobNumber, ',');
-                    getline(s, address, ',');
+                    getline(s, s7, ',');
                     getline(s, s8, ',');
                     getline(s, s9, ',');
                     getline(s, s10, ',');
@@ -186,6 +186,7 @@ public:
                     id = reqId;
                     gender = s4[0];
                     age = strToNum(s5);
+                    add.strToAdd(s7);
                     height = strToNum(s8);
                     weight = strToNum(s9);
                     hospitalized = (s10 == "Y");
@@ -220,7 +221,7 @@ public:
                 patient p;
                 //creating a string stream object to read from string 'temp';
                 stringstream s(temp);
-                string s1, s4, s5, s8, s9, s10, s11;
+                string s1, s4, s5, s7, s8, s9, s10, s11;
                 //reading from the string stream object 's';
                 getline(s, s1, ',');
                 getline(s, p.firstName, ',');
@@ -231,7 +232,7 @@ public:
                     getline(s, s4, ',');
                     getline(s, s5, ',');
                     getline(s, p.mobNumber, ',');
-                    getline(s, p.address, ',');
+                    getline(s, s7, ',');
                     getline(s, s8, ',');
                     getline(s, s9, ',');
                     getline(s, s10, ',');
@@ -239,6 +240,7 @@ public:
                     p.id = strToNum(s1);
                     p.gender = s4[0];
                     p.age = strToNum(s5);
+                    add.strToAdd(s7);
                     p.height = strToNum(s8);
                     p.weight = strToNum(s9);
                     hospitalized = (s10 == "Y");
@@ -268,7 +270,7 @@ public:
                             gender = i.gender;
                             age = i.age;
                             mobNumber = i.mobNumber;
-                            address = i.address;
+                            add = i.add;
                             height = i.height;
                             weight = i.weight;
                             hospitalized = i.hospitalized;
@@ -312,7 +314,7 @@ public:
                 patient p;
                 //creating a string stream object to read from string 'temp';
                 stringstream s(temp);
-                string s1, s4, s5, s8, s9, s10, s11, s12;
+                string s1, s4, s5, s7, s8, s9, s10, s11, s12;
                 //reading from the string stream object 's';
                 getline(s, s1, ',');
                 getline(s, p.firstName, ',');
@@ -323,7 +325,7 @@ public:
                     getline(s, s4, ',');
                     getline(s, s5, ',');
                     getline(s, p.mobNumber, ',');
-                    getline(s, p.address, ',');
+                    getline(s, s7, ',');
                     getline(s, s8, ',');
                     getline(s, s9, ',');
                     getline(s, s10, ',');
@@ -332,6 +334,7 @@ public:
                     getline(s, s12);
                     p.gender = s4[0];
                     p.age = strToNum(s5);
+                    add.strToAdd(s7);
                     p.height = strToNum(s8);
                     p.weight = strToNum(s9);
                     hospitalized = (s10 == "Y");
@@ -344,7 +347,7 @@ public:
             cout << "\n";
             cout << matchingRecords.size() << " matching record(s) found!\n";
             for (int i = 0; i < matchingRecords.size(); i++)
-                matchingRecords[i].printHistoryDetails(extraDetails[i]);
+                matchingRecords[i].printDetailsFromHistory(extraDetails[i]);
         }
         //2: Filter by mobNumber;
         else if (opt == 2)
@@ -365,7 +368,7 @@ public:
                 patient p;
                 //creating a string stream object to read from string 'temp';
                 stringstream s(temp);
-                string s1, s4, s5, s8, s9, s10, s11, s12;
+                string s1, s4, s5, s7, s8, s9, s10, s11, s12;
                 //reading from the string stream object 's';
                 getline(s, s1, ',');
                 getline(s, p.firstName, ',');
@@ -376,7 +379,7 @@ public:
 
                 if (reqMobNum == p.mobNumber)
                 {
-                    getline(s, p.address, ',');
+                    getline(s, s7, ',');
                     getline(s, s8, ',');
                     getline(s, s9, ',');
                     getline(s, s10, ',');
@@ -385,6 +388,7 @@ public:
                     p.id = strToNum(s1);
                     p.gender = s4[0];
                     p.age = strToNum(s5);
+                    add.strToAdd(s7);
                     p.height = strToNum(s8);
                     p.weight = strToNum(s9);
                     hospitalized = (s10 == "Y");
@@ -397,7 +401,7 @@ public:
             cout << "\n";
             cout << matchingRecords.size() << " matching record(s) found!\n";
             for (int i = 0; i < matchingRecords.size(); i++)
-                matchingRecords[i].printHistoryDetails(extraDetails[i]);
+                matchingRecords[i].printDetailsFromHistory(extraDetails[i]);
         }
         return;
     }
@@ -408,13 +412,13 @@ public:
         string s, temp, corrected;
         stringstream str;
         str << id << "," << firstName << "," << lastName
-            << "," << gender << "," << age << "," << mobNumber << "," << address
+            << "," << gender << "," << age << "," << mobNumber << "," << add.addToStr()
             << "," << height << "," << weight << "," << ((hospitalized) ? "Y" : "N")
             << ","
             << ((alive) ? "Y" : "N") << "\n";
         getline(str >> ws, s);
         str << id << "," << firstName << "," << lastName
-            << "," << gender << "," << age << "," << mobNumber << "," << address
+            << "," << gender << "," << age << "," << mobNumber << "," << add.addToStr()
             << "," << height << "," << weight << ","
             << "Y"
             << ","
@@ -436,7 +440,7 @@ public:
         remove("./data/patients.csv");
         rename("./data/temp.csv", "./data/patients.csv");
         str << firstName << "," << lastName
-            << "," << gender << "," << age << "," << mobNumber << "," << address
+            << "," << gender << "," << age << "," << mobNumber << "," << add.addToStr()
             << "," << height << "," << weight << "," << ((hospitalized) ? "Y" : "N")
             << ","
             << ((alive) ? "Y" : "N")
@@ -444,7 +448,7 @@ public:
             << "\n";
         getline(str >> ws, s);
         str << firstName << "," << lastName
-            << "," << gender << "," << age << "," << mobNumber << "," << address
+            << "," << gender << "," << age << "," << mobNumber << "," << add.addToStr()
             << "," << height << "," << weight << ","
             << "Y,"
             << ((alive) ? "Y,N\n" : "N,N\n");
@@ -474,13 +478,13 @@ public:
         string s, temp, corrected;
         stringstream str(s);
         str << id << "," << firstName << "," << lastName
-            << "," << gender << "," << age << "," << mobNumber << "," << address
+            << "," << gender << "," << age << "," << mobNumber << "," << add.addToStr()
             << "," << height << "," << weight << "," << ((hospitalized) ? "Y" : "N")
             << ","
             << ((alive) ? "Y" : "N") << "\n";
         getline(str, s);
         str << id << "," << firstName << "," << lastName
-            << "," << gender << "," << age << "," << mobNumber << "," << address
+            << "," << gender << "," << age << "," << mobNumber << "," << add.addToStr()
             << "," << height << "," << weight << "," << ((hospitalized) ? "Y" : "N")
             << ","
             << "N"
@@ -502,7 +506,7 @@ public:
         remove("./data/patients.csv");
         rename("./data/temp.csv", "./data/patients.csv");
         str << firstName << "," << lastName
-            << "," << gender << "," << age << "," << mobNumber << "," << address
+            << "," << gender << "," << age << "," << mobNumber << "," << add.addToStr()
             << "," << height << "," << weight << "," << ((hospitalized) ? "Y" : "N")
             << ","
             << ((alive) ? "Y" : "N")
@@ -516,7 +520,7 @@ public:
             if (temp == s)
             {
                 fout << firstName << "," << lastName
-                     << "," << gender << "," << age << "," << mobNumber << "," << address
+                     << "," << gender << "," << age << "," << mobNumber << "," << add.addToStr()
                      << "," << height << "," << weight << "," << ((hospitalized) ? "Y,N,N\n" : "N,N,N\n");
             }
             else
@@ -538,7 +542,7 @@ public:
         string s, temp;
         stringstream str(s);
         str << id << "," << firstName << "," << lastName
-            << "," << gender << "," << age << "," << mobNumber << "," << address
+            << "," << gender << "," << age << "," << mobNumber << "," << add.addToStr()
             << "," << height << "," << weight << "," << ((hospitalized) ? "Y" : "N")
             << ","
             << ((alive) ? "Y" : "N") << "\n";
@@ -555,7 +559,7 @@ public:
         remove("./data/patients.csv");
         rename("./data/temp.csv", "./data/patients.csv");
         str << firstName << "," << lastName
-            << "," << gender << "," << age << "," << mobNumber << "," << address
+            << "," << gender << "," << age << "," << mobNumber << "," << add.addToStr()
             << "," << height << "," << weight << "," << ((hospitalized) ? "Y" : "N")
             << ","
             << ((alive) ? "Y" : "N")
@@ -569,7 +573,7 @@ public:
             if (temp == s)
             {
                 fout << firstName << "," << lastName
-                     << "," << gender << "," << age << "," << mobNumber << "," << address
+                     << "," << gender << "," << age << "," << mobNumber << "," << add.addToStr()
                      << "," << height << "," << weight << "," << ((hospitalized) ? "Y" : "N")
                      << ","
                      << ((alive) ? "Y" : "N")

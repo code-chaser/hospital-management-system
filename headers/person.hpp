@@ -14,7 +14,7 @@ protected:
     char gender;
     int16_t age = 0;
     string mobNumber;
-    string address;
+    address add;
     string cat = "";
     int category = 0;
     //category: 1:doctor; 2:patient; 3:nurse; 4:driver;
@@ -46,14 +46,10 @@ public:
             cout << "M or F?\n", cin >> gender;
         cout << "\nEnter mobile number (with country code): \n";
         getline(cin >> ws, mobNumber);
-        cout << "\nEnter residential address (enter in one line): \n";
-        getline(cin >> ws, address);
-        for (auto &i : address)
-            if (i == ',')
-                i = '`';
+        add.takeInput();
         return;
     }
-    void printPersonDetails()
+    void printDetails()
     {
         if (id == -1)
             return;
@@ -64,17 +60,10 @@ public:
         cout << "Age             : " << age << "\n";
         cout << "Mobile          : " << mobNumber << "\n";
         cout << "Address         : ";
-        for (auto i : address)
-        {
-            if (i == '`')
-                cout << ',';
-            else
-                cout << i;
-        }
-        cout << "\n";
+        add.print();
         return;
     }
-    void printPersonHistoryDetails()
+    void printDetailsFromHistory()
     {
         if (id == -1)
             return;
@@ -84,14 +73,7 @@ public:
         cout << "Age             : " << age << "\n";
         cout << "Mobile          : " << mobNumber << "\n";
         cout << "Address         : ";
-        for (auto i : address)
-        {
-            if (i == '`')
-                cout << ',';
-            else
-                cout << i;
-        }
-        cout << "\n";
+        add.print();
         return;
     }
 };

@@ -22,6 +22,8 @@ int strToNum(string s)
         res += ((s[s.size() - 1 - i] - '0') * power(10, i));
     return res;
 }
+
+#include "./headers/address.hpp"
 #include "./headers/person.hpp"
 #include "./headers/appointment.hpp"
 #include "./headers/patient.hpp"
@@ -35,11 +37,17 @@ int main()
     while (1)
     {
         int purpose = 0;
-        cout << "\n\nSelect an option:\n\n";
+        cout << "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
+        cout << "\nSelect an option:\n\n";
+        
+        cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n";
+        
         cout << "[01] : Book an appointment\n";
         cout << "[02] : Check appointment status\n";
         cout << "[03] : Update appointment status\n";
         cout << "[04] : Cancel an appointment\n\n";
+
+        cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n";
 
         cout << "[05] : Register a new patient\n";
         cout << "[06] : Get patient details\n";
@@ -47,29 +55,40 @@ int main()
         cout << "[08] : Report a patient's death\n";
         cout << "[09] : Discharge a patient or their body\n";
         cout << "[10] : Fetch patient details from history\n\n";
+        
+        cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n";
 
         cout << "[11] : Register a new doctor\n";
         cout << "[12] : Get doctor details\n";
         cout << "[13] : Remove a doctor\n";
         cout << "[14] : Fetch doctor details from history\n\n";
+        
+        cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n";
 
         cout << "[15] : Register a new nurse\n";
         cout << "[16] : Get nurse details\n";
         cout << "[17] : Remove a nurse\n";
         cout << "[18] : Fetch nurse details from history\n\n";
+        
+        cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n";
 
         cout << "[19] : Add an ambulance\n";
         cout << "[20] : Send an ambulance\n";
         cout << "[21] : Check ambulance status\n";
         cout << "[22] : Remove an ambulance\n";
         cout << "[23] : Fetch ambulance details from history\n\n";
+        
+        cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n";
 
         cout << "[24] : Register a new ambulance driver\n";
         cout << "[25] : Get driver details\n";
         cout << "[26] : Remove a driver\n";
         cout << "[27] : Fetch driver details from history\n\n";
+        
+        cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n";
 
         cout << "[-1] : Exit\n";
+        cout << "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
         cin >> purpose;
         if (purpose == -1)
         {
@@ -134,7 +153,7 @@ int main()
         {
             doctor d;
             d.removeADoctor();
-            d.printHistoryDetails();
+            d.printDetailsFromHistory();
         }
         else if (purpose == 14)
         {
@@ -156,7 +175,7 @@ int main()
         {
             nurse n;
             n.removeANurse();
-            n.printHistoryDetails();
+            n.printDetailsFromHistory();
         }
         else if (purpose == 18)
         {

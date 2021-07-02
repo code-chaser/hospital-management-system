@@ -339,8 +339,8 @@ public:
                     add.strToAdd(s6);
                     p.height = strToNum(s7);
                     p.weight = strToNum(s8);
-                    hospitalized = (s9 == "Y");
-                    alive = (s10 == "Y");
+                    p.hospitalized = (s9 == "Y");
+                    p.alive = (s10 == "Y");
                     matchingRecords.push_back(p);
                     extraDetails.push_back(s12);
                 }
@@ -392,8 +392,8 @@ public:
                     add.strToAdd(s6);
                     p.height = strToNum(s7);
                     p.weight = strToNum(s8);
-                    hospitalized = (s9 == "Y");
-                    alive = (s10 == "Y");
+                    p.hospitalized = (s9 == "Y");
+                    p.alive = (s10 == "Y");
                     matchingRecords.push_back(p);
                     extraDetails.push_back(s12);
                 }

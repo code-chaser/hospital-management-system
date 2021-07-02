@@ -1,7 +1,7 @@
 firstName,lastName,gender,age,mobileNumber,address,height,weight,wasHospitalized?,stillAlive(ifHospitalized)?,discharged(ifHospitalized)?
-John,Doe,M,35,+91xxxxxxxxxx,ABC Street` D Town` E` F` G,170,130,Y,Y,N
-G.,Sherry,M,68,+91xxxxxxxxxx,ABC Street` D Town` E` F` G,165,130,Y,Y,N
-Indira,Sharma,F,35,+91xxxxxxxxxx,ABC Street` D Town` E` F` G,160,110,N,Y,N
-Karan,Singh,M,39,+91xxxxxxxxxx,Abc, Xyz``Def`Ghi`zzzzzz`JKL,178,150,N,Y,N
-Aditya,Singh,M,12,+918776493058,128-D^ East Mumbai``Mumbai`Maharashtra`400069`INDIA,179,140,Y,Y,N
-Aditya,Singh,M,10,+919378409294,29-D^ Andheri West``Mumbai`Maharashtra`400066`India,180,140,N,Y,N
+G.,Sherry,M,68,+91xxxxxxxxxx,,165,130,Y,Y,N
+Indira,Sharma,F,35,+91xxxxxxxxxx,,160,110,N,Y,N
+Karan,Singh,M,39,+91xxxxxxxxxx,633-C^ Raheja Chamber`Nariman Point`Mumbai`Maharashtra`400021`India,178,150,N,Y,N
+Aditya,Singh,M,12,+918776493058,128-D^ East Mumbai``Mumbai`Maharashtra`400069`India,179,140,Y,Y,N
+Rohan,Khurana,M,10,+919378409294,29-D^ Andheri West``Mumbai`Maharashtra`400066`India,180,140,N,Y,N
+John,Doe,M,35,+91xxxxxxxxxx,11-A^Electronic City`Hosur Road`Bangalore`Karnataka`560002`India,170,130,Y,Y,N

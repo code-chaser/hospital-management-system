@@ -124,7 +124,7 @@ public:
         cout << "Still owned?    : " << extraDetails << "\n";
         return;
     }
-    void getDetails()
+    void getDetails(int rec = 0)
     {
         int opt = 0;
         cout << "\nOPTIONS:\n[1]: Filter by ID\n[2]: Filter by Model\n[3]: Filter by Vehicle Reg. Number\n\n";
@@ -164,7 +164,6 @@ public:
                     idle = (s5 == "Y");
                     if (!idle)
                         add.strToAdd(s6), driverId = strToNum(s7);
-                    printDetailsFromHistory();
                     return;
                 }
             }
@@ -217,7 +216,7 @@ public:
             for (auto i : matchingRecords)
                 i.printDetails();
             char tt = 'N';
-            if (matchingRecords.size() > 1)
+            if (matchingRecords.size() > rec)
             {
                 do
                 {

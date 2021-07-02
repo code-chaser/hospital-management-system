@@ -122,7 +122,7 @@ public:
             cout << "Reason          : " << s2 << "\n";
         return;
     }
-    void getDetails()
+    void getDetails(int rec = 0)
     {
         int opt = 0;
         cout << "\nOPTIONS:\n[1]: Filter by ID\n[2]: Filter by Name\n[3]: Filter by Type\n\n";
@@ -219,7 +219,7 @@ public:
             for (auto i : matchingRecords)
                 i.printDetails();
             char tt = 'N';
-            if (matchingRecords.size() > 1)
+            if (matchingRecords.size() > rec)
             {
                 do
                 {
@@ -289,7 +289,7 @@ public:
             for (auto i : matchingRecords)
                 i.printDetails();
             char tt = 'N';
-            if (matchingRecords.size() > 1)
+            if (matchingRecords.size() > 0)
                 do
                 {
                     int reqId;

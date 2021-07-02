@@ -75,7 +75,7 @@ public:
         add.print();
         return;
     }
-    virtual void getDetails() = 0;
+    virtual void getDetails(int rec = 0) = 0;
     virtual void getDetailsFromHistory() = 0;
     virtual void removePerson() = 0;
 };

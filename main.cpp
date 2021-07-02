@@ -116,7 +116,7 @@ int main()
         else if (purpose == 6)
         {
             patient p;
-            p.getDetails();
+            p.getDetails(1);
             p.printDetails();
         }
         else if (purpose == 7)
@@ -147,7 +147,7 @@ int main()
         else if (purpose == 12)
         {
             doctor d;
-            d.getDetails();
+            d.getDetails(1);
             d.printDetails();
         }
         else if (purpose == 13)
@@ -169,7 +169,7 @@ int main()
         else if (purpose == 16)
         {
             nurse n;
-            n.getDetails();
+            n.getDetails(1);
             n.printDetails();
         }
         else if (purpose == 17)
@@ -196,7 +196,7 @@ int main()
         else if (purpose == 21)
         {
             ambulance a;
-            a.getDetails();
+            a.getDetails(1);
             a.printDetails();
         }
         else if (purpose == 22)
@@ -218,7 +218,7 @@ int main()
         else if (purpose == 26)
         {
             driver d;
-            d.getDetails();
+            d.getDetails(1);
             d.printDetails();
         }
         else if (purpose == 27)

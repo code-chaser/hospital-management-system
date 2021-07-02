@@ -423,6 +423,8 @@ public:
     {
         cout << "\nSearch for the doctor you want to remove.\n";
         getDetails();
+        if (id == -1)
+            return;
         string s, temp;
         stringstream str(s);
         str << id << "," << firstName << "," << lastName << "," << gender << "," << age

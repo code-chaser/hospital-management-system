@@ -410,6 +410,8 @@ public:
     {
         cout << "\nSearch for the patient.\n";
         getDetails();
+        if (id == -1)
+            return;
         string s, temp, corrected;
         stringstream str;
         str << id << "," << firstName << "," << lastName
@@ -476,6 +478,8 @@ public:
     {
         cout << "\nSearch for the patient.\n";
         getDetails();
+        if (id == -1)
+            return;
         string s, temp, corrected;
         stringstream str(s);
         str << id << "," << firstName << "," << lastName
@@ -540,6 +544,8 @@ public:
     {
         cout << "\nSearch for the patient you want to remove.\n";
         getDetails();
+        if (id == -1)
+            return;
         string s, temp;
         stringstream str(s);
         str << id << "," << firstName << "," << lastName

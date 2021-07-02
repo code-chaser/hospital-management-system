@@ -402,6 +402,8 @@ public:
     {
         cout << "\nSearch for the driver you want to remove.\n";
         getDetails();
+        if (id == -1)
+            return;
         if (!idle)
         {
             cout << "\nSorry, the driver you selected to remove is not currently idle.\nOnly idlers can be removed.\n\n";

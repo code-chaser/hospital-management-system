@@ -242,10 +242,10 @@ public:
                     p.id = strToNum(s1);
                     p.gender = s4[0];
                     p.age = strToNum(s5);
-                    add.strToAdd(s7);
+                    p.add.strToAdd(s7);
                     p.height = strToNum(s8);
                     p.weight = strToNum(s9);
-                    hospitalized = (s10 == "Y");
+                    p.hospitalized = (s10 == "Y");
                     alive = (s11 == "Y");
                     matchingRecords.push_back(p);
                 }

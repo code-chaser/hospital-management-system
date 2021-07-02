@@ -335,7 +335,7 @@ public:
             for (int i = 0; i < matchingRecords.size(); i++)
                 matchingRecords[i].printDetailsFromHistory(extraDetails[i]);
         }
-        //2: Filter by licenseNumber;
+        //2: Filter by vrn;
         else if (opt == 2)
         {
             string reqVRN;
@@ -439,11 +439,11 @@ public:
         }
 
         //updating status of ambulance;
-        string s, corrected;
+        string initial, corrected;
         stringstream str;
         str << id << "," << model << "," << manufacturer
             << "," << vrn << ",Y,NA,NA\n";
-        getline(str >> ws, s);
+        getline(str >> ws, initial);
         str << id << "," << model << "," << manufacturer
             << "," << vrn << ","
             << "N"
@@ -453,14 +453,14 @@ public:
         fout.open("./data/temp.csv", ios::out);
         while (getline(f, temp))
         {
-            if (temp != s)
+            if (temp != initial)
                 fout << temp << "\n";
             else
                 fout << corrected << "\n";
         }
         f.close();
         fout.close();
-        s.erase();
+        initial.erase();
         temp.erase();
         remove("./data/patients.csv");
         rename("./data/temp.csv", "./data/patients.csv");
@@ -493,20 +493,20 @@ public:
             }
         }
         f.close();
-        s = s1 + "," + s2 + "," + s3 + "," + s4 + "," + s5 + "," + s6 + "," + s7 + "," + s8 + "," + s9;
+        initial = s1 + "," + s2 + "," + s3 + "," + s4 + "," + s5 + "," + s6 + "," + s7 + "," + s8 + "," + s9;
         corrected = s1 + "," + s2 + "," + s3 + "," + s4 + "," + s5 + "," + s6 + "," + s7 + "," + s8 + ",N";
         fout.open("./data/temp.csv", ios::out);
         f.open("./data/patients.csv", ios::in);
         while (getline(f, temp))
         {
-            if (temp != s)
+            if (temp != initial)
                 fout << temp << "\n";
             else
                 fout << corrected << "\n";
         }
         f.close();
         fout.close();
-        s.erase();
+        initial.erase();
         temp.erase();
         remove("./data/patients.csv");
         rename("./data/temp.csv", "./data/patients.csv");

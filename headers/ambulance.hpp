@@ -92,9 +92,36 @@ public:
     {
         if (id == -1)
             return;
+        if (extraDetails == "")
+        {
+            fstream f;
+            f.open("./data/driversHistory.csv", ios::in);
+            string temp;
+            //skipping the first row containing column headers;
+            getline(f >> ws, temp);
+            //analyzing each entry afterwards;
+            while (getline(f >> ws, temp))
+            {
+                ambulance a;
+                //creating a string stream object to read from string 'temp';
+                stringstream s(temp);
+                string s4;
+                //reading from the string stream object 's';
+                getline(s, a.model, ',');
+                getline(s, a.manufacturer, ',');
+                getline(s, s4, ',');
+
+                if (vrn == s4)
+                {
+                    getline(s, extraDetails, ',');
+                }
+            }
+            f.close();
+        }
         cout << "Model           : " << model << "\n";
         cout << "Manufacturer    : " << manufacturer << "\n";
         cout << "Reg. Number     : " << vrn << "\n";
+        cout << "Still owned?    : " << extraDetails << "\n";
         return;
     }
     void getDetails()
@@ -135,8 +162,9 @@ public:
                     getline(s, s7, ',');
                     id = reqId;
                     idle = (s5 == "Y");
-                    if (idle)
+                    if (!idle)
                         add.strToAdd(s6), driverId = strToNum(s7);
+                    printDetailsFromHistory();
                     return;
                 }
             }
@@ -178,7 +206,7 @@ public:
                     getline(s, s7, ',');
                     a.id = strToNum(s1);
                     a.idle = (s5 == "Y");
-                    if (idle)
+                    if (!idle)
                         add.strToAdd(s6), driverId = strToNum(s7);
                     matchingRecords.push_back(a);
                 }
@@ -244,8 +272,9 @@ public:
                     getline(s, s7, ',');
                     id = strToNum(s1);
                     idle = (s5 == "Y");
-                    if (idle)
+                    if (!idle)
                         add.strToAdd(s6), driverId = strToNum(s7);
+                    
                     return;
                 }
             }
@@ -268,11 +297,9 @@ public:
         //1: Filter by name;
         if (opt == 1)
         {
-            string reqModel, reqLName;
-            cout << "First Name:\n";
+            string reqModel;
+            cout << "Model:\n";
             getline(cin >> ws, reqModel);
-            cout << "\nLast Name:\n";
-            getline(cin, reqLName);
             vector<ambulance> matchingRecords;
             vector<string> extraDetails;
             fstream f;
@@ -290,10 +317,11 @@ public:
                 bool owned;
                 //reading from the string stream object 's';
                 getline(s, a.model, ',');
-                getline(s, a.manufacturer, ',');
 
-                if (a.model == reqModel && a.manufacturer == reqLName)
+                if (a.model == reqModel)
                 {
+
+                    getline(s, a.manufacturer, ',');
                     getline(s, vrn, ',');
                     getline(s, s4, ',');
                     a.id = 0;
@@ -311,7 +339,7 @@ public:
         else if (opt == 2)
         {
             string reqVRN;
-            cout << "Enter the licenseNumber of ambulance required:\n";
+            cout << "Enter the vehicle reg. number of ambulance required:\n";
             getline(cin >> ws, reqVRN);
             vector<ambulance> matchingRecords;
             vector<string> extraDetails;
@@ -353,7 +381,7 @@ public:
 
         //*************picking an idle ambulance*************;
 
-        fstream f,fout;
+        fstream f, fout;
         f.open("./data/ambulances.csv", ios::in);
         string temp;
         //skipping the first row containing column headers;

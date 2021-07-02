@@ -197,6 +197,7 @@ int main()
         {
             ambulance a;
             a.getDetails();
+            a.printDetails();
         }
         else if (purpose == 22)
         {

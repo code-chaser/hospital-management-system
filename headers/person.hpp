@@ -52,7 +52,7 @@ public:
     {
         if (id == -1)
             return;
-        cout << "\nDeatils:\n";
+        cout << "\nDetails:\n";
         cout << "ID              : " << id << "\n";
         cout << "Full Name       : " << firstName << " " << lastName << "\n";
         cout << "Gender          : " << gender << "\n";
@@ -66,7 +66,7 @@ public:
     {
         if (id == -1)
             return;
-        cout << "\nHistory Deatils :\n";
+        cout << "\nHistory Details :\n";
         cout << "Full Name       : " << firstName << " " << lastName << "\n";
         cout << "Gender          : " << gender << "\n";
         cout << "Age             : " << age << "\n";

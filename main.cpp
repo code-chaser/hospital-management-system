@@ -29,8 +29,8 @@ int strToNum(string s)
 #include "./headers/patient.hpp"
 #include "./headers/doctor.hpp"
 #include "./headers/nurse.hpp"
-#include "./headers/ambulance.hpp"
 #include "./headers/driver.hpp"
+#include "./headers/ambulance.hpp"
 
 int main()
 {
@@ -74,16 +74,17 @@ int main()
 
         cout << "[19] : Add an ambulance\n";
         cout << "[20] : Send an ambulance\n";
-        cout << "[21] : Check ambulance status\n";
-        cout << "[22] : Remove an ambulance\n";
-        cout << "[23] : Fetch ambulance details from history\n\n";
+        cout << "[21] : Get ambulance details\n";
+        cout << "[22] : Report ambulance arrival\n";
+        cout << "[23] : Remove an ambulance\n";
+        cout << "[24] : Fetch ambulance details from history\n\n";
         
         cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n";
 
-        cout << "[24] : Register a new ambulance driver\n";
-        cout << "[25] : Get driver details\n";
-        cout << "[26] : Remove a driver\n";
-        cout << "[27] : Fetch driver details from history\n\n";
+        cout << "[25] : Register a new ambulance driver\n";
+        cout << "[26] : Get driver details\n";
+        cout << "[27] : Remove a driver\n";
+        cout << "[28] : Fetch driver details from history\n\n";
         
         cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n";
 
@@ -110,7 +111,7 @@ int main()
         else if (purpose == 5)
         {
             patient p;
-            p.addAPatient();
+            p.addPerson();
         }
         else if (purpose == 6)
         {
@@ -131,7 +132,7 @@ int main()
         else if (purpose == 9)
         {
             patient p;
-            p.removeAPatient();
+            p.removePerson();
         }
         else if (purpose == 10)
         {
@@ -141,7 +142,7 @@ int main()
         else if (purpose == 11)
         {
             doctor d;
-            d.addADoctor();
+            d.addPerson();
         }
         else if (purpose == 12)
         {
@@ -152,7 +153,7 @@ int main()
         else if (purpose == 13)
         {
             doctor d;
-            d.removeADoctor();
+            d.removePerson();
             d.printDetailsFromHistory();
         }
         else if (purpose == 14)
@@ -163,7 +164,7 @@ int main()
         else if (purpose == 15)
         {
             nurse n;
-            n.addANurse();
+            n.addPerson();
         }
         else if (purpose == 16)
         {
@@ -174,7 +175,7 @@ int main()
         else if (purpose == 17)
         {
             nurse n;
-            n.removeANurse();
+            n.removePerson();
             n.printDetailsFromHistory();
         }
         else if (purpose == 18)
@@ -184,12 +185,16 @@ int main()
         }
         else if (purpose == 19)
         {
+            ambulance a;
+            a.addAmbulance();
         }
         else if (purpose == 20)
         {
         }
         else if (purpose == 21)
         {
+            ambulance a;
+            a.getDetails();
         }
         else if (purpose == 22)
         {
@@ -199,18 +204,30 @@ int main()
         }
         else if (purpose == 24)
         {
+            ambulance a;
+            a.getDetailsFromHistory();
         }
         else if (purpose == 25)
         {
+            driver d;
+            d.addPerson();
         }
         else if (purpose == 26)
         {
+            driver d;
+            d.getDetails();
+            d.printDetails();
         }
         else if (purpose == 27)
         {
+            driver d;
+            d.removePerson();
+            d.printDetailsFromHistory();
         }
         else if (purpose == 28)
         {
+            driver d;
+            d.getDetailsFromHistory();
         }
         else
         {

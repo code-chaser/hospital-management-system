@@ -5,8 +5,7 @@
 #include <iostream>
 #include <sstream>
 #include <fstream>
-#include <map>
-class person
+class person //abstract class
 {
 protected:
     int id = -2;
@@ -20,7 +19,7 @@ protected:
     //category: 1:doctor; 2:patient; 3:nurse; 4:driver;
 
 public:
-    void setDetails(int16_t minAge = 0, int16_t maxAge = 1000)
+    void addPerson(int16_t minAge = 0, int16_t maxAge = 1000)
     {
         //getting basic details of the person from the user side;
         cout << "\nEnter name: \nFirst Name:\n";
@@ -49,11 +48,11 @@ public:
         add.takeInput();
         return;
     }
-    void printDetails()
+    virtual void printDetails()
     {
         if (id == -1)
             return;
-        cout << "\nDeatils :\n";
+        cout << "\nDeatils:\n";
         cout << "ID              : " << id << "\n";
         cout << "Full Name       : " << firstName << " " << lastName << "\n";
         cout << "Gender          : " << gender << "\n";
@@ -63,7 +62,7 @@ public:
         add.print();
         return;
     }
-    void printDetailsFromHistory()
+    virtual void printDetailsFromHistory()
     {
         if (id == -1)
             return;
@@ -76,5 +75,8 @@ public:
         add.print();
         return;
     }
+    virtual void getDetails() = 0;
+    virtual void getDetailsFromHistory() = 0;
+    virtual void removePerson() = 0;
 };
 #endif // !PERSON

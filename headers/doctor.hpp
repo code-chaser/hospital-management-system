@@ -21,6 +21,52 @@ public:
         cat = "doctor";
         category = 1;
     }
+    void addPerson()
+    {
+        //18 and 65 are the age limits for registration of a new doctor;
+        person::addPerson(18, 65);
+        if ((age < 18) || (age > 65))
+            return;
+        cout << "\nEnter the type of the doctor: \n";
+        getline(cin >> ws, type);
+        //creating a fstream object to read/write from/to files;
+        fstream f;
+        //opening the file to read it;
+        f.open("./data/doctors.csv", ios::in);
+        //reading the file till the last line to get the id of the last line;
+        string temp, idString = "";
+        bool entry = 0;
+        //skipping the first row containing column headers;
+        getline(f >> ws, temp);
+        while (getline(f >> ws, temp))
+            entry = 1;
+        f.close();
+        if (entry)
+        {
+            stringstream s(temp);
+            getline(s, idString, ',');
+            id = strToNum(idString) + 1;
+        }
+        else
+            id = 1;
+        temp.erase();
+        idString.erase();
+        //creating a record in doctors.csv;
+        f.open("./data/doctors.csv", ios::app);
+        f << id << "," << firstName << "," << lastName << "," << gender << "," << age << "," << mobNumber << "," << add.addToStr() << "," << type << endl;
+        f.close();
+
+        //creating a record in doctorsHistory.csv;
+        f.open("./data/doctorsHistory.csv", ios::app);
+        f << firstName << "," << lastName << "," << gender << "," << age << "," << mobNumber << "," << add.addToStr() << "," << type << ",N,NA" << endl;
+        f.close();
+
+        cout << "\n"
+             << firstName << " " << lastName << " added successfully!\n";
+        cout << "Their ID is: " << id << "\n";
+
+        return;
+    }
     void printDetails()
     {
         if (id == -1)
@@ -72,57 +118,14 @@ public:
         }
         cout << "Type            : " << type << "\n";
         cout << "Left Work?      : " << s1 << "\n";
-        cout << "Reason (if left): " << s2 << "\n";
-        return;
-    }
-    void addADoctor()
-    {
-        //18 and 65 are the age limits for registration of a new doctor;
-        setDetails(18, 65);
-        if ((age < 18) || (age > 65))
-            return;
-        cout << "\nEnter the type of the doctor: \n";
-        getline(cin >> ws, type);
-        //creating a fstream object to read/write from/to files;
-        fstream f;
-        //opening the file to read it;
-        f.open("./data/doctors.csv", ios::in);
-        //reading the file till the last line to get the id of the last line;
-        string temp, idString = "";
-        bool entry = 0;
-        while (getline(f >> ws, temp))
-            entry = 1;
-        f.close();
-        if (entry)
-        {
-            stringstream s(temp);
-            getline(s, idString, ',');
-            id = strToNum(idString) + 1;
-        }
-        else
-            id = 1;
-        temp.erase();
-        idString.erase();
-        //creating a record in doctors.csv;
-        f.open("./data/doctors.csv", ios::app);
-        f << id << "," << firstName << "," << lastName << "," << gender << "," << age << "," << mobNumber << "," << add.addToStr() << "," << type << endl;
-        f.close();
-
-        //creating a record in doctorsHistory.csv;
-        f.open("./data/doctorsHistory.csv", ios::app);
-        f << firstName << "," << lastName << "," << gender << "," << age << "," << mobNumber << "," << add.addToStr() << "," << type << ",N,NA" << endl;
-        f.close();
-
-        cout << "\n"
-             << firstName << " " << lastName << " added successfully!\n";
-        cout << "Their ID is: " << id << "\n";
-
+        if (s1 == "Y")
+            cout << "Reason          : " << s2 << "\n";
         return;
     }
     void getDetails()
     {
         int opt = 0;
-        cout << "\nOPTIONS:\n[1]: Filter by ID\n[2]: Filter by name\n[3]: Filter by type\n\n";
+        cout << "\nOPTIONS:\n[1]: Filter by ID\n[2]: Filter by Name\n[3]: Filter by Type\n\n";
         cin >> opt;
         while (opt != 1 && opt != 2 && opt != 3)
             cout << "option 1, 2 or 3?\n", cin >> opt;
@@ -316,7 +319,7 @@ public:
     void getDetailsFromHistory()
     {
         int opt = 0;
-        cout << "\nOPTIONS:\n[1]: Filter by name\n[2]: Filter by type\n\n";
+        cout << "\nOPTIONS:\n[1]: Filter by Name\n[2]: Filter by Type\n\n";
         cin >> opt;
         while (opt != 1 && opt != 2)
             cout << "option 1 or 2?\n", cin >> opt;
@@ -416,7 +419,7 @@ public:
         }
         return;
     }
-    void removeADoctor()
+    void removePerson()
     {
         cout << "\nSearch for the doctor you want to remove.\n";
         getDetails();

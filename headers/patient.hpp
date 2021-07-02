@@ -22,70 +22,10 @@ public:
         cat = "patient";
         category = 2;
     }
-    void printDetails()
-    {
-        if (id == -1)
-            return;
-        person::printDetails();
-        cout << "Height (cms)    : " << height << "\n";
-        cout << "Weight (pounds) : " << weight << "\n";
-        cout << "Was Hospitalized? " << ((hospitalized) ? "Y" : "N") << "\n";
-        cout << "Alive?          : " << ((alive) ? "Y" : "N") << "\n";
-        return;
-    }
-    void printDetailsFromHistory(string extraDetails = "")
-    {
-        if (id == -1)
-            return;
-        person::printDetailsFromHistory();
-        stringstream k(extraDetails);
-        string s1;
-        getline(k, s1, ',');
-        if (extraDetails == "")
-        {
-            fstream f;
-            f.open("./data/patientsHistory.csv", ios::in);
-            string temp;
-            //skipping the first row containing column headers;
-            getline(f >> ws, temp);
-            //analyzing each entry afterwards;
-            while (getline(f >> ws, temp))
-            {
-                patient p;
-                //creating a string stream object to read from string 'temp';
-                stringstream s(temp);
-                string s4, s5, s7, s8, s9, s10, s11;
-                //reading from the string stream object 's';
-                getline(s, p.firstName, ',');
-                getline(s, p.lastName, ',');
-                getline(s, s4, ',');
-                getline(s, s5, ',');
-                getline(s, p.mobNumber, ',');
-
-                if (p.firstName == firstName && p.lastName == lastName && p.mobNumber == mobNumber)
-                {
-
-                    getline(s, s7, ',');
-                    getline(s, s8, ',');
-                    getline(s, s9, ',');
-                    getline(s, s10, ',');
-                    getline(s, s11, ',');
-                    getline(s, s1, ',');
-                }
-            }
-            f.close();
-        }
-        cout << "Height (cms)    : " << height << "\n";
-        cout << "Weight (pounds) : " << weight << "\n";
-        cout << "Was Hospitalized? " << ((hospitalized) ? "Y" : "N") << "\n";
-        cout << "Alive?          : " << ((alive) ? "Y" : "N") << "\n";
-        cout << "Discharged?     : " << s1 << "\n";
-        return;
-    }
-    void addAPatient()
+    void addPerson()
     {
         //getting the basic details of patient from the user side;
-        setDetails();
+        person::addPerson();
         //getting patient specific details;
         cout << "\nEnter the height of the patient (in cms):\n";
         cin >> height;
@@ -104,6 +44,8 @@ public:
         //reading the file till the last line to get the id of the last line;
         string temp, idString = "";
         bool entry = 0;
+        //skipping the first row containing column headers;
+        getline(f >> ws, temp);
         while (getline(f >> ws, temp))
             entry = 1;
         f.close();
@@ -143,10 +85,70 @@ public:
 
         return;
     }
+    void printDetails()
+    {
+        if (id == -1)
+            return;
+        person::printDetails();
+        cout << "Height (cms)    : " << height << "\n";
+        cout << "Weight (pounds) : " << weight << "\n";
+        cout << "Was Hospitalized? " << ((hospitalized) ? "Y" : "N") << "\n";
+        cout << "Alive?          : " << ((alive) ? "Y" : "N") << "\n";
+        return;
+    }
+    void printDetailsFromHistory(string extraDetails = "")
+    {
+        if (id == -1)
+            return;
+        person::printDetailsFromHistory();
+        stringstream k(extraDetails);
+        string s1;
+        getline(k, s1, ',');
+        if (extraDetails == "")
+        {
+            fstream f;
+            f.open("./data/patientsHistory.csv", ios::in);
+            string temp;
+            //skipping the first row containing column headers;
+            getline(f >> ws, temp);
+            //analyzing each entry afterwards;
+            while (getline(f >> ws, temp))
+            {
+                patient p;
+                //creating a string stream object to read from string 'temp';
+                stringstream s(temp);
+                string s3, s4, s6, s7, s8, s9, s10;
+                //reading from the string stream object 's';
+                getline(s, p.firstName, ',');
+                getline(s, p.lastName, ',');
+                getline(s, s3, ',');
+                getline(s, s4, ',');
+                getline(s, p.mobNumber, ',');
+
+                if (p.firstName == firstName && p.lastName == lastName && p.mobNumber == mobNumber)
+                {
+
+                    getline(s, s6, ',');
+                    getline(s, s7, ',');
+                    getline(s, s8, ',');
+                    getline(s, s9, ',');
+                    getline(s, s10, ',');
+                    getline(s, s1, ',');
+                }
+            }
+            f.close();
+        }
+        cout << "Height (cms)    : " << height << "\n";
+        cout << "Weight (pounds) : " << weight << "\n";
+        cout << "Was Hospitalized? " << ((hospitalized) ? "Y" : "N") << "\n";
+        cout << "Alive?          : " << ((alive) ? "Y" : "N") << "\n";
+        cout << "Discharged?     : " << s1 << "\n";
+        return;
+    }
     void getDetails()
     {
         int opt = 0;
-        cout << "\nOPTIONS:\n[1]: Filter by ID\n[2]: Filter by name\n\n";
+        cout << "\nOPTIONS:\n[1]: Filter by ID\n[2]: Filter by Name\n\n";
         cin >> opt;
         while (opt != 1 && opt != 2)
             cout << "option 1 or 2?\n", cin >> opt;
@@ -289,7 +291,7 @@ public:
     void getDetailsFromHistory()
     {
         int opt = 0;
-        cout << "\nOPTIONS:\n[1]: Filter by name\n[2]: Filter by mobile number\n\n";
+        cout << "\nOPTIONS:\n[1]: Filter by Name\n[2]: Filter by Mobile Number\n\n";
         cin >> opt;
         while (opt != 1 && opt != 2)
             cout << "option 1 or 2?\n", cin >> opt;
@@ -314,31 +316,31 @@ public:
                 patient p;
                 //creating a string stream object to read from string 'temp';
                 stringstream s(temp);
-                string s1, s4, s5, s7, s8, s9, s10, s11, s12;
+                string s3, s4, s6, s7, s8, s9, s10, s12;
                 //reading from the string stream object 's';
-                getline(s, s1, ',');
                 getline(s, p.firstName, ',');
                 getline(s, p.lastName, ',');
 
                 if (p.firstName == reqFName && p.lastName == reqLName)
                 {
+                    getline(s, s3, ',');
                     getline(s, s4, ',');
-                    getline(s, s5, ',');
                     getline(s, p.mobNumber, ',');
+                    getline(s, s6, ',');
                     getline(s, s7, ',');
                     getline(s, s8, ',');
                     getline(s, s9, ',');
                     getline(s, s10, ',');
-                    getline(s, s11, ',');
-                    getline(s, s11, ',');
+                    getline(s, s10, ',');
                     getline(s, s12);
-                    p.gender = s4[0];
-                    p.age = strToNum(s5);
-                    add.strToAdd(s7);
-                    p.height = strToNum(s8);
-                    p.weight = strToNum(s9);
-                    hospitalized = (s10 == "Y");
-                    alive = (s11 == "Y");
+                    p.id = 0;
+                    p.gender = s3[0];
+                    p.age = strToNum(s4);
+                    add.strToAdd(s6);
+                    p.height = strToNum(s7);
+                    p.weight = strToNum(s8);
+                    hospitalized = (s9 == "Y");
+                    alive = (s10 == "Y");
                     matchingRecords.push_back(p);
                     extraDetails.push_back(s12);
                 }
@@ -368,31 +370,30 @@ public:
                 patient p;
                 //creating a string stream object to read from string 'temp';
                 stringstream s(temp);
-                string s1, s4, s5, s7, s8, s9, s10, s11, s12;
+                string s3, s4, s6, s7, s8, s9, s10, s12;
                 //reading from the string stream object 's';
-                getline(s, s1, ',');
                 getline(s, p.firstName, ',');
                 getline(s, p.lastName, ',');
+                getline(s, s3, ',');
                 getline(s, s4, ',');
-                getline(s, s5, ',');
                 getline(s, p.mobNumber, ',');
 
                 if (reqMobNum == p.mobNumber)
                 {
+                    getline(s, s6, ',');
                     getline(s, s7, ',');
                     getline(s, s8, ',');
                     getline(s, s9, ',');
                     getline(s, s10, ',');
-                    getline(s, s11, ',');
                     getline(s, s12);
-                    p.id = strToNum(s1);
-                    p.gender = s4[0];
-                    p.age = strToNum(s5);
-                    add.strToAdd(s7);
-                    p.height = strToNum(s8);
-                    p.weight = strToNum(s9);
-                    hospitalized = (s10 == "Y");
-                    alive = (s11 == "Y");
+                    p.id = 0;
+                    p.gender = s3[0];
+                    p.age = strToNum(s4);
+                    add.strToAdd(s6);
+                    p.height = strToNum(s7);
+                    p.weight = strToNum(s8);
+                    hospitalized = (s9 == "Y");
+                    alive = (s10 == "Y");
                     matchingRecords.push_back(p);
                     extraDetails.push_back(s12);
                 }
@@ -535,7 +536,7 @@ public:
         cout << firstName << " " << lastName << " reported dead, we hope their soul rests in peace, amen!\n";
         return;
     }
-    void removeAPatient()
+    void removePerson()
     {
         cout << "\nSearch for the patient you want to remove.\n";
         getDetails();

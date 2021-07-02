@@ -190,6 +190,8 @@ int main()
         }
         else if (purpose == 20)
         {
+            ambulance a;
+            a.send();
         }
         else if (purpose == 21)
         {

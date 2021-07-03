@@ -273,7 +273,7 @@ public:
                     idle = (s5 == "Y");
                     if (!idle)
                         add.strToAdd(s6), driverId = strToNum(s7);
-                    
+
                     return;
                 }
             }
@@ -375,11 +375,10 @@ public:
     }
     void send()
     {
-        cout << "Enter destination address:\n";
-        add.takeInput();
 
         //*************picking an idle ambulance*************;
 
+        bool gotOne = 0;
         fstream f, fout;
         f.open("./data/ambulances.csv", ios::in);
         string temp;
@@ -403,13 +402,20 @@ public:
                 getline(s, s7, ',');
                 id = strToNum(s1);
                 idle = 1;
+                gotOne = 1;
                 break;
             }
         }
         f.close();
-
+        if (!gotOne)
+        {
+            cout << "No, idle ambulance found!"
+                 << "\n";
+            return;
+        }
         //*************  picking a free driver  *************;
 
+        gotOne=0;
         f.open("./data/drivers.csv", ios::in);
         //skipping the first row containing column headers;
         getline(f >> ws, temp);
@@ -433,9 +439,19 @@ public:
             if (s9 == "Y")
             {
                 driverId = strToNum(s1);
+                gotOne=1;
                 break;
             }
         }
+        if (!gotOne)
+        {
+            cout << "No, idle driver found!"
+                 << "\n";
+            return;
+        }
+
+        cout << "Enter destination address:\n";
+        add.takeInput();
 
         //updating status of ambulance;
         string initial, corrected;
@@ -461,8 +477,8 @@ public:
         fout.close();
         initial.erase();
         temp.erase();
-        remove("./data/patients.csv");
-        rename("./data/temp.csv", "./data/patients.csv");
+        remove("./data/ambulances.csv");
+        rename("./data/temp.csv", "./data/ambulances.csv");
 
         //updating status of driver;
         f.open("./data/drivers.csv", ios::in);
@@ -495,7 +511,7 @@ public:
         initial = s1 + "," + s2 + "," + s3 + "," + s4 + "," + s5 + "," + s6 + "," + s7 + "," + s8 + "," + s9;
         corrected = s1 + "," + s2 + "," + s3 + "," + s4 + "," + s5 + "," + s6 + "," + s7 + "," + s8 + ",N";
         fout.open("./data/temp.csv", ios::out);
-        f.open("./data/patients.csv", ios::in);
+        f.open("./data/drivers.csv", ios::in);
         while (getline(f, temp))
         {
             if (temp != initial)
@@ -507,8 +523,8 @@ public:
         fout.close();
         initial.erase();
         temp.erase();
-        remove("./data/patients.csv");
-        rename("./data/temp.csv", "./data/patients.csv");
+        remove("./data/drivers.csv");
+        rename("./data/temp.csv", "./data/drivers.csv");
         cout << model << " by " << manufacturer << " sent with driver " << s2 << " " << s3 << " (ID = " << s1 << ") successfully!\n";
         return;
     }

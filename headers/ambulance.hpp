@@ -443,6 +443,7 @@ public:
                 break;
             }
         }
+        f.close();
         if (!gotOne)
         {
             cout << "No, idle driver found!"
@@ -469,9 +470,9 @@ public:
         while (getline(f, temp))
         {
             if (temp != initial)
-                fout << temp << "\n";
+                fout << temp << endl;
             else
-                fout << corrected << "\n";
+                fout << corrected << endl;
         }
         f.close();
         fout.close();

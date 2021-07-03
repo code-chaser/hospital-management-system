@@ -1,1 +1,2 @@
 ambulanceId,model,manufacturer,vrn,idle?,headedTowards(ifNotIdle),driverID(ifNotIdle)
+1,TATA X9,TATA,MH02JK3012,N,28-C^ Andheri East``Mumbai`Maharashtra`400015`India,2

@@ -201,9 +201,13 @@ int main()
         }
         else if (purpose == 22)
         {
+            ambulance a;
+            a.reportArrival();
         }
         else if (purpose == 23)
         {
+            ambulance a;
+            a.removeAmbulance();
         }
         else if (purpose == 24)
         {

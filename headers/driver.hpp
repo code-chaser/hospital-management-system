@@ -406,7 +406,7 @@ public:
             return;
         if (!idle)
         {
-            cout << "\nSorry, the driver you selected to remove is not currently idle.\nOnly idlers can be removed.\n\n";
+            cout << "\nSorry, the driver you selected to remove is NOT currently idle.\nOnly idlers can be removed.\n\n";
             return;
         }
         string s, temp;

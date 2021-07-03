@@ -199,14 +199,14 @@ public:
 
                 if (a.model == reqModel)
                 {
-                    getline(s, vrn, ',');
+                    getline(s, a.vrn, ',');
                     getline(s, s5, ',');
                     getline(s, s6, ',');
                     getline(s, s7, ',');
                     a.id = strToNum(s1);
                     a.idle = (s5 == "Y");
-                    if (!idle)
-                        add.strToAdd(s6), driverId = strToNum(s7);
+                    if (!(a.idle))
+                        a.add.strToAdd(s6), a.driverId = strToNum(s7);
                     matchingRecords.push_back(a);
                 }
             }
@@ -321,7 +321,7 @@ public:
                 {
 
                     getline(s, a.manufacturer, ',');
-                    getline(s, vrn, ',');
+                    getline(s, a.vrn, ',');
                     getline(s, s4, ',');
                     a.id = 0;
                     matchingRecords.push_back(a);
@@ -415,7 +415,7 @@ public:
         }
         //*************  picking a free driver  *************;
 
-        gotOne=0;
+        gotOne = 0;
         f.open("./data/drivers.csv", ios::in);
         //skipping the first row containing column headers;
         getline(f >> ws, temp);
@@ -439,7 +439,7 @@ public:
             if (s9 == "Y")
             {
                 driverId = strToNum(s1);
-                gotOne=1;
+                gotOne = 1;
                 break;
             }
         }
@@ -531,9 +531,131 @@ public:
     }
     void reportArrival()
     {
+        getDetails();
+        //updating status of ambulance;
+        string initial, corrected, temp;
+        stringstream str;
+        str << id << "," << model << "," << manufacturer
+            << "," << vrn << ",Y,NA,NA\n";
+        getline(str >> ws, corrected);
+        str << id << "," << model << "," << manufacturer
+            << "," << vrn << ","
+            << "N"
+            << "," << add.addToStr() << "," << driverId << "\n";
+        getline(str >> ws, initial);
+        fstream f, fout;
+        f.open("./data/ambulances.csv", ios::in);
+        fout.open("./data/temp.csv", ios::out);
+        while (getline(f, temp))
+        {
+            if (temp != initial)
+                fout << temp << endl;
+            else
+                fout << corrected << endl;
+        }
+        f.close();
+        fout.close();
+        initial.erase();
+        temp.erase();
+        remove("./data/ambulances.csv");
+        rename("./data/temp.csv", "./data/ambulances.csv");
+
+        //updating status of driver;
+        f.open("./data/drivers.csv", ios::in);
+
+        string s1, s2, s3, s4, s5, s6, s7, s8, s9;
+        //skipping the first row containing column headers;
+        getline(f >> ws, temp);
+        //analyzing each entry afterwards;
+        while (getline(f >> ws, temp))
+        {
+            //creating a string stream object to read from string 'temp';
+            stringstream s(temp);
+            //reading from the string stream object 's';
+            getline(s, s1, ',');
+
+            if (driverId == strToNum(s1))
+            {
+                getline(s, s2, ',');
+                getline(s, s3, ',');
+                getline(s, s4, ',');
+                getline(s, s5, ',');
+                getline(s, s6, ',');
+                getline(s, s7, ',');
+                getline(s, s8, ',');
+                getline(s, s9, ',');
+                break;
+            }
+        }
+        f.close();
+        initial = s1 + "," + s2 + "," + s3 + "," + s4 + "," + s5 + "," + s6 + "," + s7 + "," + s8 + "," + s9;
+        corrected = s1 + "," + s2 + "," + s3 + "," + s4 + "," + s5 + "," + s6 + "," + s7 + "," + s8 + ",Y";
+        fout.open("./data/temp.csv", ios::out);
+        f.open("./data/drivers.csv", ios::in);
+        while (getline(f, temp))
+        {
+            if (temp != initial)
+                fout << temp << "\n";
+            else
+                fout << corrected << "\n";
+        }
+        f.close();
+        fout.close();
+        initial.erase();
+        temp.erase();
+        remove("./data/drivers.csv");
+        rename("./data/temp.csv", "./data/drivers.csv");
+        cout << "\nStatus of " << model << " by " << manufacturer << " sent with driver " << s2 << " " << s3 << " (ID = " << s1 << ") updated successfully!\n\n";
+        return;
     }
     void removeAmbulance()
     {
+        cout << "\nSearch for the ambulance you want to remove.\n";
+        getDetails();
+        if (id == -1)
+            return;
+        if (!idle)
+        {
+            cout << "\nSorry, the ambulance you selected to remove is NOT currently idle.\nOnly idlers can be removed.\n\n";
+            return;
+        }
+        string s, temp;
+        stringstream str(s);
+        str << id << "," << model << "," << manufacturer << "," << vrn << ",Y,NA,NA\n";
+        getline(str, s);
+        fstream f, fout("./data/temp.csv", ios::out);
+        f.open("./data/ambulances.csv", ios::in);
+        while (getline(f, temp))
+            if (temp != s)
+                fout << temp << "\n";
+        f.close();
+        fout.close();
+        s.erase();
+        temp.erase();
+        remove("./data/ambulances.csv");
+        rename("./data/temp.csv", "./data/ambulances.csv");
+        str << model << "," << manufacturer << "," << vrn << ",Y\n";
+        getline(str, s);
+        f.open("./data/ambulancesHistory.csv", ios::in);
+        fout.open("./data/temp.csv", ios::out);
+        while (getline(f, temp))
+        {
+            if (temp == s)
+            {
+                fout << model << "," << manufacturer << "," << vrn << ",N,"
+                     << "\n";
+            }
+            else
+                fout << temp << "\n";
+        }
+        f.close();
+        fout.close();
+        s.erase();
+        temp.erase();
+        remove("./data/ambulancesHistory.csv");
+        rename("./data/temp.csv", "./data/ambulancesHistory.csv");
+        cout << model << " by " << manufacturer << " (VRN = " << vrn << ") removed successfully!\n";
+        return;
     }
 };
 #endif // !AMBULANCE

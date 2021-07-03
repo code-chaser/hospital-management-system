@@ -12,7 +12,7 @@ class doctor : public person
 {
 protected:
     string type = "";
-    vector<appointment *> arrOfApp();
+    int appointmentsBooked = 0;
 
 public:
     doctor()
@@ -53,7 +53,7 @@ public:
         idString.erase();
         //creating a record in doctors.csv;
         f.open("./data/doctors.csv", ios::app);
-        f << id << "," << firstName << "," << lastName << "," << gender << "," << age << "," << mobNumber << "," << add.addToStr() << "," << type << endl;
+        f << id << "," << firstName << "," << lastName << "," << gender << "," << age << "," << mobNumber << "," << add.addToStr() << "," << type << ",0" << endl;
         f.close();
 
         //creating a record in doctorsHistory.csv;
@@ -73,6 +73,7 @@ public:
             return;
         person::printDetails();
         cout << "Type            : " << type << "\n";
+        cout << "Appointments    : " << appointmentsBooked << " (pending appointments)\n";
         return;
     }
     void printDetailsFromHistory(string extraDetails = "")
@@ -146,7 +147,7 @@ public:
             {
                 //creating a string stream object to read from string 'temp';
                 stringstream s(temp);
-                string s1, s4, s5, s7;
+                string s1, s4, s5, s7, s9;
                 //reading from the string stream object 's';
                 getline(s, s1, ',');
 
@@ -159,10 +160,12 @@ public:
                     getline(s, mobNumber, ',');
                     getline(s, s7, ',');
                     getline(s, type, ',');
+                    getline(s, s9, ',');
                     id = reqId;
                     gender = s4[0];
                     age = strToNum(s5);
                     add.strToAdd(s7);
+                    appointmentsBooked = strToNum(s9);
                     return;
                 }
             }
@@ -193,7 +196,7 @@ public:
                 doctor d;
                 //creating a string stream object to read from string 'temp';
                 stringstream s(temp);
-                string s1, s4, s5, s7;
+                string s1, s4, s5, s7, s9;
                 //reading from the string stream object 's';
                 getline(s, s1, ',');
                 getline(s, d.firstName, ',');
@@ -206,10 +209,12 @@ public:
                     getline(s, d.mobNumber, ',');
                     getline(s, s7, ',');
                     getline(s, d.type, ',');
+                    getline(s, s9, ',');
                     d.id = strToNum(s1);
                     d.gender = s4[0];
                     d.age = strToNum(s5);
                     d.add.strToAdd(s7);
+                    d.appointmentsBooked = strToNum(s9);
                     matchingRecords.push_back(d);
                 }
             }
@@ -237,6 +242,7 @@ public:
                             mobNumber = i.mobNumber;
                             add = i.add;
                             type = i.type;
+                            appointmentsBooked = i.appointmentsBooked;
                             return;
                         }
                     cout << "\nInvalid ID!\nTry again? (Y = Yes || N = No)\n";
@@ -264,7 +270,7 @@ public:
                 doctor d;
                 //creating a string stream object to read from string 'temp';
                 stringstream s(temp);
-                string s1, s4, s5, s7;
+                string s1, s4, s5, s7, s9;
                 //reading from the string stream object 's';
                 getline(s, s1, ',');
                 getline(s, d.firstName, ',');
@@ -276,10 +282,12 @@ public:
                 getline(s, d.type, ',');
                 if (d.type == reqType)
                 {
+                    getline(s, s9, ',');
                     d.id = strToNum(s1);
                     d.gender = s4[0];
                     d.age = strToNum(s5);
                     d.add.strToAdd(s7);
+                    d.appointmentsBooked = strToNum(s9);
                     matchingRecords.push_back(d);
                 }
             }
@@ -306,6 +314,7 @@ public:
                             mobNumber = i.mobNumber;
                             add = i.add;
                             type = i.type;
+                            appointmentsBooked = i.appointmentsBooked;
                             return;
                         }
                     cout << "Invalid ID!\nTry again? (Y = Yes || N = No)\n";

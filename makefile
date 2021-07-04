@@ -5,7 +5,7 @@ all: ./build/hms
 
 
 clean:
-	rm -f "./build/hms.exe"
+	rm -f "./build/hms"
 clean(win):
 	del /f build\hms.exe
 

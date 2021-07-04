@@ -58,7 +58,7 @@ int main()
     }
     else if (strToNum(s) > yyyymmdd && s != "")
     {
-        cout << "/nEntered date detected wrong!\nToday's date can't be older than the last usage date, which is : "
+        cout << "\nEntered date detected wrong!\nToday's date can't be older than the last usage date, which is : "
              << s.substr(6, 2) + "-" + s.substr(4, 2) + "-" + s.substr(0, 4) + "\n";
         return 0;
     }

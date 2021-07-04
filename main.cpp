@@ -1,42 +1,67 @@
 #include <iostream>
 #include <fstream>
-#include <cmath>
 #include <string>
 using namespace std;
 
-int date, time = 9;
-
-int power(int n, int exp)
-{
-    int res = 1;
-    while (exp)
-    {
-        if (exp & 1)
-            res *= n, exp--;
-        else
-            n *= n, exp >>= 1;
-    }
-    return res;
-}
-int strToNum(string s)
-{
-    int res = 0;
-    for (int i = 0; i < s.size(); i++)
-        res += ((s[s.size() - 1 - i] - '0') * power(10, i));
-    return res;
-}
-
-#include "./headers/address.hpp"
-#include "./headers/person.hpp"
-#include "./headers/appointment.hpp"
-#include "./headers/patient.hpp"
-#include "./headers/doctor.hpp"
-#include "./headers/nurse.hpp"
-#include "./headers/driver.hpp"
-#include "./headers/ambulance.hpp"
+#include "./headerFiles/global.hh"
+#include "./headerFiles/address.hh"
+#include "./headerFiles/person.hh"
+#include "./headerFiles/appointment.hh"
+#include "./headerFiles/patient.hh"
+#include "./headerFiles/doctor.hh"
+#include "./headerFiles/nurse.hh"
+#include "./headerFiles/driver.hh"
+#include "./headerFiles/ambulance.hh"
 
 int main()
 {
+    fstream f;
+    f.open("./data/appointments.csv", ios::in);
+    string temp, s, header;
+    getline(f, header);
+    getline(f, temp);
+    f.close();
+    stringstream str(temp);
+    getline(str, s, ',');
+    getline(str, s, ',');
+    int dd, mm, yyyy;
+    if (s != "")
+        cout << "\n\n\nLast usage date (DD-MM-YYY) : " << s.substr(6, 2) + "-" + s.substr(4, 2) + "-" + s.substr(0, 4) + "\n";
+    cout << "\nPlease Enter Today's Date (DD-MM-YYYY) :\n\nEnter Day: ";
+    cin >> dd;
+    cout << "Enter Month: ";
+    cin >> mm;
+    cout << "Enter Year (YYYY): ";
+    cin >> yyyy;
+    date = yyyy * 10000 + mm * 100 + dd;
+    if (strToNum(((s == "") ? ("0") : (s))) < date)
+    {
+        f.open("./data/temp.csv", ios::out);
+        f << header << "\n";
+        f.close();
+        remove("./data/appointments.csv");
+        rename("./data/temp.csv", "./data/appointments.csv");
+        fstream fout("./data/temp.csv", ios::out);
+        f.open("./data/doctors.csv", ios::in);
+        getline(f, temp);
+        fout << temp << endl;
+        while (getline(f, temp))
+        {
+            if (temp.size())
+                temp[temp.size() - 1] = '0';
+            fout << temp << endl;
+        }
+        f.close();
+        fout.close();
+        remove("./data/doctors.csv");
+        rename("./data/temp.csv", "./data/doctors.csv");
+    }
+    else if (strToNum(s) > date && s != "")
+    {
+        cout << "/nEntered date detected wrong!\nToday's date can't be older than the last usage date, which is : "
+             << s.substr(6, 2) + "-" + s.substr(4, 2) + "-" + s.substr(0, 4) + "\n";
+        return 0;
+    }
     while (1)
     {
         int purpose = 0;

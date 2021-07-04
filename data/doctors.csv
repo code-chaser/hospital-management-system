@@ -11,7 +11,7 @@ doctorId,firstName,lastName,gender,age,mobNumber,address,type,appointmentsBooked
 11,Freddie,Johnson,M,29,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Neurologist,0
 12,Regina,Phalange,F,29,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Physician,0
 13,Ken,Adams,M,30,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Physician,0
-14,Monica,Jain,F,32,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,ENT,0
+14,Monica,Jain,F,32,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,ENT,1
 15,Ryan,Mallick,M,34,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,ENT,0
 16,Patrick,Stephens,M,39,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Neurologist,0
 17,John,Markson,M,30,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Dermatologist,0
@@ -20,7 +20,7 @@ doctorId,firstName,lastName,gender,age,mobNumber,address,type,appointmentsBooked
 20,Kiara,Jain,F,39,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Dermatologist,0
 22,Akshat,Kumar,M,29,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Surgeon,0
 23,Akshay,Agrawal,M,32,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,ENT,0
-24,William,Chadwick,M,39,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Surgeon,0
+24,William,Chadwick,M,39,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Surgeon,2
 25,Rishabh,Jain,M,30,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Surgeon,0
 26,Navya,Gupta,M,19,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Dentist,0
 28,Alex,Murphy,M,56,+91xxxxxxxxxx,143^ Municipal Indl Estate^ Worli``Mumbai`Maharashtra`400018`India,Dentist,0

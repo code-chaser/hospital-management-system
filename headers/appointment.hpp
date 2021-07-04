@@ -80,15 +80,15 @@ public:
     {
         if (id == -1)
             return;
-        cout << "/nAppointment Details:\nID                 : " << id << "\n"
+        cout << "\n\n\nAppointment Details:\nID                 : " << id << "\n"
              << "Patient's Name     : " + P.firstName + " " + P.lastName + "(ID = " << P.id << ")\n"
              << "Doctor's Name      : " + D.firstName + " " + D.lastName + "(ID = " << D.id << ")\n"
-             << "Time (24 Hr format): " << D.appointmentsBooked + 9 << ":00 Hrs to " << D.appointmentsBooked + 10 << ":00 Hrs\n\n";
+             << "Time (24 Hr format): " << hh << ":00 Hrs to " << hh + 1 << ":00 Hrs\n\n";
         return;
     }
     void book()
     {
-        cout << "/n/nIs the patient already registered (Y : Yes || N : No)?\n";
+        cout << "\n\nIs the patient already registered (Y : Yes || N : No)?\n";
         char ans;
         cin >> ans;
         while (ans != 'Y' && ans != 'N')
@@ -217,7 +217,7 @@ public:
         D.appointmentsBooked++;
         return;
     }
-    void details()
+    void fillDetails()
     {
         fstream f("./data/appointments.csv");
         string temp;
@@ -225,22 +225,24 @@ public:
         while (getline(f, temp))
         {
             stringstream str(temp);
-            string s1, s2, s3, s4;
+            string s1, s2, s3, s4, s5;
             getline(str, s1, ',');
             if (strToNum(s1) == id)
             {
                 getline(str, s2, ',');
                 getline(str, s3, ',');
                 getline(str, s4, ',');
+                getline(str, s5, ',');
                 // s2 is date, of no use!
                 D.id = strToNum(s3);
                 P.id = strToNum(s4);
+                hh = strToNum(s5);
                 break;
             }
         }
         f.close();
         f.open("./data/doctors.csv", ios::in);
-        string temp;
+        temp;
         //skipping the first row containing column headers;
         getline(f >> ws, temp);
         //analyzing each entry afterwards;
@@ -271,7 +273,7 @@ public:
         }
         f.close();
         f.open("./data/patients.csv", ios::in);
-        string temp;
+        temp;
         //skipping the first row containing column headers;
         getline(f >> ws, temp);
         //analyzing each entry afterwards;
@@ -283,45 +285,54 @@ public:
             //reading from the string stream object 's';
             getline(s, s1, ',');
 
-            if (reqId == strToNum(s1))
+            if (P.id == strToNum(s1))
             {
-                f.close();
-                getline(s, firstName, ',');
-                getline(s, lastName, ',');
+                getline(s, P.firstName, ',');
+                getline(s, P.lastName, ',');
                 getline(s, s4, ',');
                 getline(s, s5, ',');
-                getline(s, mobNumber, ',');
+                getline(s, P.mobNumber, ',');
                 getline(s, s7, ',');
                 getline(s, s8, ',');
                 getline(s, s9, ',');
                 getline(s, s10, ',');
                 getline(s, s11, ',');
-                id = reqId;
-                gender = s4[0];
-                age = strToNum(s5);
-                add.strToAdd(s7);
-                height = strToNum(s8);
-                weight = strToNum(s9);
-                hospitalized = (s10 == "Y");
-                alive = (s11 == "Y");
-                return;
+                P.gender = s4[0];
+                P.age = strToNum(s5);
+                P.add.strToAdd(s7);
+                P.height = strToNum(s8);
+                P.weight = strToNum(s9);
+                P.hospitalized = (s10 == "Y");
+                P.alive = (s11 == "Y");
+                break;
             }
         }
         f.close();
-        //if a record is found, it's details will be stored in the patient class object that called this function,
-        //and the control is returned;
-        //else:
-        cout << "\nNo matching record found!\n";
         return;
     }
-    return;
-} void getDetails()
-{
-    cout << "\nEnter appointment ID:\n";
-    cin >> id;
-    details();
-    return;
-}
-}
-;
+    void getDetails()
+    {
+        cout << "\nEnter appointment ID:\n";
+        cin >> id;
+        fillDetails();
+        return;
+    }
+    void printAll()
+    {
+        fstream f("./data/appointments.csv");
+        string temp;
+        getline(f, temp);
+        while (getline(f, temp))
+        {
+            stringstream str(temp);
+            string s1;
+            getline(str, s1, ',');
+            id = strToNum(s1);
+            fillDetails();
+            printDetails();
+        }
+        f.close();
+        return;
+    }
+};
 #endif // !APPOINTMENT

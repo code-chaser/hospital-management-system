@@ -108,9 +108,14 @@ int main()
         }
         else if (purpose == 2)
         {
+            appointment a;
+            a.getDetails();
+            a.printDetails();
         }
         else if (purpose == 3)
         {
+            appointment a;
+            a.printAll();
         }
         else if (purpose == 4)
         {

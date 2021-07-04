@@ -154,7 +154,6 @@ int main()
         {
             doctor d;
             d.removePerson();
-            d.printDetailsFromHistory();
         }
         else if (purpose == 14)
         {
@@ -176,7 +175,6 @@ int main()
         {
             nurse n;
             n.removePerson();
-            n.printDetailsFromHistory();
         }
         else if (purpose == 18)
         {
@@ -229,7 +227,6 @@ int main()
         {
             driver d;
             d.removePerson();
-            d.printDetailsFromHistory();
         }
         else if (purpose == 28)
         {

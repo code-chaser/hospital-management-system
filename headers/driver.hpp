@@ -13,6 +13,7 @@ class driver : public person
 protected:
     string licenseNumber = "";
     bool idle = 1;
+    friend class ambulance;
 
 public:
     driver()
@@ -152,6 +153,7 @@ public:
 
                 if (reqId == strToNum(s1))
                 {
+                    f.close();
                     getline(s, firstName, ',');
                     getline(s, lastName, ',');
                     getline(s, s4, ',');

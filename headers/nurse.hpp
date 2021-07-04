@@ -150,6 +150,7 @@ public:
 
                 if (reqId == strToNum(s1))
                 {
+                    f.close();
                     getline(s, firstName, ',');
                     getline(s, lastName, ',');
                     getline(s, s4, ',');

@@ -1,0 +1,3 @@
+all: hms
+hms: main.cpp ./sourceFiles/global.cpp ./sourceFiles/address.cpp ./sourceFiles/person.cpp ./sourceFiles/doctor.cpp ./sourceFiles/patient.cpp ./sourceFiles/appointment.cpp ./sourceFiles/nurse.cpp ./sourceFiles/driver.cpp ./sourceFiles/ambulance.cpp
+	g++ -o hms main.cpp ./sourceFiles/global.cpp ./sourceFiles/address.cpp ./sourceFiles/person.cpp ./sourceFiles/doctor.cpp ./sourceFiles/patient.cpp ./sourceFiles/appointment.cpp ./sourceFiles/nurse.cpp ./sourceFiles/driver.cpp ./sourceFiles/ambulance.cpp

@@ -83,7 +83,7 @@ public:
         cout << "/nAppointment Details:\nID                 : " << id << "\n"
              << "Patient's Name     : " + P.firstName + " " + P.lastName + "(ID = " << P.id << ")\n"
              << "Doctor's Name      : " + D.firstName + " " + D.lastName + "(ID = " << D.id << ")\n"
-             << "Time (24 Hr format): " << D.appointmentsBooked + 9 << ":00 Hrs\n\n";
+             << "Time (24 Hr format): " << D.appointmentsBooked + 9 << ":00 Hrs to " << D.appointmentsBooked + 10 << ":00 Hrs\n\n";
         return;
     }
     void book()
@@ -215,6 +215,23 @@ public:
              << D.firstName << " " << D.lastName << " booked successfully!\n";
         printDetails();
         D.appointmentsBooked++;
+        return;
+    }
+    void details()
+    {
+        fstream f("./data/appointments.csv");
+        string temp;
+        getline(f, temp);
+        while (getline(f, temp))
+        {
+            
+        }
+    }
+    void getDetails()
+    {
+        cout << "\nEnter appointment ID:\n";
+        cin >> id;
+        details();
         return;
     }
 };

@@ -1,11 +1,7 @@
 #ifndef PERSON
 #define PERSON
 using namespace std;
-#include <vector>
 #include <string>
-#include <iostream>
-#include <sstream>
-#include <fstream>
 #include "./address.hh"
 
 class person //abstract class

@@ -224,15 +224,104 @@ public:
         getline(f, temp);
         while (getline(f, temp))
         {
-            
+            stringstream str(temp);
+            string s1, s2, s3, s4;
+            getline(str, s1, ',');
+            if (strToNum(s1) == id)
+            {
+                getline(str, s2, ',');
+                getline(str, s3, ',');
+                getline(str, s4, ',');
+                // s2 is date, of no use!
+                D.id = strToNum(s3);
+                P.id = strToNum(s4);
+                break;
+            }
         }
-    }
-    void getDetails()
-    {
-        cout << "\nEnter appointment ID:\n";
-        cin >> id;
-        details();
+        f.close();
+        f.open("./data/doctors.csv", ios::in);
+        string temp;
+        //skipping the first row containing column headers;
+        getline(f >> ws, temp);
+        //analyzing each entry afterwards;
+        while (getline(f >> ws, temp))
+        {
+            //creating a string stream object to read from string 'temp';
+            stringstream s(temp);
+            string s1, s4, s5, s7, s9;
+            //reading from the string stream object 's';
+            getline(s, s1, ',');
+
+            if (D.id == strToNum(s1))
+            {
+                getline(s, D.firstName, ',');
+                getline(s, D.lastName, ',');
+                getline(s, s4, ',');
+                getline(s, s5, ',');
+                getline(s, D.mobNumber, ',');
+                getline(s, s7, ',');
+                getline(s, D.type, ',');
+                getline(s, s9, ',');
+                D.gender = s4[0];
+                D.age = strToNum(s5);
+                D.add.strToAdd(s7);
+                D.appointmentsBooked = strToNum(s9);
+                break;
+            }
+        }
+        f.close();
+        f.open("./data/patients.csv", ios::in);
+        string temp;
+        //skipping the first row containing column headers;
+        getline(f >> ws, temp);
+        //analyzing each entry afterwards;
+        while (getline(f >> ws, temp))
+        {
+            //creating a string stream object to read from string 'temp';
+            stringstream s(temp);
+            string s1, s4, s5, s7, s8, s9, s10, s11;
+            //reading from the string stream object 's';
+            getline(s, s1, ',');
+
+            if (reqId == strToNum(s1))
+            {
+                f.close();
+                getline(s, firstName, ',');
+                getline(s, lastName, ',');
+                getline(s, s4, ',');
+                getline(s, s5, ',');
+                getline(s, mobNumber, ',');
+                getline(s, s7, ',');
+                getline(s, s8, ',');
+                getline(s, s9, ',');
+                getline(s, s10, ',');
+                getline(s, s11, ',');
+                id = reqId;
+                gender = s4[0];
+                age = strToNum(s5);
+                add.strToAdd(s7);
+                height = strToNum(s8);
+                weight = strToNum(s9);
+                hospitalized = (s10 == "Y");
+                alive = (s11 == "Y");
+                return;
+            }
+        }
+        f.close();
+        //if a record is found, it's details will be stored in the patient class object that called this function,
+        //and the control is returned;
+        //else:
+        cout << "\nNo matching record found!\n";
         return;
     }
-};
+    return;
+} void getDetails()
+{
+    cout << "\nEnter appointment ID:\n";
+    cin >> id;
+    details();
+    return;
+}
+}
+;
 #endif // !APPOINTMENT

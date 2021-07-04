@@ -38,7 +38,7 @@ public:
         fstream f;
         //opening the file to read it;
         f.open("./data/ambulances.csv", ios::in);
-        //reading the file till the last line to get the id of the last line;
+        
         string temp, idString = "";
         bool entry = 0;
         //skipping the first row containing column headers;

@@ -1,29 +1,30 @@
 firstName,lastName,gender,age,mobNumber,address,type,left?,reasonForLeaving(ifLeft)
-John,Doe,M,43,+91xxxxxxxxxx,ABC-Street` D-Block` E` F,Cardiologist,N,NA
-Isabella,Cullen,F,28,+91xxxxxxxxxx,ABC-Street` D-Block` E` F,Physician,N,NA
-Rhea,Jain,F,29,+91xxxxxxxxxx,ABC-Street` D-Block` E` F,Cardiologist,N,NA
-Dhananjay,Dey,M,44,+91xxxxxxxxxx,ABC-Street` D-Block` E` F,Psychatrist,N,NA
-James,Carwin,M,38,+91xxxxxxxxxx,ABC-Street` D-Block` E` F,Neurologist,N,NA
-Konark,Sharma,M,29,+91xxxxxxxxxx,ABC-Street` D-Block` E` F,Physician,Y,Changing his hometown.
-Mark,Andrew,M,32,+91xxxxxxxxxx,ABC-Street` D-Block` E` F,Psychatrist,N,NA
-Melinda,Andrew,F,44,+91xxxxxxxxxx,ABC-Street` D-Block` E` F,Cardiologist,N,NA
-Isabella,Carwin,F,29,+91xxxxxxxxxx,ABC-Street` D-Block` E` F,Psychatrist,N,NA
-Shaun,Murphy,M,45,+91xxxxxxxxxx,ABC-Street` D-Block` E` F,Psychatrist,N,NA
-Freddie,Johnson,M,29,+91xxxxxxxxxx,ABC-Street` D-Block` E` F,Neurologist,N,NA
-Regina,Phalange,F,29,+91xxxxxxxxxx,ABC-Street` D-Block` E` F,Physician,N,NA
-Ken,Adams,M,30,+91xxxxxxxxxx,ABC-Street` D-Block` E` F,Physician,N,NA
-Monica,Jain,F,32,+91xxxxxxxxxx,ABC-Street` D-Block` E` F,ENT,N,NA
-Ryan,Mallick,M,34,+91xxxxxxxxxx,ABC-Street` D-Block` E` F,ENT,N,NA
-Patrick,Stephens,M,39,+91xxxxxxxxxx,ABC-Street` D-Block` E` F,Neurologist,N,NA
-John,Markson,M,30,+91xxxxxxxxxx,ABC-Street` D-Block` E` F,Dermatologist,N,NA
-Vishal,Mallick,M,44,+91xxxxxxxxxx,ABC-Street` D-Block` E` F,Dentist,N,NA
-Vishal,Mallick,M,49,+91xxxxxxxxxx,ABC-Street` D-Block` E` F,Dermatologist,N,NA
-Kiara,Jain,F,39,+91xxxxxxxxxx,ABC-Street` D-Block` E` F,Dermatologist,N,NA
-Akshat,Kumar,M,29,+91xxxxxxxxxx,ABC-Street` D-Block` E` F,Surgeon,N,NA
-Akshay,Agrawal,M,32,+91xxxxxxxxxx,ABC-Street` D-Block` E` F,ENT,N,NA
-William,Chadwick,M,39,+91xxxxxxxxxx,ABC-Street` D-Block` E` F,Surgeon,N,NA
-Rishabh,Jain,M,30,+91xxxxxxxxxx,ABC-Street` D-Block` E` F,Surgeon,N,NA
-Navya,Gupta,M,19,+91xxxxxxxxxx,ABC-Street` D-Block` E` F,Dentist,N,NA
-Alexander,Bing,M,35,+91xxxxxxxxxx,ABC-Street` D-Block` E` F,Cardiologist,N,NA
-Priyansh,Gupta,M,39,+91xxxxxxxxxx,ABC-Street` D-Block` E` F,Surgeon,Y,Shifting abroad.
+John,Doe,M,43,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Cardiologist,N,NA
+Isabella,Cullen,F,28,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Physician,N,NA
+Rhea,Jain,F,29,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Cardiologist,N,NA
+Dhananjay,Dey,M,44,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Psychatrist,N,NA
+James,Carwin,M,38,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Neurologist,N,NA
+Konark,Sharma,M,29,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Physician,Y,Changing his hometown.
+Mark,Andrew,M,32,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Psychatrist,N,NA
+Melinda,Andrew,F,44,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Cardiologist,N,NA
+Isabella,Carwin,F,29,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Psychatrist,N,NA
+Shaun,Murphy,M,45,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Psychatrist,N,NA
+Freddie,Johnson,M,29,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Neurologist,N,NA
+Regina,Phalange,F,29,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Physician,N,NA
+Ken,Adams,M,30,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Physician,N,NA
+Monica,Jain,F,32,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,ENT,N,NA
+Ryan,Mallick,M,34,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,ENT,N,NA
+Patrick,Stephens,M,39,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Neurologist,N,NA
+John,Markson,M,30,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Dermatologist,N,NA
+Vishal,Mallick,M,44,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Dentist,N,NA
+Vishal,Mallick,M,49,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Dermatologist,N,NA
+Kiara,Jain,F,39,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Dermatologist,N,NA
+Akshat,Kumar,M,29,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Surgeon,N,NA
+Akshay,Agrawal,M,32,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,ENT,N,NA
+William,Chadwick,M,39,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Surgeon,N,NA
+Rishabh,Jain,M,30,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Surgeon,N,NA
+Navya,Gupta,M,19,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Dentist,N,NA
+Alexander,Bing,M,35,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Cardiologist,Y,Suspended for prescribing critically harmful drugs unnecessarily.
+Priyansh,Gupta,M,39,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Surgeon,Y,Shifting abroad.
 Alex,Murphy,M,56,+91xxxxxxxxxx,143^ Municipal Indl Estate^ Worli``Mumbai`Maharashtra`400018`India,Dentist,No,NA
+Romesh,Srivastav,M,34,+918749584903,23-D^ Dazllia Street``Mumbai`Maharashtra`400011`India,Dermatologist,N,NA

@@ -13,6 +13,7 @@ class doctor : public person
 protected:
     string type = "";
     int appointmentsBooked = 0;
+    friend class appointment;
 
 public:
     doctor()
@@ -33,7 +34,7 @@ public:
         fstream f;
         //opening the file to read it;
         f.open("./data/doctors.csv", ios::in);
-        //reading the file till the last line to get the id of the last line;
+        
         string temp, idString = "";
         bool entry = 0;
         //skipping the first row containing column headers;
@@ -62,7 +63,7 @@ public:
         f.close();
 
         cout << "\n"
-             << firstName << " " << lastName << " added successfully!\n";
+             << firstName << " " << lastName << " registered successfully!\n";
         cout << "Their ID is: " << id << "\n";
 
         return;
@@ -73,7 +74,7 @@ public:
             return;
         person::printDetails();
         cout << "Type            : " << type << "\n";
-        cout << "Appointments    : " << appointmentsBooked << " (pending appointments)\n";
+        cout << "Appointments    : " << appointmentsBooked << "/8 (appointments booked today)\n";
         return;
     }
     void printDetailsFromHistory(string extraDetails = "")
@@ -438,13 +439,19 @@ public:
         string s, temp;
         stringstream str(s);
         str << id << "," << firstName << "," << lastName << "," << gender << "," << age
-            << "," << mobNumber << "," << add.addToStr() << "," << type << "\n";
+            << "," << mobNumber << "," << add.addToStr() << "," << type << "," << appointmentsBooked << "\n";
         getline(str, s);
         fstream f, fout("./data/temp.csv", ios::out);
         f.open("./data/doctors.csv", ios::in);
+        cout << s << "\n";
         while (getline(f, temp))
+        {
+            cout<<"\n\n\nye s h: "<<s<<"\nye temp h: "<<temp<<"\n\n\n";
             if (temp != s)
+            {
                 fout << temp << "\n";
+            }
+        }
         f.close();
         fout.close();
         s.erase();

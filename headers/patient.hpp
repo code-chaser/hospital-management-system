@@ -14,6 +14,7 @@ protected:
     int weight; //in pounds;
     bool hospitalized = 0;
     bool alive = 1;
+    friend class appointment;
 
 public:
     patient()
@@ -41,7 +42,7 @@ public:
         fstream f;
         //opening the file to read it;
         f.open("./data/patients.csv", ios::in);
-        //reading the file till the last line to get the id of the last line;
+        
         string temp, idString = "";
         bool entry = 0;
         //skipping the first row containing column headers;
@@ -80,7 +81,7 @@ public:
         f.close();
 
         cout << "\n"
-             << firstName << " " << lastName << " added successfully!\n";
+             << firstName << " " << lastName << " registered successfully!\n";
         cout << "Their ID is: " << id << "\n";
 
         return;

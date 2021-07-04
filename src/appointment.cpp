@@ -4,8 +4,8 @@ using namespace std;
 #include <iostream>
 #include <sstream>
 #include <fstream>
-#include "./../headerFiles/global.hh"
-#include "./../headerFiles/appointment.hh"
+#include "./../include/global.hh"
+#include "./../include/appointment.hh"
 
 appointment::appointment()
 {

@@ -1,6 +1,6 @@
 #include<string>
 using namespace std;
-#include "./../headerFiles/global.hh"
+#include "./../include/global.hh"
 
 int yyyymmdd;
 int power(int n, int exp)

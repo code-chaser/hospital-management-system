@@ -4,8 +4,8 @@ using namespace std;
 #include <iostream>
 #include <sstream>
 #include <fstream>
-#include "./../headerFiles/global.hh"
-#include "./../headerFiles/person.hh"
+#include "./../include/global.hh"
+#include "./../include/person.hh"
 
 person::person()
 {

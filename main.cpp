@@ -3,15 +3,15 @@
 #include <string>
 using namespace std;
 
-#include "./headerFiles/global.hh"
-#include "./headerFiles/address.hh"
-#include "./headerFiles/person.hh"
-#include "./headerFiles/appointment.hh"
-#include "./headerFiles/patient.hh"
-#include "./headerFiles/doctor.hh"
-#include "./headerFiles/nurse.hh"
-#include "./headerFiles/driver.hh"
-#include "./headerFiles/ambulance.hh"
+#include "./include/global.hh"
+#include "./include/address.hh"
+#include "./include/person.hh"
+#include "./include/appointment.hh"
+#include "./include/patient.hh"
+#include "./include/doctor.hh"
+#include "./include/nurse.hh"
+#include "./include/driver.hh"
+#include "./include/ambulance.hh"
 
 int main()
 {
@@ -26,7 +26,7 @@ int main()
     getline(str, s, ',');
     int dd, mm, yyyy;
     if (s != "")
-        cout << "\n\n\nLast usage date (DD-MM-YYY) : " << s.substr(6, 2) + "-" + s.substr(4, 2) + "-" + s.substr(0, 4) + "\n";
+        cout << "\n\n\nLast usage date (DD-MM-YYYY) : " << s.substr(6, 2) + "-" + s.substr(4, 2) + "-" + s.substr(0, 4) + "\n";
     cout << "\nPlease Enter Today's Date (DD-MM-YYYY) :\n\nEnter Day: ";
     cin >> dd;
     cout << "Enter Month: ";

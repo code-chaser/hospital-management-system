@@ -4,8 +4,8 @@ using namespace std;
 #include <iostream>
 #include <sstream>
 #include <fstream>
-#include "./../headerFiles/global.hh"
-#include "./../headerFiles/ambulance.hh"
+#include "./../include/global.hh"
+#include "./../include/ambulance.hh"
 ambulance::ambulance()
 {
     id = -1;

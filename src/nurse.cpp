@@ -4,8 +4,8 @@ using namespace std;
 #include <iostream>
 #include <sstream>
 #include <fstream>
-#include "./../headerFiles/global.hh"
-#include "./../headerFiles/nurse.hh"
+#include "./../include/global.hh"
+#include "./../include/nurse.hh"
 
 nurse::nurse()
 {

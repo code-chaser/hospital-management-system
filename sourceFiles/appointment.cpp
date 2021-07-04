@@ -127,7 +127,7 @@ void appointment::book()
     idString.erase();
     //creating a record in appointments.csv;
     f.open("./data/appointments.csv", ios::app);
-    f << id << "," << date << "," << D.id << "," << P.id << "," << D.appointmentsBooked + 9 << endl;
+    f << id << "," << yyyymmdd << "," << D.id << "," << P.id << "," << D.appointmentsBooked + 9 << endl;
     f.close();
 
     string initial, corrected;

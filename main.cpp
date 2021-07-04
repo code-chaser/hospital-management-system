@@ -33,8 +33,8 @@ int main()
     cin >> mm;
     cout << "Enter Year (YYYY): ";
     cin >> yyyy;
-    date = yyyy * 10000 + mm * 100 + dd;
-    if (strToNum(((s == "") ? ("0") : (s))) < date)
+    yyyymmdd = yyyy * 10000 + mm * 100 + dd;
+    if (strToNum(((s == "") ? ("0") : (s))) < yyyymmdd)
     {
         f.open("./data/temp.csv", ios::out);
         f << header << "\n";
@@ -56,7 +56,7 @@ int main()
         remove("./data/doctors.csv");
         rename("./data/temp.csv", "./data/doctors.csv");
     }
-    else if (strToNum(s) > date && s != "")
+    else if (strToNum(s) > yyyymmdd && s != "")
     {
         cout << "/nEntered date detected wrong!\nToday's date can't be older than the last usage date, which is : "
              << s.substr(6, 2) + "-" + s.substr(4, 2) + "-" + s.substr(0, 4) + "\n";

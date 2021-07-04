@@ -2,6 +2,7 @@
 using namespace std;
 #include "./../headerFiles/global.hh"
 
+int yyyymmdd;
 int power(int n, int exp)
 {
     int res = 1;

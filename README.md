@@ -9,6 +9,29 @@ ___
 
 
 <br>
+<br>
+
+___
+
+![Blank diagram (4)](https://user-images.githubusercontent.com/63065397/124424981-8bc0f680-dd85-11eb-96b1-962204bfa39a.png)
+
+___
+
+
+![Blank diagram (3)-cpy](https://user-images.githubusercontent.com/63065397/124424453-acd51780-dd84-11eb-9b4f-687f72099226.png)
+___
+
+
+
+![Blank diagram (3)](https://user-images.githubusercontent.com/63065397/124424111-16a0f180-dd84-11eb-8339-584f7d62bea8.png)
+___
+
+![hms](https://user-images.githubusercontent.com/63065397/124423296-74343e80-dd82-11eb-8c73-a74a45395f65.png)
+
+
+
+___
+
 
 ___
 

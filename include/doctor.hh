@@ -8,10 +8,11 @@ using namespace std;
 class appointment;
 class doctor : public person
 {
-protected:
+private:
     string type;
     int appointmentsBooked;
     friend class appointment;
+    friend class hospital;
 
 public:
     doctor();

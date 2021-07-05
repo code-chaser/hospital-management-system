@@ -7,7 +7,7 @@ using namespace std;
 
 class ambulance
 {
-protected:
+private:
     int id;
     string model;
     string manufacturer;

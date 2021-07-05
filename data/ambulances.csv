@@ -1,0 +1,3 @@
+ambulanceId,model,manufacturer,vrn,idle?,headedTowards(ifNotIdle),driverID(ifNotIdle)
+1,TATA X9,TATA,MH02JK3012,Y,NA,NA
+2,GFJK,SFSFJK,SDFJKG,Y,NA,NA

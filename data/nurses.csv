@@ -1,0 +1,8 @@
+nurseId,firstName,lastName,gender,age,mobNumber,address,type
+1,Sharon,Jenkins,F,24,+91xxxxxxxxxx,ABC-Street` D-Block` E` F,Travel Nurse
+2,Ben,Willis,M,28,+91xxxxxxxxxx,ABC-Street` D-Block` E` F,Compounder
+3,Matt,Stephens,M,23,+91xxxxxxxxxx,ABC-Street` D-Block` E` F,LPN
+4,Barry,Brickman,M,24,+91xxxxxxxxxx,ABC-Street` D-Block` E` F,Med-surgical
+5,Matthew,,M,26,+91xxxxxxxxx,ABC-Street` D-Block` E` F,ERN
+6,Frank,Stevens,M,26,+91xxxxxxxxxx,ABC-Street` D-Block` E` F,Oncology
+7,fn,lnA,F,19,+918769873402,Linr213``Hrn`Hrn`2940`DIN,Kon

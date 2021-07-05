@@ -6,7 +6,7 @@ using namespace std;
 
 class nurse : public person
 {
-protected:
+private:
     string type;
 
 public:

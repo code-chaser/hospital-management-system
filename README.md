@@ -15,18 +15,18 @@ ___
    <br>
 - Now, run the following commands:
    - for building executable file: 
-  ```
+  ```bash
      make all
   ```
    - for executing it:
-  ```
-     make run        // for linux/macOS;
-     make run(win)   // for windows;
+  ```bash
+     make run        # for linux/macOS;
+     make run(win)   # for windows;
   ```
    - for deleting executable file:
-  ```
-     make clean      // for linux/macOS;
-     make clean(win) // for windows;
+  ```bash
+     make clean      # for linux/macOS;
+     make clean(win) # for windows;
   ```
 ___
 

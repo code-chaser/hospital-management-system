@@ -42,7 +42,8 @@ ___
 |driver||
 |ambulance||
 ___
-![image](https://user-images.githubusercontent.com/63065397/124442912-d5680c00-dd9a-11eb-96af-0bf73961016e.png)
+![Blank diagram (9)](https://user-images.githubusercontent.com/63065397/124445049-d437de80-dd9c-11eb-8ca1-6b39742f5bf4.png)
+
 
 ___
 

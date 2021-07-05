@@ -536,10 +536,15 @@ void patient::reportADeath()
 }
 void patient::removePerson()
 {
-    cout << "\nSearch for the patient you want to remove.\n";
+    cout << "\nSearch for the patient you want to discharge.\n";
     getDetails();
     if (id == -1)
         return;
+    if (!hospitalized)
+    {
+        cout << "Patient wasn't hospitalized, can't be discharged!\n\n";
+        return;
+    }
     string s, temp;
     stringstream str(s);
     str << id << "," << firstName << "," << lastName

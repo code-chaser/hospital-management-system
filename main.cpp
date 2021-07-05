@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <sstream>
 using namespace std;
 
 #include "./include/global.hh"
@@ -81,12 +82,12 @@ int main()
         cout << "[06] : Hospitalize a registered patient\n";
         cout << "[07] : Report a patient's death\n";
         cout << "[08] : Discharge a patient or their body\n";
-        cout << "[10] : Fetch patient details from history\n\n";
+        cout << "[09] : Fetch patient details from history\n\n";
 
         cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n";
 
-        cout << "[11] : Register a new doctor\n";
-        cout << "[12] : Get doctor details\n";
+        cout << "[10] : Register a new doctor\n";
+        cout << "[11] : Get doctor details\n";
         cout << "[12] : Remove a doctor\n";
         cout << "[13] : Fetch doctor details from history\n\n";
 

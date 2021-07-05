@@ -13,6 +13,14 @@ ___
 
 ___
 
+![Blank diagram (7)](https://user-images.githubusercontent.com/63065397/124428474-64205d00-dd8a-11eb-94f8-c07339b69035.png)
+
+___
+
+![Blank diagram (6)](https://user-images.githubusercontent.com/63065397/124428186-fd02a880-dd89-11eb-9cc2-3b8f66ab78a3.png)
+
+___
+
 ![Blank diagram (5)](https://user-images.githubusercontent.com/63065397/124426369-911f4080-dd87-11eb-8509-ef0328ecf91c.png)
 
 ___

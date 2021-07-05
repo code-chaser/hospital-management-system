@@ -272,6 +272,9 @@ int main()
         {
             cout << "\nInvalid Choice!\n";
         }
+        cout<<"\n\nPress ENTER to continue...\n\n";
+        getchar();
+        getchar();
     }
     return 0;
 }

@@ -12,42 +12,10 @@ ___
 <br>
 
 ___
+![Blank diagram (8)](https://user-images.githubusercontent.com/63065397/124445084-de59dd00-dd9c-11eb-908b-4e577771c51b.png)
 
-___
 ![hms-class-diagram](https://user-images.githubusercontent.com/63065397/124429766-e8271480-dd8b-11eb-974c-16b494a894c0.png)
-___
-
-![Blank diagram (7)](https://user-images.githubusercontent.com/63065397/124428474-64205d00-dd8a-11eb-94f8-c07339b69035.png)
-___
-![Blank diagram (2)](https://user-images.githubusercontent.com/63065397/124428802-bfeae600-dd8a-11eb-9a87-b4b2c5e20122.png)
-
-___
-
-
-___
-
-![Blank diagram (6)](https://user-images.githubusercontent.com/63065397/124428186-fd02a880-dd89-11eb-9cc2-3b8f66ab78a3.png)
-
-___
-
-![Blank diagram (5)](https://user-images.githubusercontent.com/63065397/124426369-911f4080-dd87-11eb-8509-ef0328ecf91c.png)
-
-___
-![Blank diagram (4)](https://user-images.githubusercontent.com/63065397/124424981-8bc0f680-dd85-11eb-96b1-962204bfa39a.png)
-
-___
-
-
-![Blank diagram (3)-cpy](https://user-images.githubusercontent.com/63065397/124424453-acd51780-dd84-11eb-9b4f-687f72099226.png)
-___
-
-
-
-![Blank diagram (3)](https://user-images.githubusercontent.com/63065397/124424111-16a0f180-dd84-11eb-8339-584f7d62bea8.png)
-___
-
-![hms](https://user-images.githubusercontent.com/63065397/124423296-74343e80-dd82-11eb-8c73-a74a45395f65.png)
-
+![image](https://user-images.githubusercontent.com/63065397/124442912-d5680c00-dd9a-11eb-96af-0bf73961016e.png)
 
 
 ___

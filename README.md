@@ -42,8 +42,9 @@ ___
 |driver||
 |ambulance||
 ___
-![Blank diagram (9)](https://user-images.githubusercontent.com/63065397/124445049-d437de80-dd9c-11eb-8ca1-6b39742f5bf4.png)
 
+
+![UML Class Diagram](https://user-images.githubusercontent.com/63065397/124445049-d437de80-dd9c-11eb-8ca1-6b39742f5bf4.png)
 
 ___
 

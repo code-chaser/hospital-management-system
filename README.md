@@ -13,11 +13,16 @@ ___
 
 ___
 
+___
+![hms-class-diagram](https://user-images.githubusercontent.com/63065397/124429766-e8271480-dd8b-11eb-974c-16b494a894c0.png)
+___
+
+![Blank diagram (7)](https://user-images.githubusercontent.com/63065397/124428474-64205d00-dd8a-11eb-94f8-c07339b69035.png)
+___
 ![Blank diagram (2)](https://user-images.githubusercontent.com/63065397/124428802-bfeae600-dd8a-11eb-9a87-b4b2c5e20122.png)
 
 ___
 
-![Blank diagram (7)](https://user-images.githubusercontent.com/63065397/124428474-64205d00-dd8a-11eb-94f8-c07339b69035.png)
 
 ___
 

@@ -81,8 +81,8 @@ int main()
         a1.fillMap();
         a2.fillMap();
         // NOTE:
-        // fill drivers Map before ambulances Map;
-        // fill doctors and patients Map before appointments Map;
+        // fill drivers' Map before ambulances' Map;
+        // fill doctors' and patients' Map before appointments' Map;
     }
     while (1)
     {

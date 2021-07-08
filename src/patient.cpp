@@ -398,6 +398,8 @@ void patient::reportADeath()
     if (id == -1)
         return;
     hospital::patientsList[id].alive = 0;
+    if (!hospital::patientsList[id].hospitalized)
+        hospital::patientsList.erase(id);
     string s, temp, corrected;
     stringstream str;
     fstream f, fout;

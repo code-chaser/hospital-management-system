@@ -45,7 +45,8 @@ void appointment::fillMap()
         a.id = strToNum(s1);
         a.D = hospital::doctorsList[strToNum(s3)];
         a.P = hospital::patientsList[strToNum(s4)];
-        hh = strToNum(s5);
+        a.hh = strToNum(s5);
+        hospital::appointmentsList[a.id] = a;
     }
     f.close();
     return;
@@ -76,9 +77,9 @@ void appointment::printDetails()
 }
 void appointment::book()
 {
-    if (hospital::appointmentsList.size() == 8*hospital::doctorsList.size())
+    if (hospital::appointmentsList.size() == 8 * hospital::doctorsList.size())
     {
-        cout<<"\n\nSorry, all slots are booked for today!\n\n";
+        cout << "\n\nSorry, all slots are booked for today!\n\n";
         return;
     }
     cout << "\n\nIs the patient already registered (Y : Yes || N : No)?\n";

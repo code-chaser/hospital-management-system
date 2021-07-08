@@ -19,6 +19,8 @@ private:
 
 public:
     ambulance();
+    void fillMap();
+    void saveMap();
     void addAmbulance();
     void printDetails();
     void printDetailsFromHistory(string extraDetails = "");

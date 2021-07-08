@@ -21,6 +21,12 @@ appointment::~appointment()
     P.id = -1;
     return;
 }
+void appointment::fillMap()
+{
+}
+void appointment::saveMap()
+{
+}
 void appointment::printDetails()
 {
     if (id == -1)

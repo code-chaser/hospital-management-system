@@ -35,7 +35,6 @@ private:
     friend class driver;
     friend class ambulance;
     friend class appointment;
-    friend class data;
 };
 
 #endif // !HOSPITAL

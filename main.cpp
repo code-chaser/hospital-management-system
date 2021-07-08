@@ -66,7 +66,7 @@ int main()
              << s.substr(6, 2) + "-" + s.substr(4, 2) + "-" + s.substr(0, 4) + "\n";
         return 0;
     }
-    //filling maps with data from csv files;
+    // filling maps with data from csv files;
     {
         doctor d1;
         patient p;
@@ -78,8 +78,8 @@ int main()
         p.fillMap();
         n.fillMap();
         d2.fillMap();
-        //a1.fillMap();
-        //a2.fillMap();
+        a1.fillMap();
+        a2.fillMap();
     }
     while (1)
     {
@@ -291,7 +291,7 @@ int main()
             cout << "\nInvalid Choice!\n";
         }
 
-        cin.ignore(numeric_limits<streamsize>::max(), '\n'); //clearing cin buffer;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n'); // clearing cin buffer;
 
         cout << endl;
         cout << "\nPress ENTER to continue...\n";
@@ -299,7 +299,7 @@ int main()
 
         getchar();
     }
-    //saving data inside maps by overwriting it on the files
+    // saving data inside maps by overwriting it on the files
     {
         doctor d1;
         patient p;
@@ -311,8 +311,8 @@ int main()
         p.saveMap();
         n.saveMap();
         d2.saveMap();
-        // a1.saveMap();
-        // a2.saveMap();
+        a1.saveMap();
+        a2.saveMap();
     }
 
     return 0;

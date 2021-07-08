@@ -14,6 +14,12 @@ ambulance::ambulance()
     add.strToAdd("`````");
     d.id = -1;
 }
+void ambulance::fillMap()
+{
+}
+void ambulance::saveMap()
+{
+}
 void ambulance::addAmbulance()
 {
     //getting the basic details of the ambulance from the user side;

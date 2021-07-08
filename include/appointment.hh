@@ -1,7 +1,6 @@
 #ifndef APPOINTMENT
 #define APPOINTMENT
 using namespace std;
-#include <vector>
 
 #include "./patient.hh"
 #include "./doctor.hh"
@@ -16,6 +15,8 @@ private:
 public:
     appointment();
     ~appointment();
+    void fillMap();
+    void saveMap();
     void printDetails();
     void book();
     void fillDetails();

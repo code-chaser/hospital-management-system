@@ -1,7 +1,6 @@
 #ifndef DOCTOR
 #define DOCTOR
 using namespace std;
-#include <vector>
 #include <string>
 
 #include "./person.hh"

@@ -5,6 +5,7 @@
 using namespace std;
 
 #include "./include/global.hh"
+#include "./include/hospital.hh"
 #include "./include/address.hh"
 #include "./include/person.hh"
 #include "./include/appointment.hh"
@@ -62,6 +63,10 @@ int main()
         cout << "\nEntered date detected wrong!\nToday's date can't be older than the last usage date, which is : "
              << s.substr(6, 2) + "-" + s.substr(4, 2) + "-" + s.substr(0, 4) + "\n";
         return 0;
+    }
+    {
+        doctor d;
+        d.getData();
     }
     while (1)
     {
@@ -272,7 +277,7 @@ int main()
         {
             cout << "\nInvalid Choice!\n";
         }
-        cout<<"\n\nPress ENTER to continue...\n\n";
+        cout << "\n\nPress ENTER to continue...\n\n";
         getchar();
         getchar();
     }

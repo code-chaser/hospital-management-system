@@ -2,6 +2,7 @@
 #define PERSON
 using namespace std;
 #include <string>
+
 #include "./address.hh"
 
 class person //abstract class

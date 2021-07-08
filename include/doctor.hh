@@ -3,6 +3,7 @@
 using namespace std;
 #include <vector>
 #include <string>
+
 #include "./person.hh"
 
 class appointment;
@@ -16,6 +17,7 @@ private:
 
 public:
     doctor();
+    void getData();
     void addPerson();
     void printDetails();
     void printDetailsFromHistory(string extraDetails = "");

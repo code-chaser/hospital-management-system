@@ -4,8 +4,10 @@ using namespace std;
 #include <iostream>
 #include <sstream>
 #include <fstream>
+
 #include "./../include/global.hh"
 #include "./../include/patient.hh"
+#include "./../include/hospital.hh"
 
 patient::patient()
 {

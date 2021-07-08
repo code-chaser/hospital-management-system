@@ -2,6 +2,7 @@
 #define NURSE
 using namespace std;
 #include <string>
+
 #include "./person.hh"
 
 class nurse : public person

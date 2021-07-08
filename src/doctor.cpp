@@ -4,8 +4,10 @@ using namespace std;
 #include <iostream>
 #include <sstream>
 #include <fstream>
+
 #include "./../include/global.hh"
 #include "./../include/doctor.hh"
+#include "./../include/hospital.hh"
 
 doctor::doctor()
 {
@@ -14,6 +16,40 @@ doctor::doctor()
     appointmentsBooked = 0;
     cat = "doctor";
     category = 1;
+}
+void doctor::getData()
+{
+    fstream f;
+    f.open("./data/doctors.csv", ios::in);
+    string temp;
+    //skipping the first row containing column headers;
+    getline(f >> ws, temp);
+    //analyzing each entry afterwards;
+    while (getline(f >> ws, temp))
+    {
+        doctor d;
+        //creating a string stream object to read from string 'temp';
+        stringstream s(temp);
+        string s1, s4, s5, s7, s9;
+        //reading from the string stream object 's';
+        getline(s, s1, ',');
+        getline(s, d.firstName, ',');
+        getline(s, d.lastName, ',');
+        getline(s, s4, ',');
+        getline(s, s5, ',');
+        getline(s, d.mobNumber, ',');
+        getline(s, s7, ',');
+        getline(s, d.type, ',');
+        getline(s, s9, ',');
+        d.id = strToNum(s1);
+        d.gender = s4[0];
+        d.age = strToNum(s5);
+        d.add.strToAdd(s7);
+        d.appointmentsBooked = strToNum(s9);
+        hospital::doctorsList[d.id] = d;
+    }
+    f.close();
+    return;
 }
 void doctor::addPerson()
 {

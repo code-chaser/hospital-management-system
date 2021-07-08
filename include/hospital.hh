@@ -35,6 +35,14 @@ private:
     friend class driver;
     friend class ambulance;
     friend class appointment;
+
+public:
+    static void printDoctors();
+    static void printPatients();
+    static void printNurses();
+    static void printDrivers();
+    static void printAmbulances();
+    static void printAppointments();
 };
 
 #endif // !HOSPITAL

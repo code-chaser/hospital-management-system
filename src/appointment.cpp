@@ -164,11 +164,3 @@ void appointment::getDetails()
     *this = hospital::appointmentsList[id];
     return;
 }
-void appointment::printAll()
-{
-    for (auto i : hospital::appointmentsList)
-    {
-        i.second.printDetails();
-    }
-    return;
-}

@@ -91,49 +91,54 @@ int main()
         cout << "\nSelect an option:\n\n";
 
         cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n";
-
+        //APPOINTMENTS - RELATED;
         cout << "[01] : Book an appointment\n";
         cout << "[02] : Get appointment details\n";
         cout << "[03] : Show all appointments\n\n";
 
         cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n";
-
+        //PATIENTS - RELATED;
         cout << "[04] : Register a new patient\n";
         cout << "[05] : Get patient details\n";
         cout << "[06] : Hospitalize a registered patient\n";
         cout << "[07] : Report a patient's death\n";
         cout << "[08] : Discharge a patient or their body\n";
-        cout << "[09] : Fetch patient details from history\n\n";
+        cout << "[09] : Fetch patient details from history\n";
+        cout << "[10] : Get details of all registered patients\n\n";
 
         cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n";
-
-        cout << "[10] : Register a new doctor\n";
-        cout << "[11] : Get doctor details\n";
-        cout << "[12] : Remove a doctor\n";
-        cout << "[13] : Fetch doctor details from history\n\n";
-
-        cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n";
-
-        cout << "[14] : Register a new nurse\n";
-        cout << "[15] : Get nurse details\n";
-        cout << "[16] : Remove a nurse\n";
-        cout << "[17] : Fetch nurse details from history\n\n";
+        //DOCTORS - RELATED;
+        cout << "[11] : Register a new doctor\n";
+        cout << "[12] : Get doctor details\n";
+        cout << "[13] : Remove a doctor\n";
+        cout << "[14] : Fetch doctor details from history\n";
+        cout << "[15] : Get details of all registered doctors\n\n";
 
         cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n";
-
-        cout << "[18] : Add an ambulance\n";
-        cout << "[19] : Send an ambulance\n";
-        cout << "[20] : Get ambulance details\n";
-        cout << "[21] : Report ambulance arrival\n";
-        cout << "[22] : Remove an ambulance\n";
-        cout << "[23] : Fetch ambulance details from history\n\n";
+        //NURSES - RELATED;
+        cout << "[16] : Register a new nurse\n";
+        cout << "[17] : Get nurse details\n";
+        cout << "[18] : Remove a nurse\n";
+        cout << "[19] : Fetch nurse details from history\n";
+        cout << "[20] : Get details of all registered nurses\n\n";
 
         cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n";
+        //AMBULANCES - RELATED;
+        cout << "[21] : Add an ambulance\n";
+        cout << "[22] : Send an ambulance\n";
+        cout << "[23] : Get ambulance details\n";
+        cout << "[24] : Report ambulance arrival\n";
+        cout << "[25] : Remove an ambulance\n";
+        cout << "[26] : Fetch ambulance details from history\n";
+        cout << "[27] : Get details of all registered ambulances\n\n";
 
-        cout << "[24] : Register a new ambulance driver\n";
-        cout << "[25] : Get driver details\n";
-        cout << "[26] : Remove a driver\n";
-        cout << "[27] : Fetch driver details from history\n\n";
+        cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n";
+        //AMBULANCE DRIVERS - RELATED;
+        cout << "[28] : Register a new ambulance driver\n";
+        cout << "[29] : Get driver details\n";
+        cout << "[30] : Remove a driver\n";
+        cout << "[31] : Fetch driver details from history\n";
+        cout << "[32] : Get details of all registered drivers\n\n";
 
         cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n";
 
@@ -148,6 +153,7 @@ int main()
             break;
         }
         cout << "\n";
+        //~~~~~~~~~~~~~~~~~~~~~~~~~~~
         if (purpose == 1)
         {
             appointment a;
@@ -161,9 +167,9 @@ int main()
         }
         else if (purpose == 3)
         {
-            appointment a;
-            a.printAll();
+            hospital::printAppointments();
         }
+        //~~~~~~~~~~~~~~~~~~~~~~~~~~~
         else if (purpose == 4)
         {
             patient p;
@@ -197,98 +203,123 @@ int main()
         }
         else if (purpose == 10)
         {
+            hospital::printPatients();
+        }
+        //~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        else if (purpose == 11)
+        {
             doctor d;
             d.addPerson();
         }
-        else if (purpose == 11)
+        else if (purpose == 12)
         {
             doctor d;
             d.getDetails(1);
             d.printDetails();
         }
-        else if (purpose == 12)
+        else if (purpose == 13)
         {
             doctor d;
             d.removePerson();
         }
-        else if (purpose == 13)
+        else if (purpose == 14)
         {
             doctor d;
             d.getDetailsFromHistory();
         }
-        else if (purpose == 14)
+        else if (purpose == 15)
+        {
+            hospital::printDoctors();
+        }
+        //~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        else if (purpose == 16)
         {
             nurse n;
             n.addPerson();
         }
-        else if (purpose == 15)
+        else if (purpose == 17)
         {
             nurse n;
             n.getDetails(1);
             n.printDetails();
         }
-        else if (purpose == 16)
+        else if (purpose == 18)
         {
             nurse n;
             n.removePerson();
         }
-        else if (purpose == 17)
+        else if (purpose == 19)
         {
             nurse n;
             n.getDetailsFromHistory();
         }
-        else if (purpose == 18)
+        else if (purpose == 20)
+        {
+            hospital::printNurses();
+        }
+        //~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        else if (purpose == 21)
         {
             ambulance a;
             a.addAmbulance();
         }
-        else if (purpose == 19)
+        else if (purpose == 22)
         {
             ambulance a;
             a.send();
         }
-        else if (purpose == 20)
+        else if (purpose == 23)
         {
             ambulance a;
             a.getDetails(1);
             a.printDetails();
         }
-        else if (purpose == 21)
+        else if (purpose == 24)
         {
             ambulance a;
             a.reportArrival();
         }
-        else if (purpose == 22)
+        else if (purpose == 25)
         {
             ambulance a;
             a.removeAmbulance();
         }
-        else if (purpose == 23)
+        else if (purpose == 26)
         {
             ambulance a;
             a.getDetailsFromHistory();
         }
-        else if (purpose == 24)
+        else if (purpose == 27)
+        {
+            hospital::printAmbulances();
+        }
+        //~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        else if (purpose == 28)
         {
             driver d;
             d.addPerson();
         }
-        else if (purpose == 25)
+        else if (purpose == 29)
         {
             driver d;
             d.getDetails(1);
             d.printDetails();
         }
-        else if (purpose == 26)
+        else if (purpose == 30)
         {
             driver d;
             d.removePerson();
         }
-        else if (purpose == 27)
+        else if (purpose == 31)
         {
             driver d;
             d.getDetailsFromHistory();
         }
+        else if (purpose == 32)
+        {
+            hospital::printDrivers();
+        }
+        //~~~~~~~~~~~~~~~~~~~~~~~~~~~
         else
         {
             cout << "\nInvalid Choice!\n";

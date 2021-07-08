@@ -65,8 +65,8 @@ void ambulance::saveMap()
         }
     }
     f.close();
-    remove("./data/appointments.csv");
-    rename("./data/temp.csv", "./data/appointments.csv");
+    remove("./data/ambulances.csv");
+    rename("./data/temp.csv", "./data/ambulances.csv");
     return;
 }
 void ambulance::addAmbulance()

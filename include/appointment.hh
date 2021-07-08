@@ -21,6 +21,5 @@ public:
     void book();
     void fillDetails();
     void getDetails();
-    void printAll();
 };
 #endif // !APPOINTMENT

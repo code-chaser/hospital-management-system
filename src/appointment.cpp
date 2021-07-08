@@ -76,6 +76,11 @@ void appointment::printDetails()
 }
 void appointment::book()
 {
+    if (hospital::appointmentsList.size() == 8*hospital::doctorsList.size())
+    {
+        cout<<"\n\nSorry, all slots are booked for today!\n\n";
+        return;
+    }
     cout << "\n\nIs the patient already registered (Y : Yes || N : No)?\n";
     char ans;
     cin >> ans;

@@ -68,6 +68,11 @@ void doctor::saveMap()
 }
 void doctor::addPerson()
 {
+    if (hospital::doctorsList.size() == hospital::doctorsLimit)
+    {
+        cout<<"\n\nDoctors limit reached, can't add more!\n\n";
+        return;
+    }
     //18 and 65 are the age limits for registration of a new doctor;
     person::addPerson(18, 65);
     if ((age < 18) || (age > 65))

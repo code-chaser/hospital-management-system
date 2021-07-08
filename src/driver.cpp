@@ -68,6 +68,11 @@ void driver::saveMap()
 }
 void driver::addPerson()
 {
+    if (hospital::driversList.size() == hospital::driversLimit)
+    {
+        cout<<"\n\nDrivers limit reached, can't add more!\n\n";
+        return;
+    }
     //18 and 65 are the age limits for registration of a new driver;
     person::addPerson(18, 65);
     if ((age < 18) || (age > 65))

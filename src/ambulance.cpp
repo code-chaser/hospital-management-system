@@ -71,6 +71,11 @@ void ambulance::saveMap()
 }
 void ambulance::addAmbulance()
 {
+    if (hospital::ambulancesList.size() == hospital::ambulancesLimit)
+    {
+        cout<<"\n\nAmbulances limit reached, can't add more!\n\n";
+        return;
+    }
     //getting the basic details of the ambulance from the user side;
     cout << "\nEnter Model of the ambulance:\n";
     getline(cin >> ws, model);

@@ -186,51 +186,10 @@ void patient::getDetails(int rec)
         int reqId;
         cout << "\nEnter ID:\n";
         cin >> reqId;
-
-        fstream f;
-        f.open("./data/patients.csv", ios::in);
-        string temp;
-        //skipping the first row containing column headers;
-        getline(f >> ws, temp);
-        //analyzing each entry afterwards;
-        while (getline(f >> ws, temp))
-        {
-            //creating a string stream object to read from string 'temp';
-            stringstream s(temp);
-            string s1, s4, s5, s7, s8, s9, s10, s11;
-            //reading from the string stream object 's';
-            getline(s, s1, ',');
-
-            if (reqId == strToNum(s1))
-            {
-                f.close();
-                getline(s, firstName, ',');
-                getline(s, lastName, ',');
-                getline(s, s4, ',');
-                getline(s, s5, ',');
-                getline(s, mobNumber, ',');
-                getline(s, s7, ',');
-                getline(s, s8, ',');
-                getline(s, s9, ',');
-                getline(s, s10, ',');
-                getline(s, s11, ',');
-                id = reqId;
-                gender = s4[0];
-                age = strToNum(s5);
-                add.strToAdd(s7);
-                height = strToNum(s8);
-                weight = strToNum(s9);
-                hospitalized = (s10 == "Y");
-                alive = (s11 == "Y");
-                return;
-            }
-        }
-        f.close();
-        //if a record is found, it's details will be stored in the patient class object that called this function,
-        //and the control is returned;
-        //else:
-        cout << "\nNo matching record found!\n";
-        return;
+        if (hospital::patientsList.find(reqId) != hospital::patientsList.end())
+            *this = hospital::patientsList[reqId];
+        else
+            cout << "\nNo matching record found!\n";
     }
     //2: Filter by name;
     else if (opt == 2)
@@ -241,45 +200,11 @@ void patient::getDetails(int rec)
         cout << "\nLast Name:\n";
         getline(cin, reqLName);
         vector<patient> matchingRecords;
-        fstream f;
-        f.open("./data/patients.csv", ios::in);
-        string temp;
-        //skipping the first row containing column headers;
-        getline(f >> ws, temp);
-        //analyzing each entry afterwards;
-        while (getline(f >> ws, temp))
+        for (auto i : hospital::patientsList)
         {
-            patient p;
-            //creating a string stream object to read from string 'temp';
-            stringstream s(temp);
-            string s1, s4, s5, s7, s8, s9, s10, s11;
-            //reading from the string stream object 's';
-            getline(s, s1, ',');
-            getline(s, p.firstName, ',');
-            getline(s, p.lastName, ',');
-
-            if (p.firstName == reqFName && p.lastName == reqLName)
-            {
-                getline(s, s4, ',');
-                getline(s, s5, ',');
-                getline(s, p.mobNumber, ',');
-                getline(s, s7, ',');
-                getline(s, s8, ',');
-                getline(s, s9, ',');
-                getline(s, s10, ',');
-                getline(s, s11, ',');
-                p.id = strToNum(s1);
-                p.gender = s4[0];
-                p.age = strToNum(s5);
-                p.add.strToAdd(s7);
-                p.height = strToNum(s8);
-                p.weight = strToNum(s9);
-                p.hospitalized = (s10 == "Y");
-                alive = (s11 == "Y");
-                matchingRecords.push_back(p);
-            }
+            if (i.second.firstName == reqFName && i.second.lastName == reqLName)
+                matchingRecords.push_back(i.second);
         }
-        f.close();
         cout << "\n";
         cout << matchingRecords.size() << " matching record(s) found!\n";
         for (auto i : matchingRecords)
@@ -292,26 +217,15 @@ void patient::getDetails(int rec)
                 int reqId;
                 cout << "\nEnter the ID of the required patient: ";
                 cin >> reqId;
-                for (auto i : matchingRecords)
-                    if (reqId == i.id)
-                    {
-                        id = i.id;
-                        firstName = i.firstName;
-                        lastName = i.lastName;
-                        gender = i.gender;
-                        age = i.age;
-                        mobNumber = i.mobNumber;
-                        add = i.add;
-                        height = i.height;
-                        weight = i.weight;
-                        hospitalized = i.hospitalized;
-                        alive = i.alive;
-                        return;
-                    }
-                cout << "\nInvalid ID!\nTry again? (Y = Yes || N = No)\n";
-                cin >> tt;
-                while (tt != 'Y' || tt != 'N')
-                    cout << "Y or N?\n", cin >> tt;
+                if (hospital::patientsList.find(reqId) != hospital::patientsList.end())
+                    *this = hospital::patientsList[reqId];
+                else
+                {
+                    cout << "\nInvalid ID!\nTry again? (Y = Yes || N = No)\n";
+                    cin >> tt;
+                    while (tt != 'Y' || tt != 'N')
+                        cout << "Y or N?\n", cin >> tt;
+                }
             } while (tt == 'Y');
         }
     }
@@ -441,36 +355,10 @@ void patient::hospitalize()
     getDetails();
     if (id == -1)
         return;
+    hospital::patientsList[id].hospitalized = 1;
     string s, temp, corrected;
     stringstream str;
-    str << id << "," << firstName << "," << lastName
-        << "," << gender << "," << age << "," << mobNumber << "," << add.addToStr()
-        << "," << height << "," << weight << "," << ((hospitalized) ? "Y" : "N")
-        << ","
-        << ((alive) ? "Y" : "N") << "\n";
-    getline(str >> ws, s);
-    str << id << "," << firstName << "," << lastName
-        << "," << gender << "," << age << "," << mobNumber << "," << add.addToStr()
-        << "," << height << "," << weight << ","
-        << "Y"
-        << ","
-        << ((alive) ? "Y" : "N") << "\n";
-    getline(str >> ws, corrected);
-    fstream f, fout("./data/temp.csv", ios::out);
-    f.open("./data/patients.csv", ios::in);
-    while (getline(f, temp))
-    {
-        if (temp != s)
-            fout << temp << "\n";
-        else
-            fout << corrected << "\n";
-    }
-    f.close();
-    fout.close();
-    s.erase();
-    temp.erase();
-    remove("./data/patients.csv");
-    rename("./data/temp.csv", "./data/patients.csv");
+    fstream f, fout;
     str << firstName << "," << lastName
         << "," << gender << "," << age << "," << mobNumber << "," << add.addToStr()
         << "," << height << "," << weight << "," << ((hospitalized) ? "Y" : "N")
@@ -509,36 +397,10 @@ void patient::reportADeath()
     getDetails();
     if (id == -1)
         return;
+    hospital::patientsList[id].alive = 0;
     string s, temp, corrected;
-    stringstream str(s);
-    str << id << "," << firstName << "," << lastName
-        << "," << gender << "," << age << "," << mobNumber << "," << add.addToStr()
-        << "," << height << "," << weight << "," << ((hospitalized) ? "Y" : "N")
-        << ","
-        << ((alive) ? "Y" : "N") << "\n";
-    getline(str, s);
-    str << id << "," << firstName << "," << lastName
-        << "," << gender << "," << age << "," << mobNumber << "," << add.addToStr()
-        << "," << height << "," << weight << "," << ((hospitalized) ? "Y" : "N")
-        << ","
-        << "N"
-        << "\n";
-    getline(str, corrected);
-    fstream f, fout("./data/temp.csv", ios::out);
-    f.open("./data/patients.csv", ios::in);
-    while (getline(f, temp))
-    {
-        if (temp != s)
-            fout << temp << "\n";
-        else
-            fout << corrected << "\n";
-    }
-    f.close();
-    fout.close();
-    s.erase();
-    temp.erase();
-    remove("./data/patients.csv");
-    rename("./data/temp.csv", "./data/patients.csv");
+    stringstream str;
+    fstream f, fout;
     str << firstName << "," << lastName
         << "," << gender << "," << age << "," << mobNumber << "," << add.addToStr()
         << "," << height << "," << weight << "," << ((hospitalized) ? "Y" : "N")
@@ -577,28 +439,13 @@ void patient::removePerson()
         return;
     if (!hospitalized)
     {
-        cout << "Patient wasn't hospitalized, can't be discharged!\n\n";
+        cout << "\nPatient wasn't hospitalized, can't be discharged!\n\n";
         return;
     }
+    hospital::patientsList.erase(id);
     string s, temp;
-    stringstream str(s);
-    str << id << "," << firstName << "," << lastName
-        << "," << gender << "," << age << "," << mobNumber << "," << add.addToStr()
-        << "," << height << "," << weight << "," << ((hospitalized) ? "Y" : "N")
-        << ","
-        << ((alive) ? "Y" : "N") << "\n";
-    getline(str, s);
-    fstream f, fout("./data/temp.csv", ios::out);
-    f.open("./data/patients.csv", ios::in);
-    while (getline(f, temp))
-        if (temp != s)
-            fout << temp << "\n";
-    f.close();
-    fout.close();
-    s.erase();
-    temp.erase();
-    remove("./data/patients.csv");
-    rename("./data/temp.csv", "./data/patients.csv");
+    stringstream str;
+    fstream f, fout;
     str << firstName << "," << lastName
         << "," << gender << "," << age << "," << mobNumber << "," << add.addToStr()
         << "," << height << "," << weight << "," << ((hospitalized) ? "Y" : "N")
@@ -633,3 +480,10 @@ void patient::removePerson()
     cout << firstName << " " << lastName << " discharged!\n";
     return;
 }
+
+// Removing a patient: it's rather "DISCHARGING a HOSPITALIZED patient";
+// If a patient wasn't hospitalized, just came to the hospital for an appointment with;
+// a doctor then that appointment object will be cleared on the next day automatically;
+// and there's no need of removing the patient's record from patients.csv in that case;
+
+// Maybe consider this as a kind of limitation of this system;

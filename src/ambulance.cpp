@@ -7,18 +7,67 @@ using namespace std;
 
 #include "./../include/global.hh"
 #include "./../include/ambulance.hh"
+#include "./../include/hospital.hh"
 
 ambulance::ambulance()
 {
     id = -1;
     add.strToAdd("`````");
-    d.id = -1;
+    D.id = -1;
 }
 void ambulance::fillMap()
 {
+    fstream f;
+    f.open("./data/ambulances.csv", ios::in);
+    string temp;
+    //skipping the first row containing column headers;
+    getline(f >> ws, temp);
+    //analyzing each entry afterwards;
+    while (getline(f >> ws, temp))
+    {
+        ambulance a;
+        //creating a string stream object to read from string 'temp';
+        stringstream s(temp);
+        string s1, s5, s6, s7;
+        //reading from the string stream object 's';
+        getline(s, s1, ',');
+        getline(s, a.model, ',');
+        getline(s, a.manufacturer, ',');
+        getline(s, a.vrn, ',');
+        getline(s, s5, ',');
+        getline(s, s6, ',');
+        getline(s, s7, ',');
+        a.id = strToNum(s1);
+        a.idle = (s5 == "Y");
+        if (!a.idle)
+        {
+            a.add.strToAdd(s6);
+            a.D = hospital::driversList[strToNum(s7)];
+        }
+        hospital::ambulancesList[a.id] = a;
+    }
+    f.close();
+    return;
 }
 void ambulance::saveMap()
 {
+    fstream f;
+    f.open("./data/temp.csv", ios::out);
+    // `le first line conataining column headers:
+    f << "ambulanceId,model,manufacturer,vrn,idle?,headedTowards(ifNotIdle),driverID(ifNotIdle)\n";
+    for (auto i : hospital::ambulancesList)
+    {
+        f << i.second.id << "," << i.second.model << "," << i.second.manufacturer << "," << i.second.vrn
+          << "," << (i.second.idle ? ("Y,NA,NA\n") : ("N," + i.second.add.addToStr() + ","));
+        if (!(i.second.idle))
+        {
+            f << i.second.D.id << endl;
+        }
+    }
+    f.close();
+    remove("./data/appointments.csv");
+    rename("./data/temp.csv", "./data/appointments.csv");
+    return;
 }
 void ambulance::addAmbulance()
 {
@@ -29,34 +78,15 @@ void ambulance::addAmbulance()
     getline(cin >> ws, manufacturer);
     cout << "\nEnter Vehicle Registration Number of the ambulance:\n";
     getline(cin >> ws, vrn);
-    //creating a fstream object to read/write from/to files;
-    fstream f;
-    //opening the file to read it;
-    f.open("./data/ambulances.csv", ios::in);
-
-    string temp, idString = "";
-    bool entry = 0;
-    //skipping the first row containing column headers;
-    getline(f >> ws, temp);
-    while (getline(f >> ws, temp))
-        entry = 1;
-    f.close();
-    if (entry)
-    {
-        stringstream s(temp);
-        getline(s, idString, ',');
-        id = strToNum(idString) + 1;
-    }
+    if (hospital::ambulancesList.rbegin() != hospital::ambulancesList.rend())
+        id = ((hospital::ambulancesList.rbegin())->first) + 1;
     else
         id = 1;
-    temp.erase();
-    idString.erase();
-    //creating a record in doctors.csv;
-    f.open("./data/ambulances.csv", ios::app);
-    f << id << "," << model << "," << manufacturer << "," << vrn << ",Y,NA,NA" << endl;
-    f.close();
+    hospital::ambulancesList[id] = *this;
 
-    //creating a record in doctorsHistory.csv;
+    //creating a fstream object to read/write from/to files;
+    fstream f;
+    //creating a record in ambulancesHistory.csv;
     f.open("./data/ambulancesHistory.csv", ios::app);
     f << model << "," << manufacturer << "," << vrn << ",Y" << endl;
     f.close();
@@ -79,7 +109,7 @@ void ambulance::printDetails()
     {
         cout << "Going to Address: ";
         add.print();
-        cout << "Driver ID       : " << d.id << "\n";
+        cout << "Driver ID       : " << D.id << "\n";
     }
     return;
 }
@@ -132,75 +162,10 @@ void ambulance::getDetails(int rec)
         int reqId;
         cout << "\nEnter ID:\n";
         cin >> reqId;
-
-        fstream f;
-        f.open("./data/ambulances.csv", ios::in);
-        string temp;
-        //skipping the first row containing column headers;
-        getline(f >> ws, temp);
-        //analyzing each entry afterwards;
-        while (getline(f >> ws, temp))
-        {
-            //creating a string stream object to read from string 'temp';
-            stringstream s(temp);
-            string s1, s5, s6, s7;
-            //reading from the string stream object 's';
-            getline(s, s1, ',');
-
-            if (reqId == strToNum(s1))
-            {
-                f.close();
-                getline(s, model, ',');
-                getline(s, manufacturer, ',');
-                getline(s, vrn, ',');
-                getline(s, s5, ',');
-                getline(s, s6, ',');
-                getline(s, s7, ',');
-                id = reqId;
-                idle = (s5 == "Y");
-                if (!idle)
-                {
-                    add.strToAdd(s6);
-                    d.id = strToNum(s7);
-                    f.open("./data/drivers.csv", ios::in);
-                    string temp;
-                    //skipping the first row containing column headers;
-                    getline(f >> ws, temp);
-                    //analyzing each entry afterwards;
-                    while (getline(f >> ws, temp))
-                    {
-                        //creating a string stream object to read from string 'temp';
-                        stringstream s(temp);
-                        string s1, s4, s5, s7, s9;
-                        //reading from the string stream object 's';
-                        getline(s, s1, ',');
-
-                        if (d.id == strToNum(s1))
-                        {
-                            f.close();
-                            getline(s, d.firstName, ',');
-                            getline(s, d.lastName, ',');
-                            getline(s, s4, ',');
-                            getline(s, s5, ',');
-                            getline(s, d.mobNumber, ',');
-                            getline(s, s7, ',');
-                            getline(s, d.licenseNumber, ',');
-                            getline(s, s9, ',');
-                            d.gender = s4[0];
-                            d.age = strToNum(s5);
-                            d.add.strToAdd(s7);
-                            d.idle = (s9 == "Y");
-                        }
-                    }
-                }
-                return;
-            }
-        }
-        f.close();
-        //if a record is found, it's details will be stored in the ambulance class object that called this function,
-        //and the control is returned;
-        //else:
-        cout << "\nNo matching record found!\n";
+        if (hospital::ambulancesList.find(reqId) != hospital::ambulancesList.end())
+            *this = hospital::ambulancesList[reqId];
+        else
+            cout << "\nNo matching record found!\n";
     }
     //2: Filter by model;
     else if (opt == 2)
@@ -209,71 +174,11 @@ void ambulance::getDetails(int rec)
         cout << "Model:\n";
         getline(cin >> ws, reqModel);
         vector<ambulance> matchingRecords;
-        fstream f;
-        f.open("./data/ambulances.csv", ios::in);
-        string temp;
-        //skipping the first row containing column headers;
-        getline(f >> ws, temp);
-        //analyzing each entry afterwards;
-        while (getline(f >> ws, temp))
+        for (auto i : hospital::ambulancesList)
         {
-            ambulance a;
-            //creating a string stream object to read from string 'temp';
-            stringstream s(temp);
-            string s1, s5, s6, s7;
-            //reading from the string stream object 's';
-            getline(s, s1, ',');
-            getline(s, a.model, ',');
-            getline(s, a.manufacturer, ',');
-
-            if (a.model == reqModel)
-            {
-                getline(s, a.vrn, ',');
-                getline(s, s5, ',');
-                getline(s, s6, ',');
-                getline(s, s7, ',');
-                a.id = strToNum(s1);
-                a.idle = (s5 == "Y");
-                if (!a.idle)
-                {
-                    a.add.strToAdd(s6);
-                    a.d.id = strToNum(s7);
-                    fstream f;
-                    f.open("./data/drivers.csv", ios::in);
-                    string temp;
-                    //skipping the first row containing column headers;
-                    getline(f >> ws, temp);
-                    //analyzing each entry afterwards;
-                    while (getline(f >> ws, temp))
-                    {
-                        //creating a string stream object to read from string 'temp';
-                        stringstream s(temp);
-                        string s1, s4, s5, s7, s9;
-                        //reading from the string stream object 's';
-                        getline(s, s1, ',');
-
-                        if (a.d.id == strToNum(s1))
-                        {
-                            f.close();
-                            getline(s, a.d.firstName, ',');
-                            getline(s, a.d.lastName, ',');
-                            getline(s, s4, ',');
-                            getline(s, s5, ',');
-                            getline(s, a.d.mobNumber, ',');
-                            getline(s, s7, ',');
-                            getline(s, a.d.licenseNumber, ',');
-                            getline(s, s9, ',');
-                            a.d.gender = s4[0];
-                            a.d.age = strToNum(s5);
-                            a.d.add.strToAdd(s7);
-                            a.d.idle = (s9 == "Y");
-                        }
-                    }
-                }
-                matchingRecords.push_back(a);
-            }
+            if (i.second.model == reqModel)
+                matchingRecords.push_back(i.second);
         }
-        f.close();
         cout << "\n";
         cout << matchingRecords.size() << " matching record(s) found!\n";
         for (auto i : matchingRecords)
@@ -286,30 +191,15 @@ void ambulance::getDetails(int rec)
                 int reqId;
                 cout << "\nEnter the ID of the required ambulance: ";
                 cin >> reqId;
-                for (auto i : matchingRecords)
-                    if (reqId == i.id)
-                    {
-                        id = i.id;
-                        model = i.model;
-                        manufacturer = i.manufacturer;
-                        vrn = i.vrn;
-                        idle = i.idle;
-                        add = i.add;
-                        d.id = i.d.id;
-                        d.firstName = i.d.firstName;
-                        d.lastName = i.d.lastName;
-                        d.gender = i.d.gender;
-                        d.age = i.d.age;
-                        d.mobNumber = i.d.mobNumber;
-                        d.add = i.d.add;
-                        d.licenseNumber = i.d.licenseNumber;
-                        d.idle = i.d.idle;
-                        return;
-                    }
-                cout << "\nInvalid ID!\nTry again? (Y = Yes || N = No)\n";
-                cin >> tt;
-                while (tt != 'Y' || tt != 'N')
-                    cout << "Y or N?\n", cin >> tt;
+                if (hospital::ambulancesList.find(reqId) != hospital::ambulancesList.end())
+                    *this = hospital::ambulancesList[reqId];
+                else
+                {
+                    cout << "\nInvalid ID!\nTry again? (Y = Yes || N = No)\n";
+                    cin >> tt;
+                    while (tt != 'Y' || tt != 'N')
+                        cout << "Y or N?\n", cin >> tt;
+                }
             } while (tt == 'Y');
         }
     }
@@ -319,71 +209,15 @@ void ambulance::getDetails(int rec)
         string reqVRN;
         cout << "Enter the vehicle reg. number of ambulance required:\n";
         getline(cin >> ws, reqVRN);
-        fstream f;
-        f.open("./data/ambulances.csv", ios::in);
-        string temp;
-        //skipping the first row containing column headers;
-        getline(f >> ws, temp);
-        //analyzing each entry afterwards;
-        while (getline(f >> ws, temp))
+        for (auto i : hospital::ambulancesList)
         {
-            //creating a string stream object to read from string 'temp';
-            stringstream s(temp);
-            string s1, s5, s6, s7;
-            //reading from the string stream object 's';
-            getline(s, s1, ',');
-            getline(s, model, ',');
-            getline(s, manufacturer, ',');
-            getline(s, vrn, ',');
-            if (vrn == reqVRN)
+            if (i.second.vrn == reqVRN)
             {
-                f.close();
-                getline(s, s5, ',');
-                getline(s, s6, ',');
-                getline(s, s7, ',');
-                id = strToNum(s1);
-                idle = (s5 == "Y");
-                if (!idle)
-                {
-                    add.strToAdd(s6);
-                    d.id = strToNum(s7);
-                    f.open("./data/drivers.csv", ios::in);
-                    string temp;
-                    //skipping the first row containing column headers;
-                    getline(f >> ws, temp);
-                    //analyzing each entry afterwards;
-                    while (getline(f >> ws, temp))
-                    {
-                        //creating a string stream object to read from string 'temp';
-                        stringstream s(temp);
-                        string s1, s4, s5, s7, s9;
-                        //reading from the string stream object 's';
-                        getline(s, s1, ',');
-
-                        if (d.id == strToNum(s1))
-                        {
-                            f.close();
-                            getline(s, d.firstName, ',');
-                            getline(s, d.lastName, ',');
-                            getline(s, s4, ',');
-                            getline(s, s5, ',');
-                            getline(s, d.mobNumber, ',');
-                            getline(s, s7, ',');
-                            getline(s, d.licenseNumber, ',');
-                            getline(s, s9, ',');
-                            d.gender = s4[0];
-                            d.age = strToNum(s5);
-                            d.add.strToAdd(s7);
-                            d.idle = (s9 == "Y");
-                        }
-                    }
-                }
-
+                *this = i.second;
                 return;
             }
         }
-        f.close();
-        //if a record is found, it's details will be stored in the ambulance class object that called this function,
+        //if a record is found, it's details will be stored in the driver class object that called this function,
         //and the control is returned;
         //else:
         cout << "\nNo matching record found!\n";
@@ -484,34 +318,15 @@ void ambulance::send()
     //*************picking an idle ambulance*************;
 
     bool gotOne = 0;
-    fstream f, fout;
-    f.open("./data/ambulances.csv", ios::in);
-    string temp;
-    //skipping the first row containing column headers;
-    getline(f >> ws, temp);
-    //analyzing each entry afterwards;
-    while (getline(f >> ws, temp))
+    for (auto i : hospital::ambulancesList)
     {
-        //creating a string stream object to read from string 'temp';
-        stringstream s(temp);
-        string s1, s5, s6, s7;
-        //reading from the string stream object 's';
-        getline(s, s1, ',');
-        getline(s, model, ',');
-        getline(s, manufacturer, ',');
-        getline(s, vrn, ',');
-        getline(s, s5, ',');
-        if (s5 == "Y")
+        if (i.second.idle)
         {
-            getline(s, s6, ',');
-            getline(s, s7, ',');
-            id = strToNum(s1);
-            idle = 1;
+            *this = i.second;
             gotOne = 1;
             break;
         }
     }
-    f.close();
     if (!gotOne)
     {
         cout << "No, idle ambulance found!"
@@ -521,38 +336,15 @@ void ambulance::send()
     //*************  picking a free driver  *************;
 
     gotOne = 0;
-    f.open("./data/drivers.csv", ios::in);
-    //skipping the first row containing column headers;
-    getline(f >> ws, temp);
-    //analyzing each entry afterwards;
-    while (getline(f >> ws, temp))
+    for (auto i : hospital::driversList)
     {
-        //creating a string stream object to read from string 'temp';
-        stringstream s(temp);
-        string s1, s2, s3, s4, s5, s6, s7, s8, s9;
-        //reading from the string stream object 's';
-        getline(s, s1, ',');
-        getline(s, d.firstName, ',');
-        getline(s, d.lastName, ',');
-        getline(s, s4, ',');
-        getline(s, s5, ',');
-        getline(s, d.mobNumber, ',');
-        getline(s, s7, ',');
-        getline(s, d.licenseNumber, ',');
-        getline(s, s9, ',');
-
-        if (s9 == "Y")
+        if (i.second.idle)
         {
-            d.id = strToNum(s1);
-            d.gender = s4[0];
-            d.age = strToNum(s5);
-            d.add.strToAdd(s7);
-            d.idle = 0;
+            D = i.second;
             gotOne = 1;
             break;
         }
     }
-    f.close();
     if (!gotOne)
     {
         cout << "No, idle driver found!"
@@ -560,146 +352,35 @@ void ambulance::send()
         return;
     }
 
+    idle = 0;
+
     cout << "Enter destination address:\n";
     add.takeInput();
 
     //updating status of ambulance;
-    string initial, corrected;
-    stringstream str;
-    str << id << "," << model << "," << manufacturer
-        << "," << vrn << ",Y,NA,NA\n";
-    getline(str >> ws, initial);
-    str << id << "," << model << "," << manufacturer
-        << "," << vrn << ","
-        << "N"
-        << "," << add.addToStr() << "," << d.id << "\n";
-    getline(str >> ws, corrected);
-    f.open("./data/ambulances.csv", ios::in);
-    fout.open("./data/temp.csv", ios::out);
-    while (getline(f, temp))
-    {
-        if (temp != initial)
-            fout << temp << endl;
-        else
-            fout << corrected << endl;
-    }
-    f.close();
-    fout.close();
-    initial.erase();
-    temp.erase();
-    remove("./data/ambulances.csv");
-    rename("./data/temp.csv", "./data/ambulances.csv");
+    hospital::ambulancesList[id] = *this;
 
     //updating status of driver;
-    f.open("./data/drivers.csv", ios::in);
+    hospital::driversList[D.id].idle = 0;
 
-    string s1, s2, s3, s4, s5, s6, s7, s8, s9;
-    //skipping the first row containing column headers;
-    getline(f >> ws, temp);
-    //analyzing each entry afterwards;
-    while (getline(f >> ws, temp))
-    {
-        //creating a string stream object to read from string 'temp';
-        stringstream s(temp);
-        //reading from the string stream object 's';
-        getline(s, s1, ',');
-
-        if (d.id == strToNum(s1))
-        {
-            getline(s, s2, ',');
-            getline(s, s3, ',');
-            getline(s, s4, ',');
-            getline(s, s5, ',');
-            getline(s, s6, ',');
-            getline(s, s7, ',');
-            getline(s, s8, ',');
-            getline(s, s9, ',');
-            break;
-        }
-    }
-    f.close();
-    str << d.id << "," << d.firstName << "," << d.lastName << "," << d.gender
-        << "," << d.age << "," << d.mobNumber << "," << d.add.addToStr()
-        << "," << d.licenseNumber << ",N\n";
-    getline(str >> ws, corrected);
-    str << d.id << "," << d.firstName << "," << d.lastName << "," << d.gender
-        << "," << d.age << "," << d.mobNumber << "," << d.add.addToStr()
-        << "," << d.licenseNumber << ",Y\n";
-    getline(str >> ws, initial);
-    fout.open("./data/temp.csv", ios::out);
-    f.open("./data/drivers.csv", ios::in);
-    while (getline(f, temp))
-    {
-        if (temp != initial)
-            fout << temp << "\n";
-        else
-            fout << corrected << "\n";
-    }
-    f.close();
-    fout.close();
-    initial.erase();
-    temp.erase();
-    remove("./data/drivers.csv");
-    rename("./data/temp.csv", "./data/drivers.csv");
-    cout << model << " by " << manufacturer << " sent with driver " << s2 << " " << s3 << " (ID = " << s1 << ") successfully!\n";
+    cout << model << " by " << manufacturer << " sent with driver " << D.firstName << " " << D.lastName << " (ID = " << D.id << ") successfully!\n";
     return;
 }
 void ambulance::reportArrival()
 {
     getDetails();
-    //updating status of ambulance;
-    string initial, corrected, temp;
-    stringstream str;
-    str << id << "," << model << "," << manufacturer
-        << "," << vrn << ",Y,NA,NA\n";
-    getline(str >> ws, corrected);
-
-    str << id << "," << model << "," << manufacturer
-        << "," << vrn << ","
-        << "N"
-        << "," << add.addToStr() << "," << d.id << "\n";
-    getline(str >> ws, initial);
-    fstream f, fout;
-    f.open("./data/ambulances.csv", ios::in);
-    fout.open("./data/temp.csv", ios::out);
-    while (getline(f, temp))
-    {
-        if (temp != initial)
-            fout << temp << endl;
-        else
-            fout << corrected << endl;
-    }
-    f.close();
-    fout.close();
-    initial.erase();
-    temp.erase();
-    remove("./data/ambulances.csv");
-    rename("./data/temp.csv", "./data/ambulances.csv");
 
     //updating status of driver;
-    str << d.id << "," << d.firstName << "," << d.lastName << "," << d.gender
-        << "," << d.age << "," << d.mobNumber << "," << d.add.addToStr()
-        << "," << d.licenseNumber << ",N\n";
-    getline(str >> ws, initial);
-    str << d.id << "," << d.firstName << "," << d.lastName << "," << d.gender
-        << "," << d.age << "," << d.mobNumber << "," << d.add.addToStr()
-        << "," << d.licenseNumber << ",Y\n";
-    getline(str >> ws, corrected);
-    f.open("./data/drivers.csv", ios::in);
-    fout.open("./data/temp.csv", ios::out);
-    while (getline(f, temp))
-    {
-        if (temp != initial)
-            fout << temp << "\n";
-        else
-            fout << corrected << "\n";
-    }
-    f.close();
-    fout.close();
-    initial.erase();
-    temp.erase();
-    remove("./data/drivers.csv");
-    rename("./data/temp.csv", "./data/drivers.csv");
+    //note that if we first update the status of ambulance we will lose the identity of it's driver;
+    //and then there will be no way to update the status of the driver;
+    hospital::driversList[D.id].idle = 1;
+
+    //updating status of ambulance;
+    hospital::ambulancesList[id].idle = 1;
+    hospital::ambulancesList[id].add.strToAdd("`````");
+    driver d;
+    hospital::ambulancesList[id].D = d;
+
     cout << "\nStatus of " << model << " by " << manufacturer << " sent with driver " << d.firstName << " " << d.lastName << " (ID = " << d.id << ") updated successfully!\n\n";
     return;
 }
@@ -714,21 +395,11 @@ void ambulance::removeAmbulance()
         cout << "\nSorry, the ambulance you selected to remove is NOT currently idle.\nOnly idlers can be removed.\n\n";
         return;
     }
+    hospital::doctorsList.erase(id);
+
     string s, temp;
-    stringstream str(s);
-    str << id << "," << model << "," << manufacturer << "," << vrn << ",Y,NA,NA\n";
-    getline(str, s);
-    fstream f, fout("./data/temp.csv", ios::out);
-    f.open("./data/ambulances.csv", ios::in);
-    while (getline(f, temp))
-        if (temp != s)
-            fout << temp << "\n";
-    f.close();
-    fout.close();
-    s.erase();
-    temp.erase();
-    remove("./data/ambulances.csv");
-    rename("./data/temp.csv", "./data/ambulances.csv");
+    stringstream str;
+    fstream f, fout;
     str << model << "," << manufacturer << "," << vrn << ",Y\n";
     getline(str, s);
     f.open("./data/ambulancesHistory.csv", ios::in);
@@ -737,7 +408,7 @@ void ambulance::removeAmbulance()
     {
         if (temp == s)
         {
-            fout << model << "," << manufacturer << "," << vrn << ",N,"
+            fout << model << "," << manufacturer << "," << vrn << ",N"
                  << "\n";
         }
         else

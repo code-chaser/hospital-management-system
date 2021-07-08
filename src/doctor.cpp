@@ -350,6 +350,10 @@ void doctor::removePerson()
     getDetails();
     if (id == -1)
         return;
+    if (appointmentsBooked > 0){
+        cout << "\nSelected doctor has appointments booked for today, can't be removed.\n\n";
+        return;
+    }
     hospital::doctorsList.erase(id);
 
     string s, temp;

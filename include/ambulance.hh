@@ -15,7 +15,7 @@ private:
     string vrn; //vehicle registration number;
     bool idle;
     address add;
-    driver d;
+    driver D;
 
 public:
     ambulance();

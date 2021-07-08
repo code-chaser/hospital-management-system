@@ -7,6 +7,7 @@ using namespace std;
 
 #include "./../include/global.hh"
 #include "./../include/appointment.hh"
+#include "./../include/hospital.hh"
 
 appointment::appointment()
 {
@@ -23,9 +24,45 @@ appointment::~appointment()
 }
 void appointment::fillMap()
 {
+    fstream f;
+    f.open("./data/appointments.csv", ios::in);
+    string temp;
+    //skipping the first row containing column headers;
+    getline(f >> ws, temp);
+    //analyzing each entry afterwards;
+    while (getline(f >> ws, temp))
+    {
+        appointment a;
+        //creating a string stream object to read from string 'temp';
+        stringstream s(temp);
+        string s1, s2, s3, s4;
+        //reading from the string stream object 's';
+        getline(s, s1, ',');
+        getline(s, s2, ','); // date is of no use here;
+        getline(s, s2, ','); // so overwriting s2;
+        getline(s, s3, ',');
+        getline(s, s4, ',');
+        a.id = strToNum(s1);
+        a.D = hospital::doctorsList[strToNum(s2)];
+        a.P = hospital::patientsList[strToNum(s3)];
+        hh = strToNum(s4);
+    }
+    f.close();
+    return;
 }
 void appointment::saveMap()
 {
+    fstream f;
+    f.open("./data/temp.csv", ios::out);
+    // `le first line conataining column headers:
+    f << "appointmentId,date(YYYYMMDD),doctorId,patientId,startTime(in 24-hr format)\n";
+    for (auto i : hospital::appointmentsList)
+        f << i.second.id << "," << yyyymmdd << "," << i.second.D.id << "," << i.second.P.id
+          << "," << i.second.hh << endl;
+    f.close();
+    remove("./data/appointments.csv");
+    rename("./data/temp.csv", "./data/appointments.csv");
+    return;
 }
 void appointment::printDetails()
 {

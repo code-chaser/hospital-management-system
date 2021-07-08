@@ -218,7 +218,6 @@ void driver::getDetails(int rec)
                 return;
             }
         }
-
         //if a record is found, it's details will be stored in the driver class object that called this function,
         //and the control is returned;
         //else:

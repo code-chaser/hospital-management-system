@@ -12,13 +12,21 @@ using namespace std;
 #include "./../include/hospital.hh"
 
 //definition of static members in the global scope;
+
 map<int, doctor> hospital::doctorsList;
 map<int, patient> hospital::patientsList;
 map<int, nurse> hospital::nursesList;
 map<int, driver> hospital::driversList;
 map<int, ambulance> hospital::ambulancesList;
 map<int, appointment> hospital::appointmentsList;
+
 const int hospital::doctorsLimit = 40;
+// ummm, patients limit, ummm, no!
+// appointments limit is kind of a patients limit;
+// rest hospitalized patients limit must be equal to;
+// number of available rooms, maybe I'll add this;
+// feature some other day in the future;
+// not feeling like doing it right now!
 const int hospital::nursesLimit = 100;
 const int hospital::driversLimit = 40;
 const int hospital::ambulancesLimit = 40;

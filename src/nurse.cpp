@@ -16,6 +16,53 @@ nurse::nurse()
     cat = "nurse";
     category = 3;
 }
+void nurse::fillMap()
+{
+    fstream f;
+    f.open("./data/nurses.csv", ios::in);
+    string temp;
+    //skipping the first row containing column headers;
+    getline(f >> ws, temp);
+    //analyzing each entry afterwards;
+    while (getline(f >> ws, temp))
+    {
+        nurse n;
+        //creating a string stream object to read from string 'temp';
+        stringstream s(temp);
+        string s1, s4, s5, s7;
+        //reading from the string stream object 's';
+        getline(s, s1, ',');
+        getline(s, n.firstName, ',');
+        getline(s, n.lastName, ',');
+        getline(s, s4, ',');
+        getline(s, s5, ',');
+        getline(s, n.mobNumber, ',');
+        getline(s, s7, ',');
+        getline(s, n.type, ',');
+        n.id = strToNum(s1);
+        n.gender = s4[0];
+        n.age = strToNum(s5);
+        n.add.strToAdd(s7);
+        hospital::nursesList[n.id] = n;
+    }
+    f.close();
+    return;
+}
+void nurse::saveMap()
+{
+    fstream f;
+    f.open("./data/temp.csv", ios::out);
+    // `le first line conataining column headers:
+    f << "nurseId,firstName,lastName,gender,age,mobNumber,address,type,appointmentsBooked\n";
+    for (auto i : hospital::nursesList)
+        f << i.second.id << "," << i.second.firstName << "," << i.second.lastName << "," << i.second.gender
+          << "," << i.second.age << "," << i.second.mobNumber << "," << i.second.add.addToStr()
+          << "," << i.second.type << endl;
+    f.close();
+    remove("./data/nurses.csv");
+    rename("./data/temp.csv", "./data/nurses.csv");
+    return;
+}
 void nurse::addPerson()
 {
     //18 and 65 are the age limits for registration of a new nurse;
@@ -24,33 +71,14 @@ void nurse::addPerson()
         return;
     cout << "\nEnter the type of the nurse: \n";
     getline(cin >> ws, type);
-    //creating a fstream object to read/write from/to files;
-    fstream f;
-    //opening the file to read it;
-    f.open("./data/nurses.csv", ios::in);
-
-    string temp, idString = "";
-    bool entry = 0;
-    //skipping the first row containing column headers;
-    getline(f >> ws, temp);
-    while (getline(f >> ws, temp))
-        entry = 1;
-    f.close();
-    if (entry)
-    {
-        stringstream s(temp);
-        getline(s, idString, ',');
-        id = strToNum(idString) + 1;
-    }
+    if (hospital::nursesList.rbegin() != hospital::nursesList.rend())
+        id = ((hospital::nursesList.rbegin())->first) + 1;
     else
         id = 1;
-    temp.erase();
-    idString.erase();
-    //creating a record in nurses.csv;
-    f.open("./data/nurses.csv", ios::app);
-    f << id << "," << firstName << "," << lastName << "," << gender << "," << age << "," << mobNumber << "," << add.addToStr() << "," << type << endl;
-    f.close();
+    hospital::nursesList[id] = *this;
 
+    //creating a fstream object to read/write from/to files;
+    fstream f;
     //creating a record in nursesHistory.csv;
     f.open("./data/nursesHistory.csv", ios::app);
     f << firstName << "," << lastName << "," << gender << "," << age << "," << mobNumber << "," << add.addToStr() << "," << type << ",N,NA" << endl;
@@ -130,44 +158,10 @@ void nurse::getDetails(int rec)
         int reqId;
         cout << "\nEnter ID:\n";
         cin >> reqId;
-
-        fstream f;
-        f.open("./data/nurses.csv", ios::in);
-        string temp;
-        //skipping the first row containing column headers;
-        getline(f >> ws, temp);
-        //analyzing each entry afterwards;
-        while (getline(f >> ws, temp))
-        {
-            //creating a string stream object to read from string 'temp';
-            stringstream s(temp);
-            string s1, s4, s5, s7;
-            //reading from the string stream object 's';
-            getline(s, s1, ',');
-
-            if (reqId == strToNum(s1))
-            {
-                f.close();
-                getline(s, firstName, ',');
-                getline(s, lastName, ',');
-                getline(s, s4, ',');
-                getline(s, s5, ',');
-                getline(s, mobNumber, ',');
-                getline(s, s7, ',');
-                getline(s, type, ',');
-                id = reqId;
-                gender = s4[0];
-                age = strToNum(s5);
-                add.strToAdd(s7);
-                return;
-            }
-        }
-        f.close();
-        //if a record is found, it's details will be stored in the nurse class object that called this function,
-        //and the control is returned;
-        //else:
-        cout << "\nNo matching record found!\n";
-        return;
+        if (hospital::nursesList.find(reqId) != hospital::nursesList.end())
+            *this = hospital::nursesList[reqId];
+        else
+            cout << "\nNo matching record found!\n";
     }
     //2: Filter by name;
     else if (opt == 2)
@@ -178,38 +172,11 @@ void nurse::getDetails(int rec)
         cout << "\nLast Name:\n";
         getline(cin, reqLName);
         vector<nurse> matchingRecords;
-        fstream f;
-        f.open("./data/nurses.csv", ios::in);
-        string temp;
-        //skipping the first row containing column headers;
-        getline(f >> ws, temp);
-        //analyzing each entry afterwards;
-        while (getline(f >> ws, temp))
+        for (auto i : hospital::nursesList)
         {
-            nurse n;
-            //creating a string stream object to read from string 'temp';
-            stringstream s(temp);
-            string s1, s4, s5, s7;
-            //reading from the string stream object 's';
-            getline(s, s1, ',');
-            getline(s, n.firstName, ',');
-            getline(s, n.lastName, ',');
-
-            if (n.firstName == reqFName && n.lastName == reqLName)
-            {
-                getline(s, s4, ',');
-                getline(s, s5, ',');
-                getline(s, n.mobNumber, ',');
-                getline(s, s7, ',');
-                getline(s, n.type, ',');
-                n.id = strToNum(s1);
-                n.gender = s4[0];
-                n.age = strToNum(s5);
-                n.add.strToAdd(s7);
-                matchingRecords.push_back(n);
-            }
+            if (i.second.firstName == reqFName && i.second.lastName == reqLName)
+                matchingRecords.push_back(i.second);
         }
-        f.close();
         cout << "\n";
         cout << matchingRecords.size() << " matching record(s) found!\n";
         for (auto i : matchingRecords)
@@ -222,23 +189,15 @@ void nurse::getDetails(int rec)
                 int reqId;
                 cout << "\nEnter the ID of the required nurse: ";
                 cin >> reqId;
-                for (auto i : matchingRecords)
-                    if (reqId == i.id)
-                    {
-                        id = i.id;
-                        firstName = i.firstName;
-                        lastName = i.lastName;
-                        gender = i.gender;
-                        age = i.age;
-                        mobNumber = i.mobNumber;
-                        add = i.add;
-                        type = i.type;
-                        return;
-                    }
-                cout << "\nInvalid ID!\nTry again? (Y = Yes || N = No)\n";
-                cin >> tt;
-                while (tt != 'Y' || tt != 'N')
-                    cout << "Y or N?\n", cin >> tt;
+                if (hospital::nursesList.find(reqId) != hospital::nursesList.end())
+                    *this = hospital::nursesList[reqId];
+                else
+                {
+                    cout << "\nInvalid ID!\nTry again? (Y = Yes || N = No)\n";
+                    cin >> tt;
+                    while (tt != 'Y' || tt != 'N')
+                        cout << "Y or N?\n", cin >> tt;
+                }
             } while (tt == 'Y');
         }
     }
@@ -249,65 +208,31 @@ void nurse::getDetails(int rec)
         cout << "Enter the type of nurse required:\n";
         getline(cin >> ws, reqType);
         vector<nurse> matchingRecords;
-        fstream f;
-        f.open("./data/nurses.csv", ios::in);
-        string temp;
-        //skipping the first row containing column headers;
-        getline(f >> ws, temp);
-        //analyzing each entry afterwards;
-        while (getline(f >> ws, temp))
+        for (auto i : hospital::nursesList)
         {
-            nurse n;
-            //creating a string stream object to read from string 'temp';
-            stringstream s(temp);
-            string s1, s4, s5, s7;
-            //reading from the string stream object 's';
-            getline(s, s1, ',');
-            getline(s, n.firstName, ',');
-            getline(s, n.lastName, ',');
-            getline(s, s4, ',');
-            getline(s, s5, ',');
-            getline(s, n.mobNumber, ',');
-            getline(s, s7, ',');
-            getline(s, n.type, ',');
-            if (n.type == reqType)
-            {
-                n.id = strToNum(s1);
-                n.gender = s4[0];
-                n.age = strToNum(s5);
-                n.add.strToAdd(s7);
-                matchingRecords.push_back(n);
-            }
+            if (i.second.type == reqType)
+                matchingRecords.push_back(i.second);
         }
-        f.close();
         cout << "\n";
         cout << matchingRecords.size() << " matching record(s) found!\n";
         for (auto i : matchingRecords)
             i.printDetails();
         char tt = 'N';
-        if (matchingRecords.size() > rec)
+        if (matchingRecords.size() > 0)
             do
             {
                 int reqId;
                 cout << "\nEnter the ID of the required nurse: ";
                 cin >> reqId;
-                for (auto i : matchingRecords)
-                    if (reqId == i.id)
-                    {
-                        id = i.id;
-                        firstName = i.firstName;
-                        lastName = i.lastName;
-                        gender = i.gender;
-                        age = i.age;
-                        mobNumber = i.mobNumber;
-                        add = i.add;
-                        type = i.type;
-                        return;
-                    }
-                cout << "Invalid ID!\nTry again? (Y = Yes || N = No)\n";
-                cin >> tt;
-                while (tt != 'Y' || tt != 'N')
-                    cout << "Y or N?\n", cin >> tt;
+                if (hospital::nursesList.find(reqId) != hospital::nursesList.end())
+                    *this = hospital::nursesList[reqId];
+                else
+                {
+                    cout << "\nInvalid ID!\nTry again? (Y = Yes || N = No)\n";
+                    cin >> tt;
+                    while (tt != 'Y' || tt != 'N')
+                        cout << "Y or N?\n", cin >> tt;
+                }
             } while (tt == 'Y');
     }
     return;
@@ -421,22 +346,11 @@ void nurse::removePerson()
     getDetails();
     if (id == -1)
         return;
+    hospital::nursesList.erase(id);
+
     string s, temp;
-    stringstream str(s);
-    str << id << "," << firstName << "," << lastName << "," << gender << "," << age
-        << "," << mobNumber << "," << add.addToStr() << "," << type << "\n";
-    getline(str, s);
-    fstream f, fout("./data/temp.csv", ios::out);
-    f.open("./data/nurses.csv", ios::in);
-    while (getline(f, temp))
-        if (temp != s)
-            fout << temp << "\n";
-    f.close();
-    fout.close();
-    s.erase();
-    temp.erase();
-    remove("./data/nurses.csv");
-    rename("./data/temp.csv", "./data/nurses.csv");
+    stringstream str;
+    fstream f, fout;
     string reason;
     cout << "\nReason?\n";
     getline(cin >> ws, reason);

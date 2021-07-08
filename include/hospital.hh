@@ -15,17 +15,20 @@ using namespace std;
 class hospital
 {
 private:
+    //map<id, object>
     static map<int, doctor> doctorsList;
     static map<int, patient> patientsList;
     static map<int, nurse> nursesList;
     static map<int, driver> driversList;
     static map<int, ambulance> ambulancesList;
     static map<int, appointment> appointmentsList;
+
     static const int doctorsLimit;
     static const int nursesLimit;
     static const int driversLimit;
     static const int ambulancesLimit;
     static const int appointmentsLimit;
+
     friend class doctor;
     friend class patient;
     friend class nurse;

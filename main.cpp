@@ -2,6 +2,8 @@
 #include <fstream>
 #include <string>
 #include <sstream>
+#include <ios>    //used to get stream size
+#include <limits> //used to get numeric limits
 using namespace std;
 
 #include "./include/global.hh"
@@ -64,9 +66,20 @@ int main()
              << s.substr(6, 2) + "-" + s.substr(4, 2) + "-" + s.substr(0, 4) + "\n";
         return 0;
     }
+    //filling maps with data from csv files;
     {
-        doctor d;
-        d.getData();
+        doctor d1;
+        patient p;
+        nurse n;
+        driver d2;
+        ambulance a1;
+        appointment a2;
+        d1.fillMap();
+        p.fillMap();
+        n.fillMap();
+        d2.fillMap();
+        //a1.fillMap();
+        //a2.fillMap();
     }
     while (1)
     {
@@ -129,7 +142,7 @@ int main()
             cout << "\n\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
             cout << "\nShutting Down System...\n";
             cout << "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
-            return 0;
+            break;
         }
         cout << "\n";
         if (purpose == 1)
@@ -277,9 +290,30 @@ int main()
         {
             cout << "\nInvalid Choice!\n";
         }
-        cout << "\n\nPress ENTER to continue...\n\n";
-        getchar();
+
+        cin.ignore(numeric_limits<streamsize>::max(), '\n'); //clearing cin buffer;
+
+        cout << endl;
+        cout << "\nPress ENTER to continue...\n";
+        cout << endl;
+
         getchar();
     }
+    //saving data inside maps by overwriting it on the files
+    {
+        doctor d1;
+        patient p;
+        nurse n;
+        driver d2;
+        ambulance a1;
+        appointment a2;
+        d1.saveMap();
+        p.saveMap();
+        n.saveMap();
+        d2.saveMap();
+        // a1.saveMap();
+        // a2.saveMap();
+    }
+
     return 0;
 }

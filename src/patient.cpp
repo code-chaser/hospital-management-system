@@ -17,6 +17,61 @@ patient::patient()
     cat = "patient";
     category = 2;
 }
+void patient::fillMap()
+{
+    fstream f;
+    f.open("./data/patients.csv", ios::in);
+    string temp;
+    //skipping the first row containing column headers;
+    getline(f >> ws, temp);
+    //analyzing each entry afterwards;
+    while (getline(f >> ws, temp))
+    {
+        patient p;
+        //creating a string stream object to read from string 'temp';
+        stringstream s(temp);
+        string s1, s4, s5, s7, s8, s9, s10, s11;
+        //reading from the string stream object 's';
+        getline(s, s1, ',');
+        getline(s, p.firstName, ',');
+        getline(s, p.lastName, ',');
+        getline(s, s4, ',');
+        getline(s, s5, ',');
+        getline(s, p.mobNumber, ',');
+        getline(s, s7, ',');
+        getline(s, s8, ',');
+        getline(s, s9, ',');
+        getline(s, s10, ',');
+        getline(s, s11, ',');
+        p.id = strToNum(s1);
+        p.gender = s4[0];
+        p.age = strToNum(s5);
+        p.add.strToAdd(s7);
+        p.height = strToNum(s8);
+        p.weight = strToNum(s9);
+        p.hospitalized = (s10 == "Y");
+        p.alive = (s11 == "Y");
+        hospital::patientsList[p.id] = p;
+    }
+    f.close();
+    return;
+}
+void patient::saveMap()
+{
+    fstream f;
+    f.open("./data/temp.csv", ios::out);
+    // `le first line conataining column headers:
+    f << "patientId,firstName,lastName,gender,age,mobNumber,address,height,weight,wasHospitalized?,stillAlive(ifHospitalized)?\n";
+    for (auto i : hospital::patientsList)
+        f << i.second.id << "," << i.second.firstName << "," << i.second.lastName << "," << i.second.gender
+          << "," << i.second.age << "," << i.second.mobNumber << "," << i.second.add.addToStr()
+          << "," << i.second.height << "," << i.second.weight << ","
+          << (i.second.hospitalized ? 'Y' : 'N') << "," << (i.second.alive ? 'Y' : 'N') << endl;
+    f.close();
+    remove("./data/patients.csv");
+    rename("./data/temp.csv", "./data/patients.csv");
+    return;
+}
 void patient::addPerson()
 {
     //getting the basic details of patient from the user side;
@@ -32,36 +87,14 @@ void patient::addPerson()
     while (tt != 'Y' && tt != 'N')
         cout << "Y or N?\n", cin >> tt;
     hospitalized = (tt == 'Y');
-    //creating a fstream object to read/write from/to files;
-    fstream f;
-    //opening the file to read it;
-    f.open("./data/patients.csv", ios::in);
-
-    string temp, idString = "";
-    bool entry = 0;
-    //skipping the first row containing column headers;
-    getline(f >> ws, temp);
-    while (getline(f >> ws, temp))
-        entry = 1;
-    f.close();
-    if (entry)
-    {
-        stringstream s(temp);
-        getline(s, idString, ',');
-        id = strToNum(idString) + 1;
-    }
+    if (hospital::patientsList.rbegin() != hospital::patientsList.rend())
+        id = ((hospital::patientsList.rbegin())->first) + 1;
     else
         id = 1;
-    //creating a record in patients.csv;
-    f.open("./data/patients.csv", ios::app);
-    f << id << "," << firstName << "," << lastName
-      << "," << gender << "," << age << "," << mobNumber << "," << add.addToStr()
-      << "," << height << "," << weight << "," << ((hospitalized) ? "Y" : "N")
-      << ","
-      << "Y"
-      << "\n";
-    f.close();
+    hospital::patientsList[id] = *this;
 
+    //creating a fstream object to read/write from/to files;
+    fstream f;
     //creating a record in patientsHistory.csv;
     f.open("./data/patientsHistory.csv", ios::app);
     f << firstName << "," << lastName << "," << gender << "," << age

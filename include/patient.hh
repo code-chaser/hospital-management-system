@@ -16,6 +16,8 @@ private:
 
 public:
     patient();
+    void fillMap();
+    void saveMap();
     void addPerson();
     void printDetails();
     void printDetailsFromHistory(string extraDetails = "");

@@ -13,11 +13,11 @@ private:
     string type;
     int appointmentsBooked;
     friend class appointment;
-    friend class hospital;
 
 public:
     doctor();
-    void getData();
+    void fillMap();
+    void saveMap();
     void addPerson();
     void printDetails();
     void printDetailsFromHistory(string extraDetails = "");

@@ -20,6 +20,8 @@ protected:
 
 public:
     person();
+    virtual void fillMap() = 0;
+    virtual void saveMap() = 0;
     void addPerson(int16_t minAge = 0, int16_t maxAge = 1000);
     virtual void printDetails();
     virtual void printDetailsFromHistory();

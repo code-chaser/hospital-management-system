@@ -44,7 +44,9 @@ ___
 |hospital||
 ___
 
-![UML Class Diagram](https://user-images.githubusercontent.com/63065397/125039328-fe96de00-e0b3-11eb-904a-858875081d0c.jpeg)
+
+![UML Class Diagram](https://user-images.githubusercontent.com/63065397/125062323-e3d06380-e0cb-11eb-98e5-f242393b4e1f.jpeg)
+
 
 ___
 

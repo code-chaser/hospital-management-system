@@ -155,6 +155,7 @@ void appointment::book()
         id = ((hospital::appointmentsList.rbegin())->first) + 1;
     else
         id = 1;
+    hh = 9 + D.appointmentsBooked;
     hospital::appointmentsList[id] = *this;
 
     hospital::doctorsList[D.id].appointmentsBooked++;

@@ -2,6 +2,7 @@
 #define DRIVER
 using namespace std;
 #include <string>
+
 #include "./person.hh"
 
 class ambulance;
@@ -14,6 +15,8 @@ private:
 
 public:
     driver();
+    void fillMap();
+    void saveMap();
     void addPerson();
     void printDetails();
     void printDetailsFromHistory(string extraDetails = "");

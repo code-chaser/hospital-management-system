@@ -4,14 +4,13 @@ using namespace std;
 #include <iostream>
 #include <sstream>
 #include <fstream>
+
 #include "./../include/global.hh"
 #include "./../include/person.hh"
 
 person::person()
 {
     id = -1;
-    cat = "";
-    category = 0;
 }
 void person::addPerson(int16_t minAge, int16_t maxAge)
 {

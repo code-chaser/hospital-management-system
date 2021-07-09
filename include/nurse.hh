@@ -2,6 +2,7 @@
 #define NURSE
 using namespace std;
 #include <string>
+
 #include "./person.hh"
 
 class nurse : public person
@@ -11,6 +12,8 @@ private:
 
 public:
     nurse();
+    void fillMap();
+    void saveMap();
     void addPerson();
     void printDetails();
     void printDetailsFromHistory(string extraDetails = "");

@@ -4,8 +4,10 @@ using namespace std;
 #include <iostream>
 #include <sstream>
 #include <fstream>
+
 #include "./../include/global.hh"
 #include "./../include/address.hh"
+
 address::address()
 {
     line1 = "";

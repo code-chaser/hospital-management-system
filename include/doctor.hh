@@ -1,8 +1,8 @@
 #ifndef DOCTOR
 #define DOCTOR
 using namespace std;
-#include <vector>
 #include <string>
+
 #include "./person.hh"
 
 class appointment;
@@ -12,10 +12,11 @@ private:
     string type;
     int appointmentsBooked;
     friend class appointment;
-    friend class hospital;
 
 public:
     doctor();
+    void fillMap();
+    void saveMap();
     void addPerson();
     void printDetails();
     void printDetailsFromHistory(string extraDetails = "");

@@ -1,6 +1,7 @@
 #ifndef PATIENT
 #define PATIENT
 using namespace std;
+
 #include "./person.hh"
 
 class appointment;
@@ -15,6 +16,8 @@ private:
 
 public:
     patient();
+    void fillMap();
+    void saveMap();
     void addPerson();
     void printDetails();
     void printDetailsFromHistory(string extraDetails = "");

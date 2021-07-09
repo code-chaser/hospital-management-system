@@ -1,5 +1,6 @@
-#include<string>
 using namespace std;
+#include<string>
+
 #include "./../include/global.hh"
 
 int yyyymmdd;

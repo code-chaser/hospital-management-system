@@ -33,7 +33,7 @@ ___
 |CLASS|DESCRIPTION|
 |-----|-----------|
 |address|- stores the address in a structured manner in its private fields: `line1, line2, city, state, pinCode, country`;<br>- has publicly accessible methods to take address as input, output address in a particular manner, generate & return string of a specific format from some address and read the same string to generate back the same address, whenever required;|
-|**_person_**|- it's an **_abstract class_** containing **_5 abstract (pure virtual) methods_**;<br>- stores all the basic information of a person in its private fields: `id, firstName, lastName, gender, age, mobNumber, add`;<br>- has publicly accessible methods to take the information as input, print it, fill it in an object;<br>- classes `doctor`, `patient`, `nurse` & `driver` inherits class `person`and in addition contains a few class-specific fields and methods;
+|**_person_**|- it's an **_abstract class_** containing **_5 abstract (pure virtual) methods_**;<br>- stores all the basic information of a person in its private fields: `id, firstName, lastName, gender, age, mobNumber, add`;<br>- has publicly accessible methods to take the information as input, print it, fill it in an object;<br>- **classes `doctor`, `patient`, `nurse` & `driver` inherits class `person`** and in addition contains a few class-specific fields and methods;
 |appointment||
 |ambulance||
 |hospital||

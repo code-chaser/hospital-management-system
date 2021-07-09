@@ -34,17 +34,17 @@ ___
 |CLASS|DESCRIPTION|
 |-----|-----------|
 |address|stores the address in a structured manner in its private fields: ` line1, line2, city, state, pinCode, country ` ;<br>has publicly accessible methods to take address as input, output address, generate & return string from an address object and read the same string to generate back the same address object whenever required;|
-|_person_|it's an **_abstract class_** containing 3 **_abstract methods_**;<br>stores all the basic information of a person in its private fields: ` id, firstName, lastName, gender, age, mobNumber, add ` ;<br>has publicly accessible methods to take the information as input, print it, fill it in an object;
+|_person_|it's an **_abstract class_** containing 5 **_abstract methods_**;<br>stores all the basic information of a person in its private fields: ` id, firstName, lastName, gender, age, mobNumber, add ` ;<br>has publicly accessible methods to take the information as input, print it, fill it in an object;
 |doctor||
 |patient||
 |appointment||
 |nurse||
 |driver||
 |ambulance||
+|hospital||
 ___
 
-
-![UML Class Diagram](https://user-images.githubusercontent.com/63065397/124445049-d437de80-dd9c-11eb-8ca1-6b39742f5bf4.png)
+![UML Class Diagram](https://user-images.githubusercontent.com/63065397/125039328-fe96de00-e0b3-11eb-904a-858875081d0c.jpeg)
 
 ___
 

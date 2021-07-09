@@ -1,4 +1,4 @@
-# hospital-management-system &nbsp; ![Generic badge](https://img.shields.io/badge/University-Project-red.svg) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://en.wikipedia.org/wiki/MIT_License) ![views](https://visitor-badge.glitch.me/badge?page_id=code-chaser.h-m-s) &nbsp;
+# hospital-management-system &nbsp; ![Generic badge](https://img.shields.io/badge/University-Project-red.svg) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://en.wikipedia.org/wiki/MIT_License) <!--![views](https://visitor-badge.glitch.me/badge?page_id=code-chaser.h-m-s) &nbsp;-->
 ## INTRODUCTION
 a hospital management system, made using object oriented programming and file handling in C++, that keeps records of doctors & their appointments, patitents, staff, ambulances, etc.
 
@@ -20,8 +20,7 @@ ___
   ```
    - for executing it:
   ```bash
-     make run        # for linux/macOS;
-     make run(win)   # for windows;
+     make run        # universal;
   ```
    - for deleting executable file:
   ```bash
@@ -33,13 +32,9 @@ ___
 #### CLASS DESIGN
 |CLASS|DESCRIPTION|
 |-----|-----------|
-|address|stores the address in a structured manner in its private fields: ` line1, line2, city, state, pinCode, country ` ;<br>has publicly accessible methods to take address as input, output address, generate & return string from an address object and read the same string to generate back the same address object whenever required;|
-|_person_|it's an **_abstract class_** containing 5 **_abstract methods_**;<br>stores all the basic information of a person in its private fields: ` id, firstName, lastName, gender, age, mobNumber, add ` ;<br>has publicly accessible methods to take the information as input, print it, fill it in an object;
-|doctor||
-|patient||
+|address|- stores the address in a structured manner in its private fields: `line1, line2, city, state, pinCode, country`;<br>- has publicly accessible methods to take address as input, output address in a particular manner, generate & return string of a specific format from some address and read the same string to generate back the same address, whenever required;|
+|**_person_**|- it's an **_abstract class_** containing **_5 abstract (pure virtual) methods_**;<br>- stores all the basic information of a person in its private fields: `id, firstName, lastName, gender, age, mobNumber, add`;<br>- has publicly accessible methods to take the information as input, print it, fill it in an object;<br>- classes `doctor`, `patient`, `nurse` & `driver` inherits class `person`and in addition contains a few class-specific fields and methods;
 |appointment||
-|nurse||
-|driver||
 |ambulance||
 |hospital||
 ___

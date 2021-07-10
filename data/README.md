@@ -9,7 +9,13 @@ ___
 
 <br>
 
-# Description of basic Data
+# Description of Data Storage
+
+All the data of this **hospital-management-system** is stored in **CSV** (Comma-Seperated-Value) files, because of two major reasons:
+- these plain-text files can be easily converted to spreadsheets, thus making it human-readable, plus;
+- CSV files are easy to parse, making data extraction easier.
+
+<br>
 
 |S.No.|Field(s)|Description|
 |-----|-----|-----------|

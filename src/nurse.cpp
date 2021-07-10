@@ -53,7 +53,7 @@ void nurse::saveMap()
     fstream f;
     f.open("./data/temp.csv", ios::out);
     // `le first line conataining column headers:
-    f << "nurseId,firstName,lastName,gender,age,mobNumber,address,type,appointmentsBooked\n";
+    f << "nurseId,firstName,lastName,gender,age,mobNumber,address,type\n";
     for (auto i : hospital::nursesList)
         f << i.second.id << "," << i.second.firstName << "," << i.second.lastName << "," << i.second.gender
           << "," << i.second.age << "," << i.second.mobNumber << "," << i.second.add.addToStr()

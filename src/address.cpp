@@ -65,17 +65,17 @@ string address::addToStr()
 void address::strToAdd(string str)
 {
     stringstream s(str);
-    string s1, s2;
-    getline(s, s1, '`');
-    for (auto &i : s1)
+    
+    getline(s, line1, '`');
+    for (auto &i : line1)
         if (i == '^')
             i = ',';
-    line1 = s1;
-    getline(s, s2, '`');
-    for (auto &i : s2)
+
+    getline(s, line2, '`');
+    for (auto &i : line2)
         if (i == '^')
             i = ',';
-    line2 = s2;
+
     getline(s, city, '`');
     getline(s, state, '`');
     getline(s, pinCode, '`');

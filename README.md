@@ -32,10 +32,10 @@ ___
 #### CLASS DESIGN
 |CLASS|DESCRIPTION|
 |-----|-----------|
-|[address](https://github.com/code-chaser/hospital-management-system/blob/main/docs/address.md#class-address)|- stores the address in a structured manner in its private fields: `line1, line2, city, state, pinCode, country`;<br>- has publicly accessible methods to take address as input, output address in a particular manner, generate & return string of a specific format from some address and read the same string to generate back the same address, whenever required;|
-|**_person_**|- it's an **_abstract class_** containing **_5 abstract (pure virtual) methods_**;<br>- stores all the basic information of a person in its private fields: `id, firstName, lastName, gender, age, mobNumber, add`;<br>- has publicly accessible methods to take the information as input, print it, fill it in an object;<br>- **classes `doctor`, `patient`, `nurse` & `driver` inherits class `person`** and in addition contains a few class-specific fields and methods;
-|appointment||
-|ambulance||
+|[address](https://github.com/code-chaser/hospital-management-system/blob/main/docs/address.md#class-address)|<li>stores the address in a structured manner in its private fields: `line1, line2, city, state, pinCode, country`;<li>has publicly accessible methods to take address as input, output address in a particular manner, generate & return string of a specific format from some address and read the same string to generate back the same address, whenever required;|
+|**_person_**|<li>it's an **_abstract class_** containing **_5 abstract (pure virtual) methods_**;<li>**'has-a'** (object of class) `address`;<li>stores all the basic information of a person in its private fields: `id, firstName, lastName, gender, age, mobNumber, add`;<li>has publicly accessible methods to take the information as input, print it and fill it in an object;<li>classes `doctor`, `patient`, `nurse` & `driver` **'inherits'** class `person` and in addition contains a few class-specific fields and methods;
+|appointment|<li>**'has-a'** (object of class) `doctor` and **'has-a'** (object of class) `patient`;<li>in addition, it has two more private member fields : `id, hh` to store the appointment ID and its starting hour (in 24-Hr format);<li>has publicly accessible methods to book an appointment, get and print details of a booked appointment;|
+|ambulance|<li>**'has-a'** (object of class) `driver` and **'has-a'** (object of class) `address`;<li>in addition, has a few more private fields to store the basic details of an ambulance;<li>has publicly accessible methods to register an ambulance, print it's details, send an ambulance to a destination and report its arrival;|
 |hospital||
 ___
 

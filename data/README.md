@@ -19,7 +19,7 @@ ___
 |4.|gender|Gender of a person : string (composed of a char, either 'M' or 'F');|
 |5.|age|Age of a person : string (composed of positive integers);|
 |6.|mobNumber|Mobile Number of a person : string;|
-|7.|address|Address of a place : string;<br><br>Format of the address string :<br><ul><li>values of the different fields of the class `address` i.e. `line1, line2, city, state, pinCode, country` are pushed into the address string seperated by a [backtick](https://en.wikipedia.org/wiki/Grave_accent) character, since commas (`,`) are already used by csv files for differentiating adjacent cells of the same row;</li><li>also, since values of the fields `line1` and `line2` might contain commas (`,`), so, before storing them, an iteration is performed over them and each `,` is replaced by `^`;</li></ul> |
+|7.|address|Address of a place : string;<br><br>Formation of the address string :<br><ul><li>values of the different fields of the class `address` i.e. `line1, line2, city, state, pinCode, country` are pushed into the address string seperated by a [backtick](https://en.wikipedia.org/wiki/Grave_accent) character, since commas (`,`) are already used by csv files for differentiating adjacent cells of the same row;</li><li>also, since values of the fields `line1` and `line2` might contain commas (`,`), so, before storing them, an iteration is performed over them and each `,` is replaced by `^`;</li></ul> |
 <br>
 
 ___

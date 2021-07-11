@@ -18,7 +18,7 @@ All the data of this **hospital-management-system** is stored in **CSV** (Comma-
 <br>
 
 |S.No.|Field(s)|Description|
-|:---:|-----|-----------|
+|-----|:---:|-----------|
 |1.|id|ID : string (composed of positive integers);|
 |2.|firstName|First Name of a person : string;|
 |3.|lastName| Last Name of a person : string (might be blank);|

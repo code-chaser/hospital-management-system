@@ -28,7 +28,6 @@ ___
      make clean(win) # for windows;
   ```
 ___
-#### USAGE
 
 ___
 >##### *Hope you like it! :)*

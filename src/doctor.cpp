@@ -107,7 +107,7 @@ void doctor::printDetails()
     cout << "Appointments    : " << appointmentsBooked << "/8 (appointments booked today)\n";
     return;
 }
-void doctor::printDetailsFromHistory(string extraDetails)
+void doctor::printDetailsFromHistory(string extraDetails = "")
 {
     if (id == -1)
         return;

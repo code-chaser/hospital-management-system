@@ -107,7 +107,7 @@ void driver::printDetails()
     cout << "Idle?           : " << (idle ? "Y\n" : "N\n");
     return;
 }
-void driver::printDetailsFromHistory(string extraDetails)
+void driver::printDetailsFromHistory(string extraDetails = "")
 {
     if (id == -1)
         return;

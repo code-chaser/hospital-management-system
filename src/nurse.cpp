@@ -103,7 +103,7 @@ void nurse::printDetails()
     cout << "Type            : " << type << "\n";
     return;
 }
-void nurse::printDetailsFromHistory(string extraDetails)
+void nurse::printDetailsFromHistory(string extraDetails = "")
 {
     if (id == -1)
         return;

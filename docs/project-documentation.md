@@ -4,7 +4,14 @@ a hospital management system, made using object oriented programming and file ha
 
 ___
 
-<br>
+
+#### GO TO:
+- [**GOALS & OBJECTTIVES**](https://github.com/code-chaser/hospital-management-system/blob/project/docs/project-documentation.md#-goals--objecttives)
+- [**SYSTEM DESIGN**](https://github.com/code-chaser/hospital-management-system/blob/project/docs/project-documentation.md#system-design)
+- [**IMPLEMENTATION**](https://github.com/code-chaser/hospital-management-system/blob/project/docs/project-documentation.md#implementation)
+
+___
+
 
 ## DESCRIPTION
 ___
@@ -31,7 +38,7 @@ ___
   
 |CLASS|DESCRIPTION|
 |:-----:|-----------|
-|address|<ul><li>stores the address of a location in a structured manner in its private fields: `line1, line2, city, state, pinCode, country`;<li>has publicly accessible methods to take address as input, output it in a particular manner, generate & return string of a specific format from some address and read the same string to generate back the same address, whenever required ([read more](https://github.com/code-chaser/hospital-management-system/blob/project/docs/address.md));|
+|address|<ul><li>stores the address of a location in a structured manner in its private fields: `line1, line2, city, state, pinCode, country`;<li>has publicly accessible methods to take address as input, output it in a particular manner, generate & return string of a specific format from some address and read the same string to generate back the same address, whenever required ([read more](https://github.com/code-chaser/hospital-management-system/blob/main/docs/address.md));|
 |**_person_**|<ul><li>it's an **_abstract class_** containing **_5 abstract (pure virtual) methods_**;<li>**'has-a'** (object of class) `address`;<li>stores all the basic information of a person in its private fields: `id, firstName, lastName, gender, age, mobNumber, add`;<li>has publicly accessible methods to take the information as input, print it and fill it in an object;<li>class `doctor`, `patient`, `nurse` & `driver` **'inherits'** class `person` and in addition contains a few class-specific fields and methods;
 |appointment|<ul><li>**'has-a'** (object of class) `doctor` and **'has-a'** (object of class) `patient`;<li>in addition, it has two more private member fields : `id, hh` to store the appointment ID and its starting hour (in 24-Hr format);<li>has publicly accessible methods to book an appointment, get and print details of a booked appointment;|
 |ambulance|<ul><li>**'has-a'** (object of class) `driver` and **'has-a'** (object of class) `address`;<li>in addition, has a few more private fields to store the basic details of an ambulance;<li>has publicly accessible methods to register an ambulance, print it's details, send an ambulance to a destination and report its arrival;|
@@ -262,10 +269,104 @@ ___
         return;
     }
     ```
+      - *remove function of class* `ambulance` *i.e.* `removeAmbulance();` *works in a similar fashion*;
   <br>
   <br>    
   
   
+  - ### `patient::hospitalize();` & `patient::reportADeath` functions
+    - these functions are implemented really simply, they just change the values of `patient` class fields `bool hospitalized, alive;` to TRUE and FALSE respectively
+    - in addition, they also change the values of `patientsHistory.csv` file's columns "was Hospitalized?", "still Alive?" to 'Y' and 'N' respectively;
   
+  <br>
+  <br>
+  
+  - ### `ambulance::send();` function
+    - it fetches an idle ambulance and an idle driver and then changes their `bool idle;` fields to FALSE, takes the address of the destination location from the user side as input and sends the ambulance to that address;
+    - functioning:
+        - searches in the map `hospital::ambulancesList` for the first ambulance which has its `bool idle;` field set as TRUE, and if not found prints not found message and returns the control, else moves further;
+        - searches in the map `hospital::driversList` for the first driver which has its `bool idle;` field set as TRUE, and if not found prints not found message and returns the control, else moves further;
+        - takes the address of the location where the ambulance is to be sent as input from the user side;
+        - adds that address into `address add` field of the ambulance object;<br><br>
+  
+    ```cpp
+    void ambulance::send()
+    {
+        //*************picking an idle ambulance*************;
+        bool gotOne = 0;
+        for (auto i : hospital::ambulancesList)
+        {
+            if (i.second.idle)
+            {
+                *this = i.second;
+                gotOne = 1;
+                break;
+            }
+        }
+        if (!gotOne)
+        {
+            cout << "No, idle ambulance found!" << "\n";
+            return;
+        }
+        //*************  picking a free driver  *************;
+        gotOne = 0;
+        for (auto i : hospital::driversList)
+        {
+            if (i.second.idle)
+            {
+                D = i.second;
+                gotOne = 1;
+                break;
+            }
+        }
+        if (!gotOne)
+        {
+            cout << "No, idle driver found!" << "\n";
+            return;
+        }
+        idle = 0;
+        cout << "Enter destination address:\n";
+        add.takeInput();
+        //updating status of ambulance;
+        hospital::ambulancesList[id] = *this;
+        //updating status of driver;
+        hospital::driversList[D.id].idle = 0;
+        cout << model << " by " << manufacturer << " sent with driver " 
+             << D.firstName << " " << D.lastName << " (ID = " << D.id << ") successfully!\n";
+        return;
+    }
+    ```
+  
+  <br>
+  <br>
+  
+  - ### `ambulance::reportArrival();` function
+    - implementation of this function is pretty simple;
+    - firstly it gives the call to `ambulance::getDetails();` function to let the user select the ambulance whose arrival is to be reported;
+    - once selected, it just changes the `bool idle;` fields of the associated driver and ambulance objects to TRUE;<br><br>
+  
+    ```cpp
+    void ambulance::reportArrival()
+    {
+        getDetails();
+        
+        //updating status of driver;
+        hospital::driversList[D.id].idle = 1;
+
+        //updating status of ambulance;
+        hospital::ambulancesList[id].idle = 1;
+        hospital::ambulancesList[id].add.strToAdd("`````");
+        driver d;
+        hospital::ambulancesList[id].D = d;
+
+        cout << "\nStatus updated successfully!\n\n";
+        return;
+    }
+    ```
+  
+  <br>
+  <br>
+    
+    
   
 ___

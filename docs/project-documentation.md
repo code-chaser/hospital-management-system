@@ -274,14 +274,14 @@ ___
   <br>    
   
   
-  - ### `patient::hospitalize();` & `patient::reportADeath` functions
+  - ### `patient::hospitalize();` & `patient::reportADeath` functions:
     - these functions are implemented really simply, they just change the values of `patient` class fields `bool hospitalized, alive;` to TRUE and FALSE respectively
     - in addition, they also change the values of `patientsHistory.csv` file's columns "was Hospitalized?", "still Alive?" to 'Y' and 'N' respectively;
   
   <br>
   <br>
   
-  - ### `ambulance::send();` function
+  - ### `ambulance::send();` function:
     - it fetches an idle ambulance and an idle driver and then changes their `bool idle;` fields to FALSE, takes the address of the destination location from the user side as input and sends the ambulance to that address;
     - functioning:
         - searches in the map `hospital::ambulancesList` for the first ambulance which has its `bool idle;` field set as TRUE, and if not found prints not found message and returns the control, else moves further;
@@ -340,7 +340,7 @@ ___
   <br>
   <br>
   
-  - ### `ambulance::reportArrival();` function
+  - ### `ambulance::reportArrival();` function:
     - implementation of this function is pretty simple;
     - firstly it gives the call to `ambulance::getDetails();` function to let the user select the ambulance whose arrival is to be reported;
     - once selected, it just changes the `bool idle;` fields of the associated driver and ambulance objects to TRUE;<br><br>

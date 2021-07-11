@@ -20,11 +20,11 @@ map<int, driver> hospital::driversList;
 map<int, ambulance> hospital::ambulancesList;
 map<int, appointment> hospital::appointmentsList;
 
-const int hospital::doctorsLimit = 40;
-const int hospital::nursesLimit = 100;
-const int hospital::driversLimit = 40;
-const int hospital::ambulancesLimit = 40;
-const int hospital::appointmentsLimit = 320;
+const int hospital::doctorsLimit = 30;
+const int hospital::nursesLimit = 50;
+const int hospital::driversLimit = 30;
+const int hospital::ambulancesLimit = 30;
+const int hospital::appointmentsLimit = 240; //per day;
 // ummm, patients limit, ummm, no!
 // appointments limit is kind of a patients limit;
 // rest hospitalized patients limit must be equal to;

@@ -1,27 +1,27 @@
 doctorId,firstName,lastName,gender,age,mobNumber,address,type,appointmentsBooked
-1,John,Doe,M,43,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Cardiologist,0
-2,Isabella,Cullen,F,28,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Physician,0
-3,Rhea,Jain,F,29,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Cardiologist,0
-4,Dhananjay,Dey,M,44,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Psychatrist,0
-5,James,Carwin,M,38,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Neurologist,0
-7,Mark,Andrew,M,32,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Psychatrist,0
-8,Melinda,Andrew,F,44,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Cardiologist,0
-9,Isabella,Carwin,F,29,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Psychatrist,0
-10,Shaun,Murphy,M,45,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Psychatrist,0
-11,Freddie,Johnson,M,29,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Neurologist,0
-12,Regina,Phalange,F,29,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Physician,0
-13,Ken,Adams,M,30,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Physician,0
-14,Monica,Jain,F,32,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,ENT,1
-15,Ryan,Mallick,M,34,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,ENT,0
-16,Patrick,Stephens,M,39,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Neurologist,0
-17,John,Markson,M,30,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Dermatologist,0
-18,Vishal,Mallick,M,44,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Dentist,0
-19,Vishal,Mallick,M,49,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Dermatologist,0
-20,Kiara,Jain,F,39,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Dermatologist,0
-22,Akshat,Kumar,M,29,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Surgeon,0
-23,Akshay,Agrawal,M,32,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,ENT,0
-24,William,Chadwick,M,39,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Surgeon,2
-25,Rishabh,Jain,M,30,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Surgeon,0
-26,Navya,Gupta,M,19,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Dentist,0
-28,Alex,Murphy,M,56,+91xxxxxxxxxx,143^ Municipal Indl Estate^ Worli``Mumbai`Maharashtra`400018`India,Dentist,0
-29,Romesh,Srivastav,M,34,+918749584903,23-D^ Dazllia Street``Mumbai`Maharashtra`400011`India,Dermatologist,0
+1,John,Doe,M,43,+918765908974,ABC-Street`D-Block`E`F``,Cardiologist,0
+2,Isabella,Cullen,F,28,+917645903894,ABC-Street` D-Block` E` F``,Physician,0
+3,Rhea,Jain,F,29,+918930281749,ABC-Street` D-Block` E` F``,Cardiologist,0
+4,Dhananjay,Dey,M,44,+919248930238,ABC-Street` D-Block` E` F``,Psychatrist,0
+5,James,Carwin,M,38,+912849302394,ABC-Street` D-Block` E` F``,Neurologist,0
+7,Mark,Andrew,M,32,+912394048304,ABC-Street` D-Block` E` F``,Psychatrist,0
+8,Melinda,Andrew,F,44,+919204049034,ABC-Street` D-Block` E` F``,Cardiologist,0
+9,Isabella,Carwin,F,29,+913489998309,ABC-Street` D-Block` E` F``,Psychatrist,0
+10,Shaun,Murphy,M,45,+918907837486,ABC-Street` D-Block` E` F``,Psychatrist,0
+11,Freddie,Johnson,M,29,+912233497837,ABC-Street` D-Block` E` F``,Neurologist,0
+12,Regina,Phalange,F,29,+919086748935,ABC-Street` D-Block` E` F``,Physician,0
+13,Ken,Adams,M,30,+919987998859,ABC-Street` D-Block` E` F``,Physician,0
+14,Monica,Jain,F,32,+919999884758,ABC-Street` D-Block` E` F``,ENT,1
+15,Ryan,Mallick,M,34,+919999883748,ABC-Street` D-Block` E` F``,ENT,0
+16,Patrick,Stephens,M,39,+912347893048,ABC-Street` D-Block` E` F``,Neurologist,0
+17,John,Markson,M,30,+912647893047,ABC-Street` D-Block` E` F``,Dermatologist,0
+18,Vishal,Mallick,M,44,+911278903748,ABC-Street` D-Block` E` F``,Dentist,0
+19,Vishal,Mallick,M,49,+918038495839,ABC-Street` D-Block` E` F``,Dermatologist,0
+20,Kiara,Jain,F,39,+912389475683,ABC-Street` D-Block` E` F``,Dermatologist,0
+22,Akshat,Kumar,M,29,+919847583027,ABC-Street` D-Block` E` F``,Surgeon,0
+23,Akshay,Agrawal,M,32,+912983746590,ABC-Street` D-Block` E` F``,ENT,0
+24,William,Chadwick,M,39,+910937548903,ABC-Street` D-Block` E` F``,Surgeon,2
+25,Rishabh,Jain,M,30,+913408759394,ABC-Street` D-Block` E` F``,Surgeon,0
+26,Navya,Gupta,M,19,+913490000048,ABC-Street` D-Block` E` F``,Dentist,0
+28,Alex,Murphy,M,56,+919988998878,143^ Municipal Indl Estate^ Worli``Mumbai`Maharashtra`400018`India,Dentist,0
+29,Romesh,Srivastav,M,34,+912938883904,23-D^ Dazllia Street``Mumbai`Maharashtra`400011`India,Dermatologist,0

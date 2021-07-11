@@ -6,7 +6,7 @@ ___
 
 
 ## Check Out
-- [Project Documentation](https://github.com/code-chaser/hospital-management-system/blob/project/docs/report.md)
+- [Project Documentation](https://github.com/code-chaser/hospital-management-system/blob/project/docs/project-documentation.md)
 - [User Manual](https://github.com/code-chaser/hospital-management-system/blob/project/docs/user-manual.md)
 
 ___

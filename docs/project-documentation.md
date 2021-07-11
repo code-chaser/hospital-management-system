@@ -20,6 +20,7 @@ ___
 |<h4>GOAL 5 :&nbsp; &nbsp; store appointment details</h4><hr><h4>OBJECTIVES :</h4><ul><li>create a class `appointment`;<li>create private fields `int id, hour;` to store the ID and starting hour of an appointment;<li>create an instance each of class `doctor` and class `patient`;<li>create methods to search for a booked appointment and print its details;<li>create a method to book an appointment:<ul><li>register the patient if isn't already registered;<li>if already registered let the user search for the patient;<li>then, let the user search for the required doctor;<li>once the doctor is selected, check if his/her appoinments hasn't reached the max limit for the day, i.e. check if the doctor is free;<li>if the doctor is NOT free, throw exception;<li>else if the doctor is free, output the appointment ID and time;</ul>|
 |<h4>GOAL 6 :&nbsp; &nbsp; store all the doctors, patients, nurses, drivers, ambulances and appointments in a map</h4><hr><h4>OBJECTIVES :</h4><ul><li>create a class `hospital`;<li>create private fields (static maps) inside it to store all the doctors, patients, nurses, drivers, ambulances and appointments with their `id` as the map's key;<li>make all the mentioned classes friend class of class `hospital` so that they can access these maps;<li>create two methods inside all the classes (`doctor, patient, nurse, driver, ambulance and appointment`) **to fill** the data from their CSV file into their (corresponding) static map & **to overwrite** the data stored inside their map (featuring all the amendments done by the user) to their (corresponding) CSV file;<br>*(the first method will be used with the start of the system and the latter while exiting the system);*<li>create public methods inside class `hospital` one for each of the entities: `doctor, patient, nurse, driver, ambulance and appointment` to print the details of each of their object stored in the corresponding static map from class `hospital`;|
 |<h4>GOAL 7 :&nbsp; &nbsp; implement limits</h4><hr><h4>OBJECTIVES :</h4><ul><li>inside class hospital, create private fields (of type **`static const int`**) `doctorsLimit, nursesLimit, driversLimit, ambulancesLimit, appointmentsLimit`;<li>in the add methods of these entities (that function which is used to register/add a new object of that entity) add a condition in the beginning to check whether the limit is reached, if it's reached then throw an exception;|
+|<h4>GOAL 8 :&nbsp; &nbsp; keep a history record of all the entities</h4><hr><h4>OBJECTIVES :</h4><ul><li>for all the entities, create **`*History.csv`** files for storing their data even after the entity is no longer a part of the hospital;<li>in the 'add/register` funtions of all the entities after adding them to their corresponding static map, create a record of them in their corresponding `*History.csv` file as well;<li>the history records are of not much use for the functionalitites, so, no need to create seperate static maps for them, whenever needed they can be directly accessed through file handling;|
 ___
 
 <br>
@@ -44,6 +45,81 @@ ___
 ___
 
 ### IMPLEMENTATION
+  <br>
+  
+  - ### `fillMap();` functions:
+  
+    - these functions are defined in the classes of each and every entity i.e. classes `doctor, patient, nurse, driver, ambulance, appointment`;
+    -it fetches saved data from the class's corresponding CSV file using a `fstream` object and save it in its corresponding **`static map`** for further use by all other methods;
+  
+    - *for example following is the `doctor::fillMap();` function:*<br><br>
+    ```cpp
+    void doctor::fillMap()
+    {
+        fstream f;
+        f.open("./data/doctors.csv", ios::in);
+        string temp;
+        //skipping the first row containing column headers;
+        getline(f >> ws, temp);
+        //analyzing each entry afterwards;
+        while (getline(f >> ws, temp))
+        {
+            doctor d;
+            //creating a string stream object to read from string 'temp';
+            stringstream s(temp);
+            string s1, s4, s5, s7, s9;
+            //reading from the string stream object 's';
+            getline(s, s1, ',');
+            getline(s, d.firstName, ',');
+            getline(s, d.lastName, ',');
+            getline(s, s4, ',');
+            getline(s, s5, ',');
+            getline(s, d.mobNumber, ',');
+            getline(s, s7, ',');
+            getline(s, d.type, ',');
+            getline(s, s9, ',');
+            d.id = strToNum(s1);
+            d.gender = s4[0];
+            d.age = strToNum(s5);
+            d.add.strToAdd(s7);
+            d.appointmentsBooked = strToNum(s9);
+            hospital::doctorsList[d.id] = d;
+        }
+        f.close();
+        return;
+    }
+    ```
+  <br>
+  <br>
+
+  - ### `saveMap();` functions:
+  
+    - these functions, again, are defined in the classes of each and every entity i.e. classes `doctor, patient, nurse, driver, ambulance, appointment`;
+    - it overwrites the changed data, present inside the corresponding **`static map`**, (changed by the user during the span of the program) to the corresponding CSV file using a `fstream` object;
+  
+    - *for example following is the `doctor::saveMap();` function:*<br><br>
+    ```cpp
+    void doctor::saveMap()
+    {
+        fstream f;
+        f.open("./data/temp.csv", ios::out);
+        // `le first line conataining column headers:
+        f << "doctorId,firstName,lastName,gender,age,mobNumber,address,type,appointmentsBooked\n";
+        for (auto i : hospital::doctorsList)
+            f << i.second.id << "," << i.second.firstName << "," << i.second.lastName << "," << i.second.gender
+            << "," << i.second.age << "," << i.second.mobNumber << "," << i.second.add.addToStr()
+            << "," << i.second.type << "," << i.second.appointmentsBooked << endl;
+        f.close();
+        remove("./data/doctors.csv");
+        rename("./data/temp.csv", "./data/doctors.csv");
+        return;
+    }
+    ```
+  <br>
+  <br>
+  
+  
+  
 - ### `addPerson();` functions:
   
     - **`person::addPerson();`** :&nbsp; &nbsp;takes the first name, last name, age, gender, mobile number and address as the input;<br><br>
@@ -78,8 +154,9 @@ ___
     getline(cin >> ws, mobNumber);
     add.takeInput();
     ```-->
-    - class-specific **`addPerson();`** function :&nbsp; &nbsp;includes a function call to its base class copy `person::addPerson();` and once the basic details are input, the class specific addPerson(); funtion takes class-specific details as input from the user side;<br>
-    for example following is the `doctor::addPerson();` function:<br><br>
+    - class-specific **`addPerson();`** function :&nbsp; &nbsp;includes a function call to its base class copy `person::addPerson();` and once the basic details are input, the class specific addPerson(); funtion takes class-specific details as input from the user side;
+  
+    - *for example following is the `doctor::addPerson();` function:*<br><br>
     ```cpp
     void doctor::addPerson()
     {
@@ -90,9 +167,11 @@ ___
         }
         //18 and 65 are the age limits for registration of a new doctor;
         person::addPerson(18, 65);
+        //called base class version of addPerson(); to get the basic details as input;
         if ((age < 18) || (age > 65))
             return;
         cout << "\nEnter the type of the doctor: \n";
+        //now, getting doctor specific details;
         getline(cin >> ws, type);
         if (hospital::doctorsList.rbegin() != hospital::doctorsList.rend())
             id = ((hospital::doctorsList.rbegin())->first) + 1;
@@ -114,6 +193,34 @@ ___
         return;
     }
     ```
+  <br>
+  <br>
+  
+  
+  
+- ### `printDetails();` functions:
+  
+    - **`person::printDetails();`** :&nbsp; &nbsp;prints the first name, last name, age, gender, mobile number and address of the object that invoked the class-specific `printDetails();` function;<br><br>
+    
+    - class-specific **`printDetails();`** function :&nbsp; &nbsp;includes a function call to its base class copy `person::addPerson();` and once the basic details are printed, the class specific addPerson(); funtion prints class-specific details of the object that invoked this function;
+  
+    - *for example following is the `doctor::printDetails();` function:*<br><br>
+    ```cpp
+    void doctor::printDetails()
+    {
+        if (id == -1)
+            return;
+        person::printDetails();
+        //called it's base class version, to print the basic details;
+        //now printing class-specific details;
+        cout << "Type            : " << type << "\n";
+        cout << "Appointments    : " << appointmentsBooked << "/8 (appointments booked today)\n";
+        return;
+    }
+    ```
+  <br>
+
+  
       
     
 ___

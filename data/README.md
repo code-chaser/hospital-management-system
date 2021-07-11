@@ -17,7 +17,12 @@ All the data of this **hospital-management-system** is stored in **CSV** (Comma-
 
 <br>
 
-|S.No.|Field(s)|Description|
+___
+### Commonly used column headers in project's CSV files:
+
+<br>
+
+|S.No.|Header(s)|Description|
 |-----|:---:|-----------|
 |1.|id|ID : string (composed of positive integers);|
 |2.|firstName|First Name of a person : string;|

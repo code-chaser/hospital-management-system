@@ -67,7 +67,7 @@ void nurse::addPerson()
 {
     if (hospital::nursesList.size() == hospital::nursesLimit)
     {
-        cout<<"\n\nNurses limit reached, can't add more!\n\n";
+        cout << "\n\nNurses limit reached, can't add more!\n\n";
         return;
     }
     //18 and 65 are the age limits for registration of a new nurse;

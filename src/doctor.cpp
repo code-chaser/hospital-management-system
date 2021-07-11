@@ -70,7 +70,7 @@ void doctor::addPerson()
 {
     if (hospital::doctorsList.size() == hospital::doctorsLimit)
     {
-        cout<<"\n\nDoctors limit reached, can't add more!\n\n";
+        cout << "\n\nDoctors limit reached, can't add more!\n\n";
         return;
     }
     //18 and 65 are the age limits for registration of a new doctor;
@@ -355,7 +355,8 @@ void doctor::removePerson()
     getDetails();
     if (id == -1)
         return;
-    if (appointmentsBooked > 0){
+    if (appointmentsBooked > 0)
+    {
         cout << "\nSelected doctor has appointments booked for today, can't be removed.\n\n";
         return;
     }

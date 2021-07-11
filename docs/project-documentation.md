@@ -43,7 +43,14 @@ ___
 
 ___
 
-### FUNCTIONING
+### IMPLEMENTATION
 <ul>
-  <li>
+  <li><h3><code>addPerson();</code> functions:</h3></li>
+  <ul>
+    <li><code>addPerson();</code> function of base class <code>person</code> takes the first name, last name, age, gender, mobile number amd address as the input;
+    <li>class-specific <code>addPerson();</code> functions includes a call to their base class copy <code>person::addPerson();</code> and once the basic details are input, the class specific <code>addPerson();</code> funtion takes class-specific details as input from the user side;
+      
+  
+    
+    
 ___

@@ -9,18 +9,24 @@ ___
 ## DESCRIPTION
 ___
 
-#### GOALS & OBJECTTIVES
-|S.No.|GOAL|OBJECTIVES|
-|:-----:|:-:|----------|
-|1.|add people|<ul><li>create a base class `person` to derive classes of doctors, patients and other staff members from it later on;<li>class `person`:<ul><li>create appropriate fields to store the basic details of a person;<li>create a method that takes basic details of a person as input from the user side, whenever a new person is to be registered;<li>declare an abstract method to search for a registered person in the database so that it can be defined later in the derived classes;<li>create a method to print the basic details of a person;<li>create a method to remove (un-register) a registered person;|
-|2.|add doctors, patients, nurses, ambulance drivers|<ul><li>derive the classes `doctor, patient, nurse, driver` from the class `person`;<li>define the abstract methods declared inside class `person` in each of the derived classes;<li>re-define some methods defined in class `person` if required, *for example while registering a driver, in addition to his basic details, his license number will also be required, and, for that, the method *`addPerson();`* shall be provided an extended definition*;<li>class `doctor`:<ul><li>add a private field `string type;` to store the type of the doctor;</ul><li>class `patient`:<ul><li>add private fields `int height, weight;` for storing the obvious;<li>add fields `bool hospitalized, alive;` which tells us if the patient was hospitalized or not and if (hospitalized), is still alive or not;<li>create a method to hospitalize a patient (i.e. change the value of `hospitalized` field of a particular object of class `patient` to `TRUE`);<li>create a method to report a patient's death (i.e. change the value of `alive` field of a particular object of class `patient` to `FALSE`);</ul><li>class `nurse`:<ul><li>add a private field `string type;` to store the type of the nurse;|
-|3.|;|<li>;<li>;<li>;|
-|4.|create |<li>;<li>;<li>;|
-|5.|create |<li>;<li>;<li>;|
-|6.|create |<li>;<li>;<li>;|
+<h3> GOALS & OBJECTTIVES:</h3>
+
+||
+|:-|
+|<h4>GOAL 1 :&nbsp; &nbsp; add people</h4><hr><h4>OBJECTIVES :</h4><ul><li>create a base class `person` to derive classes of doctors, patients and other staff members from it later on;<li>class `person`:<ul><li>create appropriate fields to store the basic details of a person;<li>create a method that takes basic details of a person as input from the user side, whenever a new person is to be registered;<li>declare an abstract method to search for a registered person in the database so that it can be defined later in the derived classes;<li>create a method to print the basic details of a person;<li>create a method to remove (un-register) a registered person;</ul></ul>|
+|<h4>GOAL 2 :&nbsp; &nbsp; add doctors, patients, nurses, ambulance drivers</h4><hr><h4>OBJECTIVES :</h4><ul><li>derive the classes `doctor, patient, nurse, driver` from the class `person`;<li>define the abstract methods declared inside class `person` in each of the derived classes;<li>re-define some methods inside sub-classes which were already defined in the class `person`, if required;<br>*(for example while registering a driver, in addition to his basic details, his license number will also be required, and, for that, the method *`addPerson();`* shall be provided an extended definition to take the license number as input along with the basic details)*;<li>class `doctor`:<ul><li>add a private field `string type;` to store the type of the doctor;</ul><li>class `patient`:<ul><li>add private fields `int height, weight;` for storing the obvious;<li>add fields `bool hospitalized, alive;` which tells us if the patient was hospitalized or not and if (hospitalized), is still alive or not;<li>create a method to hospitalize a patient (i.e. change the value of `hospitalized` field of a particular object of class `patient` to `TRUE`);<li>create a method to report a patient's death (i.e. change the value of `alive` field of a particular object of class `patient` to `FALSE`);</ul><li>class `nurse`:<ul><li>add a private field `string type;` to store the type of the nurse;</ul><li>class `driver`:<ul><li>add a private field `string licenseNumber;` to store the obvious;<li>add a private field `bool idle;` to tell whether a driver is idle or not;<br>*(the driver is NOT idle when he/she is going to pick up a patient)*</ul></ul>|
+|<h4>GOAL 3 :&nbsp; &nbsp; store address separately, in a structured manner</h4><hr><h4>OBJECTIVES :</h4><ul><li>create a class `address` containing private `string` fields: `line1, line2, city, state, pinCode, country` to store the address of a location;<li>create appropriate methods to take address as input from the user-side, encrypt (not-really) it into a string to store it into a single cell of a CSV file, decrypt encrypted address string and output the address in a structured manner;|
+|<h4>GOAL 4 :&nbsp; &nbsp; add ambulances</h4><hr><h4>OBJECTIVES :</h4><ul><li>create a class `ambulance`|
+||
+||
 ___
 
-#### SYSTEM DESIGN
+<br>
+  
+  
+### SYSTEM DESIGN
+<br>
+  
 |CLASS|DESCRIPTION|
 |:-----:|-----------|
 |address|<ul><li>stores the address of a location in a structured manner in its private fields: `line1, line2, city, state, pinCode, country`;<li>has publicly accessible methods to take address as input, output it in a particular manner, generate & return string of a specific format from some address and read the same string to generate back the same address, whenever required ([read more](https://github.com/code-chaser/hospital-management-system/blob/main/docs/address.md#class-address));|

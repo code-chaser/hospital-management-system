@@ -8,7 +8,7 @@ ___
 #### GO TO:
 - [**GOALS & OBJECTTIVES**](https://github.com/code-chaser/hospital-management-system/blob/main/docs/project-documentation.md#-goals--objecttives)
 - [**SYSTEM DESIGN**](https://github.com/code-chaser/hospital-management-system/blob/main/docs/project-documentation.md#system-design)
-- [**DATA STORAGE**](https://github.com/code-chaser/hospital-management-system/blob/main/docs/project-documentation.md#data-storage)
+- [**DATA STORAGE**](https://github.com/code-chaser/hospital-management-system/blob/main/docs/project-documentation.md#data-sorage)
 - [**IMPLEMENTATION**](https://github.com/code-chaser/hospital-management-system/blob/main/docs/project-documentation.md#implementation)
 
 ___

@@ -70,7 +70,7 @@ void driver::addPerson()
 {
     if (hospital::driversList.size() == hospital::driversLimit)
     {
-        cout<<"\n\nDrivers limit reached, can't add more!\n\n";
+        cout << "\n\nDrivers limit reached, can't add more!\n\n";
         return;
     }
     //18 and 65 are the age limits for registration of a new driver;
@@ -107,7 +107,7 @@ void driver::printDetails()
     cout << "Idle?           : " << (idle ? "Y\n" : "N\n");
     return;
 }
-void driver::printDetailsFromHistory(string extraDetails)
+void driver::printDetailsFromHistory(string extraDetails = "")
 {
     if (id == -1)
         return;

@@ -124,7 +124,7 @@ void patient::printDetails()
     cout << "Alive?          : " << ((alive) ? "Y" : "N") << "\n";
     return;
 }
-void patient::printDetailsFromHistory(string extraDetails)
+void patient::printDetailsFromHistory(string extraDetails = "")
 {
     if (id == -1)
         return;

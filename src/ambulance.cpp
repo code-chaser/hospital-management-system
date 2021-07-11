@@ -118,7 +118,7 @@ void ambulance::printDetails()
     }
     return;
 }
-void ambulance::printDetailsFromHistory(string extraDetails)
+void ambulance::printDetailsFromHistory(string extraDetails = "")
 {
     if (id == -1)
         return;
@@ -386,7 +386,7 @@ void ambulance::reportArrival()
     driver d;
     hospital::ambulancesList[id].D = d;
 
-    cout << "\nStatus of " << model << " by " << manufacturer << " sent with driver " << d.firstName << " " << d.lastName << " (ID = " << d.id << ") updated successfully!\n\n";
+    cout << "\nStatus updated successfully!\n\n";
     return;
 }
 void ambulance::removeAmbulance()

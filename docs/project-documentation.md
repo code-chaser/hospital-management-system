@@ -47,7 +47,8 @@ ___
 ___
 
 
-![UML Class Diagram](https://user-images.githubusercontent.com/63065397/125062323-e3d06380-e0cb-11eb-98e5-f242393b4e1f.jpeg)
+
+![UML Class Diagram](https://user-images.githubusercontent.com/63065397/125205629-d5877080-e2a0-11eb-9f9e-56154600fe32.jpeg)
 
 
 ___

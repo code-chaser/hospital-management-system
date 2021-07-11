@@ -65,24 +65,11 @@ ___
         while (getline(f >> ws, temp))
         {
             doctor d;
-            //creating a string stream object to read from string 'temp';
-            stringstream s(temp);
-            string s1, s4, s5, s7, s9;
-            //reading from the string stream object 's';
-            getline(s, s1, ',');
-            getline(s, d.firstName, ',');
-            getline(s, d.lastName, ',');
-            getline(s, s4, ',');
-            getline(s, s5, ',');
-            getline(s, d.mobNumber, ',');
-            getline(s, s7, ',');
-            getline(s, d.type, ',');
-            getline(s, s9, ',');
-            d.id = strToNum(s1);
-            d.gender = s4[0];
-            d.age = strToNum(s5);
-            d.add.strToAdd(s7);
-            d.appointmentsBooked = strToNum(s9);
+  
+            //reading data from doctors.csv file and
+            //filling it in the doctor class object 'd'
+            //long code - omitted!
+  
             hospital::doctorsList[d.id] = d;
         }
         f.close();
@@ -107,8 +94,8 @@ ___
         f << "doctorId,firstName,lastName,gender,age,mobNumber,address,type,appointmentsBooked\n";
         for (auto i : hospital::doctorsList)
             f << i.second.id << "," << i.second.firstName << "," << i.second.lastName << "," << i.second.gender
-            << "," << i.second.age << "," << i.second.mobNumber << "," << i.second.add.addToStr()
-            << "," << i.second.type << "," << i.second.appointmentsBooked << endl;
+              << "," << i.second.age << "," << i.second.mobNumber << "," << i.second.add.addToStr()
+              << "," << i.second.type << "," << i.second.appointmentsBooked << endl;
         f.close();
         remove("./data/doctors.csv");
         rename("./data/temp.csv", "./data/doctors.csv");
@@ -123,37 +110,7 @@ ___
 - ### `addPerson();` functions:
   
     - **`person::addPerson();`** :&nbsp; &nbsp;takes the first name, last name, age, gender, mobile number and address as the input;<br><br>
-    <!--```cpp
-    //getting basic details of the person from the user side;
-    cout << "\nEnter name: \nFirst Name:\n";
-    getline(cin >> ws, firstName);
-    cout << "\nLast name:\n";
-    getline(cin, lastName);
-    cout << "\nEnter age: \n";
-    cin >> age;
-    while (age <= 0)
-        cout << "Was that supposed to make any kind of sense?\nEnter again!\n", cin >> age;
-    if (category != 2)
-    {
-        if (age < minAge){
-            cout << "Sorry, person should be at least " << minAge << " years old to be registered as a " << cat << ".\n"
-            return;
-        }
-        else if (age > maxAge){
-            cout << "Sorry, we can't register a person older than " << maxAge << " years as a " << cat << ".\n"
-            return;
-        }
-        
-        // cat is a string storing the category name (doctor/patient/nurse/driver) to which the calling object belongs;
-    }
-    cout << "\nGender (M = Male || F = Female): \n";
-    cin >> gender;
-    while (gender != 'M' && gender != 'F')
-        cout << "M or F?\n", cin >> gender;
-    cout << "\nEnter mobile number (with country code): \n";
-    getline(cin >> ws, mobNumber);
-    add.takeInput();
-    ```-->
+  
     - class-specific **`addPerson();`** function :&nbsp; &nbsp;includes a function call to its base class copy `person::addPerson();` and once the basic details are input, the class specific addPerson(); funtion takes class-specific details as input from the user side;
   
     - *for example following is the* `doctor::addPerson();` *function:*<br><br>
@@ -193,6 +150,8 @@ ___
         return;
     }
     ```
+  
+    - *add function of class* `ambulance` *i.e.* `addAmbulance();` *works in a similar fashion*;
   <br>
   <br>
   
@@ -257,8 +216,56 @@ ___
   <br>
   <br>
 
-
+  - ### `getDetails();` & `getDetailsFromHistory();` functions:
+  
+    - these functions are defined in the classes of each and every entity i.e. classes `doctor, patient, nurse, driver, ambulance, appointment`;
+    - they let the user search for the required entry in the class's corresponding static map (getDetails();) & class's corresponding `*History.csv` file (getDetailsFromHistory();) (respectively) and then fills the details of the selected entry into the calling object for further use;
+    - `getDetails();` function can directly use the filled `static map` for the data; but `getDetailsFromHistory();` has to access the History CSV file, as there's no map storing history data;
+  
+  <br>
+  <br>  
   
       
-    
+  - ### `removePerson();` functions:
+  
+    - these functions are defined in the classes derived from class `person` i.e. classes `doctor, patient, nurse, driver` *(has a slightly different meaning for class* `patient`*, there it rather means "discharge a patient", name of the function is same though)*;
+    - it's funtioning:
+        - first of all, it gives a call to class's `getDetails();` function to let the user search and select the person to be removed;
+        - once selected, it checks if the selected person can be removed (in case of doctor, checks if the doctor has no appointments booked for the day);
+        - if can be removed, then it deletes that person's object from the class's corresponding `static map` and in the History CSV file, marks the appropriate column to denote that the person is no longer a part of the hospital;
+  
+    - *for example following is the* `doctor::removePerson();` *function:*<br><br>
+    ```cpp
+    void doctor::removePerson()
+    {
+        cout << "\nSearch for the doctor you want to remove.\n";
+        getDetails();
+        if (id == -1)
+            return;
+        if (appointmentsBooked > 0)
+        {
+            cout << "\nSelected doctor has appointments booked for today, can't be removed.\n\n";
+            return;
+        }
+        hospital::doctorsList.erase(id);
+
+        //a new file temp.csv is created then each and every line of;
+        //doctorsHistory.csv is copied to temp.csv except for the line;
+        //of the person to be removed, that line is stored in a string;
+        //required changes are made to it and it's pasted in the place of;
+        //original line, in temp.csv file.
+        //long code - omitted!
+        //after that doctorsHistory.csv is removed and temp.csv is renamed.
+        remove("./data/doctorsHistory.csv");
+        rename("./data/temp.csv", "./data/doctorsHistory.csv");
+        cout << firstName << " " << lastName << " removed successfully!\n";
+        return;
+    }
+    ```
+  <br>
+  <br>    
+  
+  
+  
+  
 ___

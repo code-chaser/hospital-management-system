@@ -30,7 +30,7 @@ ___
   
 |CLASS|DESCRIPTION|
 |:-----:|-----------|
-|address|<ul><li>stores the address of a location in a structured manner in its private fields: `line1, line2, city, state, pinCode, country`;<li>has publicly accessible methods to take address as input, output it in a particular manner, generate & return string of a specific format from some address and read the same string to generate back the same address, whenever required ([read more](https://github.com/code-chaser/hospital-management-system/blob/main/docs/address.md#class-address));|
+|address|<ul><li>stores the address of a location in a structured manner in its private fields: `line1, line2, city, state, pinCode, country`;<li>has publicly accessible methods to take address as input, output it in a particular manner, generate & return string of a specific format from some address and read the same string to generate back the same address, whenever required ([read more](https://github.com/code-chaser/hospital-management-system/blob/project/docs/address.md));|
 |**_person_**|<ul><li>it's an **_abstract class_** containing **_5 abstract (pure virtual) methods_**;<li>**'has-a'** (object of class) `address`;<li>stores all the basic information of a person in its private fields: `id, firstName, lastName, gender, age, mobNumber, add`;<li>has publicly accessible methods to take the information as input, print it and fill it in an object;<li>class `doctor`, `patient`, `nurse` & `driver` **'inherits'** class `person` and in addition contains a few class-specific fields and methods;
 |appointment|<ul><li>**'has-a'** (object of class) `doctor` and **'has-a'** (object of class) `patient`;<li>in addition, it has two more private member fields : `id, hh` to store the appointment ID and its starting hour (in 24-Hr format);<li>has publicly accessible methods to book an appointment, get and print details of a booked appointment;|
 |ambulance|<ul><li>**'has-a'** (object of class) `driver` and **'has-a'** (object of class) `address`;<li>in addition, has a few more private fields to store the basic details of an ambulance;<li>has publicly accessible methods to register an ambulance, print it's details, send an ambulance to a destination and report its arrival;|
@@ -47,10 +47,8 @@ ___
 <ul>
   <li><h3><code>addPerson();</code> functions:</h3></li>
   <ul>
-    <li><code>addPerson();</code> function of base class <code>person</code> takes the first name, last name, age, gender, mobile number amd address as the input;
-    <li>class-specific <code>addPerson();</code> functions includes a call to their base class copy <code>person::addPerson();</code> and once the basic details are input, the class specific <code>addPerson();</code> funtion takes class-specific details as input from the user side;
+    <li><code>addPerson();</code> function of base class <code>person</code> takes the first name, last name, age, gender, mobile number and address as the input;<br>
+    <li>class-specific <code>addPerson();</code> function includes a function call to their base class copy <code>person::addPerson();</code> and once the basic details are input, the class specific <code>addPerson();</code> funtion takes class-specific details as input from the user side;
       
-  
-    
     
 ___

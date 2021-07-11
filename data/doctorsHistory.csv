@@ -1,30 +1,30 @@
 firstName,lastName,gender,age,mobNumber,address,type,left?,reasonForLeaving(ifLeft)
-John,Doe,M,43,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Cardiologist,N,NA
-Isabella,Cullen,F,28,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Physician,N,NA
-Rhea,Jain,F,29,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Cardiologist,N,NA
-Dhananjay,Dey,M,44,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Psychatrist,N,NA
-James,Carwin,M,38,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Neurologist,N,NA
-Konark,Sharma,M,29,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Physician,Y,Changing his hometown.
-Mark,Andrew,M,32,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Psychatrist,N,NA
-Melinda,Andrew,F,44,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Cardiologist,N,NA
-Isabella,Carwin,F,29,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Psychatrist,N,NA
-Shaun,Murphy,M,45,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Psychatrist,N,NA
-Freddie,Johnson,M,29,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Neurologist,N,NA
-Regina,Phalange,F,29,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Physician,N,NA
-Ken,Adams,M,30,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Physician,N,NA
-Monica,Jain,F,32,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,ENT,N,NA
-Ryan,Mallick,M,34,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,ENT,N,NA
-Patrick,Stephens,M,39,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Neurologist,N,NA
-John,Markson,M,30,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Dermatologist,N,NA
-Vishal,Mallick,M,44,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Dentist,N,NA
-Vishal,Mallick,M,49,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Dermatologist,N,NA
-Kiara,Jain,F,39,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Dermatologist,N,NA
-Akshat,Kumar,M,29,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Surgeon,N,NA
-Akshay,Agrawal,M,32,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,ENT,N,NA
-William,Chadwick,M,39,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Surgeon,N,NA
-Rishabh,Jain,M,30,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Surgeon,N,NA
-Navya,Gupta,M,19,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Dentist,N,NA
-Alexander,Bing,M,35,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Cardiologist,Y,Suspended for prescribing critically harmful drugs unnecessarily.
-Priyansh,Gupta,M,39,+91xxxxxxxxxx,ABC-Street` D-Block` E` F``,Surgeon,Y,Shifting abroad.
-Alex,Murphy,M,56,+91xxxxxxxxxx,143^ Municipal Indl Estate^ Worli``Mumbai`Maharashtra`400018`India,Dentist,No,NA
-Romesh,Srivastav,M,34,+918749584903,23-D^ Dazllia Street``Mumbai`Maharashtra`400011`India,Dermatologist,N,NA
+John,Doe,M,43,+918765908974,143^ Municipal Indl Estate^ Worli``Mumbai`Maharashtra`400018`India,Cardiologist,N,NA
+Isabella,Cullen,F,28,+917645903894,23-D^ Dazllia Street``Mumbai`Maharashtra`400011`India,Physician,N,NA
+Rhea,Jain,F,29,+918930281749,143^ Municipal Indl Estate^ Worli``Mumbai`Maharashtra`400018`India,Cardiologist,N,NA
+Dhananjay,Dey,M,44,+919248930238,23-D^ Dazllia Street``Mumbai`Maharashtra`400011`India,Psychatrist,N,NA
+James,Carwin,M,38,+912849302394,143^ Municipal Indl Estate^ Worli``Mumbai`Maharashtra`400018`India,Neurologist,N,NA
+Konark,Sharma,M,29,+926457893028,23-D^ Dazllia Street``Mumbai`Maharashtra`400011`India,Physician,Y,Changing his hometown.
+Mark,Andrew,M,32,+912394048304,23-D^ Dazllia Street``Mumbai`Maharashtra`400011`India,Psychatrist,N,NA
+Melinda,Andrew,F,44,+919204049034,143^ Municipal Indl Estate^ Worli``Mumbai`Maharashtra`400018`India,Cardiologist,N,NA
+Isabella,Carwin,F,29,+913489998309,23-D^ Dazllia Street``Mumbai`Maharashtra`400011`India,Psychatrist,N,NA
+Shaun,Murphy,M,45,+918907837486,143^ Municipal Indl Estate^ Worli``Mumbai`Maharashtra`400018`India,Psychatrist,N,NA
+Freddie,Johnson,M,29,+912233497837,23-D^ Dazllia Street``Mumbai`Maharashtra`400011`India,Neurologist,N,NA
+Regina,Phalange,F,29,+919086748935,143^ Municipal Indl Estate^ Worli``Mumbai`Maharashtra`400018`India,Physician,N,NA
+Ken,Adams,M,30,+919987998859,23-D^ Dazllia Street``Mumbai`Maharashtra`400011`India,Physician,N,NA
+Monica,Jain,F,32,+919999884758,143^ Municipal Indl Estate^ Worli``Mumbai`Maharashtra`400018`India,ENT,N,NA
+Ryan,Mallick,M,34,+919999883748,23-D^ Dazllia Street``Mumbai`Maharashtra`400011`India,ENT,N,NA
+Patrick,Stephens,M,39,+912347893048,143^ Municipal Indl Estate^ Worli``Mumbai`Maharashtra`400018`India,Neurologist,N,NA
+John,Markson,M,30,+912647893047,23-D^ Dazllia Street``Mumbai`Maharashtra`400011`India,Dermatologist,N,NA
+Vishal,Mallick,M,44,+911278903748,143^ Municipal Indl Estate^ Worli``Mumbai`Maharashtra`400018`India,Dentist,N,NA
+Vishal,Mallick,M,49,+918038495839,23-D^ Dazllia Street``Mumbai`Maharashtra`400011`India,Dermatologist,N,NA
+Kiara,Jain,F,39,+912389475683,143^ Municipal Indl Estate^ Worli``Mumbai`Maharashtra`400018`India,Dermatologist,N,NA
+Akshat,Kumar,M,29,+919847583027,23-D^ Dazllia Street``Mumbai`Maharashtra`400011`India,Surgeon,N,NA
+Akshay,Agrawal,M,32,+912983746590,143^ Municipal Indl Estate^ Worli``Mumbai`Maharashtra`400018`India,ENT,N,NA
+William,Chadwick,M,39,+910937548903,23-D^ Dazllia Street``Mumbai`Maharashtra`400011`India,Surgeon,N,NA
+Rishabh,Jain,M,30,+913408759394,143^ Municipal Indl Estate^ Worli``Mumbai`Maharashtra`400018`India,Surgeon,N,NA
+Navya,Gupta,M,19,+913490000048,23-D^ Dazllia Street``Mumbai`Maharashtra`400011`India,Dentist,N,NA
+Alexander,Bing,M,35,+915839782938,23-D^ Dazllia Street``Mumbai`Maharashtra`400011`India,Cardiologist,Y,Suspended for prescribing critically harmful drugs unnecessarily.
+Priyansh,Gupta,M,39,+913490000048,23-D^ Dazllia Street``Mumbai`Maharashtra`400011`India,Surgeon,Y,Shifting abroad.
+Alex,Murphy,M,56,+919988998878,143^ Municipal Indl Estate^ Worli``Mumbai`Maharashtra`400018`India,Dentist,N,NA
+Ananya,Srivastav,M,34,+912938883904,23-D^ Dazllia Street``Mumbai`Maharashtra`400011`India,Dermatologist,N,NA

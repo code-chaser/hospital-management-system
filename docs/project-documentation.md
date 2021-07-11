@@ -52,7 +52,7 @@ ___
     - these functions are defined in the classes of each and every entity i.e. classes `doctor, patient, nurse, driver, ambulance, appointment`;
     -it fetches saved data from the class's corresponding CSV file using a `fstream` object and save it in its corresponding **`static map`** for further use by all other methods;
   
-    - *for example following is the `doctor::fillMap();` function:*<br><br>
+    - *for example following is the* `doctor::fillMap();` *function:*<br><br>
     ```cpp
     void doctor::fillMap()
     {
@@ -97,7 +97,7 @@ ___
     - these functions, again, are defined in the classes of each and every entity i.e. classes `doctor, patient, nurse, driver, ambulance, appointment`;
     - it overwrites the changed data, present inside the corresponding **`static map`**, (changed by the user during the span of the program) to the corresponding CSV file using a `fstream` object;
   
-    - *for example following is the `doctor::saveMap();` function:*<br><br>
+    - *for example following is the* `doctor::saveMap();` *function:*<br><br>
     ```cpp
     void doctor::saveMap()
     {
@@ -156,7 +156,7 @@ ___
     ```-->
     - class-specific **`addPerson();`** function :&nbsp; &nbsp;includes a function call to its base class copy `person::addPerson();` and once the basic details are input, the class specific addPerson(); funtion takes class-specific details as input from the user side;
   
-    - *for example following is the `doctor::addPerson();` function:*<br><br>
+    - *for example following is the* `doctor::addPerson();` *function:*<br><br>
     ```cpp
     void doctor::addPerson()
     {
@@ -202,9 +202,9 @@ ___
   
     - **`person::printDetails();`** :&nbsp; &nbsp;prints the first name, last name, age, gender, mobile number and address of the object that invoked the class-specific `printDetails();` function;<br><br>
     
-    - class-specific **`printDetails();`** function :&nbsp; &nbsp;includes a function call to its base class copy `person::addPerson();` and once the basic details are printed, the class specific addPerson(); funtion prints class-specific details of the object that invoked this function;
+    - class-specific **`printDetails();`** function :&nbsp; &nbsp;includes a function call to its base class copy `person::printDetails();` and once the basic details are printed, the class specific printDetails(); funtion prints class-specific details of the object that invoked this function;
   
-    - *for example following is the `doctor::printDetails();` function:*<br><br>
+    - *for example following is the* `doctor::printDetails();` *function:*<br><br>
     ```cpp
     void doctor::printDetails()
     {
@@ -219,6 +219,44 @@ ___
     }
     ```
   <br>
+  <br>
+  
+  
+ - ### `printDetailsFromHistory(string extraDetails = "");` functions:
+  
+    - **`person::printDetailsFromHistory();`** :&nbsp; &nbsp;prints the first name, last name, age, gender, mobile number and address of the object that invoked the class-specific `printDetailsFromHistory();` function;<br><br>
+    
+    - class-specific **`printDetailsFromHistory();`** function :&nbsp; &nbsp;includes a function call to its base class copy `person::printDetailsFromHistory();` and once the basic details are printed, the class specific printDetailsFromHistory(); funtion prints class-specific details of the object that invoked this function;
+    - the arguement `string extraDetails` contains all those details from the class's corresponding `*History.csv` file which couldn't be stored inside the object of the class but were required to be printed, *for example, the file `doctorsHistory.csv` contains two extra columns, `leftWork?` to tell if the doctor is still registered with the hospital or not and `reasonForLeaving` to tell (if the doctor has left work) the reason why he/she left the hospital, these two values have no place in the class `doctor` object to be stored, so, the last part (after the second last `,` (comma char)) of the `doctorsHistory.csv` file is stored as it is in the string `extraDetails`*;
+  
+    - *for example following is the* `doctor::printDetailsFromHistory();` *function:*<br><br>
+    ```cpp
+    void doctor::printDetailsFromHistory(string extraDetails = "")
+    {
+        if (id == -1)
+            return;
+        person::printDetailsFromHistory();
+        stringstream k(extraDetails);
+        string s1, s2;
+        getline(k, s1, ',');
+        getline(k, s2, ',');
+
+        if (extraDetails == "")
+        {
+            //in case those extra details are not passed by the calling function,
+            //we get them manually from the CSV file;
+            //long code - omitted!
+        }
+        cout << "Type            : " << type << "\n";
+        cout << "Left Work?      : " << s1 << "\n";
+        if (s1 == "Y")
+            cout << "Reason          : " << s2 << "\n";
+        return;
+    }
+    ```
+  <br>
+  <br>
+
 
   
       

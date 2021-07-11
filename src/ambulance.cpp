@@ -118,7 +118,7 @@ void ambulance::printDetails()
     }
     return;
 }
-void ambulance::printDetailsFromHistory(string extraDetails = "")
+void ambulance::printDetailsFromHistory(string extraDetails)
 {
     if (id == -1)
         return;

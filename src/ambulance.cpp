@@ -386,7 +386,7 @@ void ambulance::reportArrival()
     driver d;
     hospital::ambulancesList[id].D = d;
 
-    cout << "\nStatus of " << model << " by " << manufacturer << " sent with driver " << d.firstName << " " << d.lastName << " (ID = " << d.id << ") updated successfully!\n\n";
+    cout << "\nStatus updated successfully!\n\n";
     return;
 }
 void ambulance::removeAmbulance()

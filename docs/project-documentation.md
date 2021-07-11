@@ -44,11 +44,76 @@ ___
 ___
 
 ### IMPLEMENTATION
-<ul>
-  <li><h3><code>addPerson();</code> functions:</h3></li>
-  <ul>
-    <li><code>addPerson();</code> function of base class <code>person</code> takes the first name, last name, age, gender, mobile number and address as the input;<br>
-    <li>class-specific <code>addPerson();</code> function includes a function call to their base class copy <code>person::addPerson();</code> and once the basic details are input, the class specific <code>addPerson();</code> funtion takes class-specific details as input from the user side;
+- ### `addPerson();` functions:
+  
+    - **`person::addPerson();`** :&nbsp; &nbsp;takes the first name, last name, age, gender, mobile number and address as the input;<br><br>
+    <!--```cpp
+    //getting basic details of the person from the user side;
+    cout << "\nEnter name: \nFirst Name:\n";
+    getline(cin >> ws, firstName);
+    cout << "\nLast name:\n";
+    getline(cin, lastName);
+    cout << "\nEnter age: \n";
+    cin >> age;
+    while (age <= 0)
+        cout << "Was that supposed to make any kind of sense?\nEnter again!\n", cin >> age;
+    if (category != 2)
+    {
+        if (age < minAge){
+            cout << "Sorry, person should be at least " << minAge << " years old to be registered as a " << cat << ".\n"
+            return;
+        }
+        else if (age > maxAge){
+            cout << "Sorry, we can't register a person older than " << maxAge << " years as a " << cat << ".\n"
+            return;
+        }
+        
+        // cat is a string storing the category name (doctor/patient/nurse/driver) to which the calling object belongs;
+    }
+    cout << "\nGender (M = Male || F = Female): \n";
+    cin >> gender;
+    while (gender != 'M' && gender != 'F')
+        cout << "M or F?\n", cin >> gender;
+    cout << "\nEnter mobile number (with country code): \n";
+    getline(cin >> ws, mobNumber);
+    add.takeInput();
+    ```-->
+    - class-specific **`addPerson();`** function :&nbsp; &nbsp;includes a function call to its base class copy `person::addPerson();` and once the basic details are input, the class specific addPerson(); funtion takes class-specific details as input from the user side;<br>
+    for example following is the `doctor::addPerson();` function:<br><br>
+    ```cpp
+    void doctor::addPerson()
+    {
+        if (hospital::doctorsList.size() == hospital::doctorsLimit)
+        {
+            cout<<"\n\nDoctors limit reached, can't add more!\n\n";
+            return;
+        }
+        //18 and 65 are the age limits for registration of a new doctor;
+        person::addPerson(18, 65);
+        if ((age < 18) || (age > 65))
+            return;
+        cout << "\nEnter the type of the doctor: \n";
+        getline(cin >> ws, type);
+        if (hospital::doctorsList.rbegin() != hospital::doctorsList.rend())
+            id = ((hospital::doctorsList.rbegin())->first) + 1;
+        else
+            id = 1;
+        hospital::doctorsList[id] = *this;
+
+        //creating a fstream object to read/write from/to files;
+        fstream f;
+        //creating a record in doctorsHistory.csv;
+        f.open("./data/doctorsHistory.csv", ios::app);
+        f << firstName << "," << lastName << "," << gender << "," << age << "," 
+          << mobNumber << "," << add.addToStr() << "," << type << ",N,NA" << endl;
+        f.close();
+
+        cout << "\n" << firstName << " " << lastName << " registered successfully!\n";
+        cout << "Their ID is: " << id << "\n";
+
+        return;
+    }
+    ```
       
     
 ___

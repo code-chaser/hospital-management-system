@@ -287,9 +287,9 @@ ___
   <br>    
   
   
-  - ### `patient::hospitalize();` & `patient::reportADeath` functions:
+  - ### `patient::hospitalize();` & `patient::reportADeath();` functions:
     - these functions are implemented really simply, they just change the values of `patient` class fields `bool hospitalized, alive;` to TRUE and FALSE respectively
-    - in addition, they also change the values of `patientsHistory.csv` file's columns "was Hospitalized?", "still Alive?" to 'Y' and 'N' respectively;
+    - in addition, they also change the values of `patientsHistory.csv` file's columns, namely "was Hospitalized?", "still Alive?" to 'Y' and 'N' respectively;
   
   <br>
   <br>

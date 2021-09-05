@@ -7,7 +7,7 @@ ___
 
 ## Check Out
 - [Project Documentation](https://github.com/code-chaser/hospital-management-system/blob/main/docs/project-documentation.md)
-- [User Manual](https://github.com/code-chaser/hospital-management-system/blob/main/docs/user-manual.md)
+- [User Manual](https://github.com/code-chaser/hospital-management-system/blob/main/docs/user-manual.md) -  for usage instructions, features & limitations.
 - [Data Storage Details](https://github.com/code-chaser/hospital-management-system/blob/main/data/README.md)
 
 ___

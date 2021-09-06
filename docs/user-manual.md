@@ -55,7 +55,7 @@ ___
 #### LIMITATIONS
 
 - Appointments can only be booked for the same day. Future appointment booking is not possible yet.
-- Appointment slots are fixed for doctors and cannot be changes. They're of 1 hour length and from 9:00 AM to 5:00 PM.
+- Appointment slots are fixed for doctors and cannot be changed. They're of 1 hour length and from 9:00 AM to 5:00 PM.
 - There's no support for checking beds' availability while hospitalizing a patient.
 
 

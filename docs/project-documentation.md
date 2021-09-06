@@ -31,11 +31,9 @@ ___
 |<h4>GOAL 8 :&nbsp; &nbsp; keep a history record of all the entities</h4><hr><h4>OBJECTIVES :</h4><ul><li>for all the entities, create **`*History.csv`** files for storing their data even after the entity is no longer a part of the hospital;<li>in the `add/register` funtions of all the entities after adding them to their corresponding static map, create a record of them in their corresponding `*History.csv` file as well;<li>the history records are of not much use for the functionalitites, so, no need to create seperate static maps for them, whenever needed they can be directly accessed through file handling;|
 ___
 
-<br>
-  
+  <br>
   
 ### SYSTEM DESIGN
-<br>
   
 |CLASS|DESCRIPTION|
 |:-----:|-----------|
@@ -58,7 +56,6 @@ ___
 ### DATA STORAGE
   - for data storage details: kindly refer to this [link](https://github.com/code-chaser/hospital-management-system/blob/main/data/README.md) 
   ___
-  
   
   <br>
   
@@ -93,7 +90,7 @@ ___
         return;
     }
     ```
-  <br>
+
   <br>
 
   - ### `saveMap();` functions:
@@ -119,10 +116,8 @@ ___
         return;
     }
     ```
+
   <br>
-  <br>
-  
-  
   
 - ### `addPerson();` functions:
   
@@ -169,11 +164,9 @@ ___
     ```
   
     - *add function of class* `ambulance` *i.e.* `addAmbulance();` *works in a similar fashion*;
+
   <br>
-  <br>
-  
-  
-  
+ 
 - ### `printDetails();` functions:
   
     - **`person::printDetails();`** :&nbsp; &nbsp;prints the first name, last name, age, gender, mobile number and address of the object that invoked the class-specific `printDetails();` function;<br><br>
@@ -194,9 +187,8 @@ ___
         return;
     }
     ```
+
   <br>
-  <br>
-  
   
  - ### `printDetailsFromHistory(string extraDetails = "");` functions:
   
@@ -230,7 +222,7 @@ ___
         return;
     }
     ```
-  <br>
+
   <br>
 
   - ### `getDetails();` & `getDetailsFromHistory();` functions:
@@ -240,9 +232,7 @@ ___
     - `getDetails();` function can directly use the filled `static map` for the data; but `getDetailsFromHistory();` has to access the History CSV file, as there's no map storing history data;
   
   <br>
-  <br>  
   
-      
   - ### `removePerson();` functions:
   
     - these functions are defined in the classes derived from class `person` i.e. classes `doctor, patient, nurse, driver` *(has a slightly different meaning for class* `patient`*, there it rather means "discharge a patient", name of the function is same though)*;
@@ -280,15 +270,13 @@ ___
     }
     ```
       - *remove function of class* `ambulance` *i.e.* `removeAmbulance();` *works in a similar fashion*;
+
   <br>
-  <br>    
-  
   
   - ### `patient::hospitalize();` & `patient::reportADeath();` functions:
     - these functions are implemented really simply, they just change the values of `patient` class fields `bool hospitalized, alive;` to TRUE and FALSE respectively
     - in addition, they also change the values of `patientsHistory.csv` file's columns, namely "was Hospitalized?", "still Alive?" to 'Y' and 'N' respectively;
   
-  <br>
   <br>
   
   - ### `ambulance::send();` function:
@@ -346,8 +334,7 @@ ___
         return;
     }
     ```
-  
-  <br>
+
   <br>
   
   - ### `ambulance::reportArrival();` function:
@@ -373,10 +360,8 @@ ___
         return;
     }
     ```
-  
-  <br>
-  <br>
-    
-    
-  
+
+<br>
+
+___
 ___

@@ -15,7 +15,7 @@ person::person()
 void person::addPerson(int16_t minAge, int16_t maxAge)
 {
     //getting basic details of the person from the user side;
-    cout << "\nEnter name: \nFirst Name:\n";
+    cout << "\nEnter name: \nFirst name:\n";
     getline(cin >> ws, firstName);
     cout << "\nLast name:\n";
     getline(cin, lastName);

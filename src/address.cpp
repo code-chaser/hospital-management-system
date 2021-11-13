@@ -16,7 +16,6 @@ address::address()
     state = "";
     pinCode = "";
     country = "";
-    return;
 }
 void address::takeInput()
 {

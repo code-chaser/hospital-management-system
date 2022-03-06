@@ -9,6 +9,8 @@ ___
 - [Project Documentation](https://github.com/code-chaser/hospital-management-system/blob/main/docs/project-documentation.md)
 - [User Manual](https://github.com/code-chaser/hospital-management-system/blob/main/docs/user-manual.md) - for set-up instructions, features & limitations.
 - [Data Storage Details](https://github.com/code-chaser/hospital-management-system/blob/main/data/README.md)
+- [Screenshots](#screenshots)
+- [Tech Stack](#tech-stack)
 
 ___
 
@@ -31,4 +33,6 @@ ___
 ## Tech Stack
 * C++
 
+___
+> #### _Hope you like it! :)_
 ___

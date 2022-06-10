@@ -77,9 +77,9 @@ void appointment::printDetails()
 }
 void appointment::book()
 {
-    if (hospital::appointmentsList.size() == 8 * hospital::doctorsList.size())
+    if (hospital::appointmentsList.size() >= 8 * hospital::doctorsList.size())
     {
-        cout << "\n\nSorry, all slots are booked for today!\n\n";
+        cout << "\n\nSorry, no doctor is available for appointment today!\n\n";
         return;
     }
     cout << "\n\nIs the patient already registered (Y : Yes || N : No)?\n";
@@ -168,6 +168,12 @@ void appointment::getDetails()
 {
     cout << "\nEnter appointment ID:\n";
     cin >> id;
+    if (hospital::appointmentsList.find(id) == hospital::appointmentsList.end())
+    {
+        cout << "\nInvalid appointment ID!\n";
+        id = -1;
+        return;
+    }
     *this = hospital::appointmentsList[id];
     return;
 }

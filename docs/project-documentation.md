@@ -64,7 +64,7 @@ ___
   - ### `fillMap();` functions:
   
     - these functions are defined in the classes of each and every entity i.e. classes `doctor, patient, nurse, driver, ambulance, appointment`;
-    -it fetches saved data from the class's corresponding CSV file using a `fstream` object and save it in its corresponding **`static map`** for further use by all other methods;
+    - it fetches saved data from the class's corresponding CSV file using a `fstream` object and save it in its corresponding **`static map`** for further use by all other methods;
   
     - *for example following is the* `doctor::fillMap();` *function:*<br><br>
     ```cpp
